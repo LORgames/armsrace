@@ -46,7 +46,7 @@ namespace MischiefFramework.Cache {
         }
     }
 
-    internal partial class Asset {
+    public partial class Asset {
         private int _assetID;
 
         public void SetAssetID(int newID) { _assetID = newID; }

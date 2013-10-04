@@ -21,7 +21,7 @@ namespace MischiefFramework.WorldX.Map {
         RenderTarget2D ShadowRT; //lighting
 
         public Sun() {
-            x = new Camera(48, 48, 0.1f, 80);
+            x = new Camera(32, 32);
             x.LookAt = Vector3.Zero;
             x.Up = Vector3.Up;
             x.GenerateMatrices();

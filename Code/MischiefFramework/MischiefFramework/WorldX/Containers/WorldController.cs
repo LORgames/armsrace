@@ -8,6 +8,8 @@ using FarseerPhysics;
 using FarseerPhysics.Dynamics;
 using MischiefFramework.WorldX.Stage;
 using MischiefFramework.WorldX.Map;
+using MischiefFramework.WorldX.Assets;
+using MischiefFramework.Cache;
 
 namespace MischiefFramework.WorldX.Containers {
     internal class WorldController : IDisposable {
@@ -19,6 +21,8 @@ namespace MischiefFramework.WorldX.Containers {
             level = new Level(world);
 
             new Sun();
+
+            new Character(Player.Input, world);
         }
 
         public void Update(float dt) {

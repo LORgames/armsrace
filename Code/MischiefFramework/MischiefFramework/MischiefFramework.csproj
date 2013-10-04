@@ -140,6 +140,7 @@
     <Compile Include="States\MenuState.cs" />
     <Compile Include="States\PlayingState.cs" />
     <Compile Include="States\StateManager.cs" />
+    <Compile Include="WorldX\Assets\Character.cs" />
     <Compile Include="WorldX\Containers\WorldController.cs" />
     <Compile Include="WorldX\Information\GameInformation.cs" />
     <Compile Include="WorldX\Information\IInfoPanel.cs" />
@@ -154,6 +155,10 @@
     <Content Include="GameThumbnail.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SkinnedModel %28Xbox%29\SkinnedModel.csproj">
+      <Project>{B37FB7AC-7771-4444-BC27-FCCC93A1DF80}</Project>
+      <Name>SkinnedModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ZDataTypes\ZDataTypes.csproj">
       <Project>{BBE713DD-B02F-4839-8835-4BF78E11AD4E}</Project>
       <Name>ZDataTypes</Name>

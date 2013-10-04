@@ -182,7 +182,7 @@
       <Name>Blob Phase one</Name>
       <Importer>FbxImporter</Importer>
       <Processor>SkinnedModelProcessor</Processor>
-      <ProcessorParameters_Animations>Walk 5 20</ProcessorParameters_Animations>
+      <ProcessorParameters_Animations>Walk 5 20%3bIdle 25 45</ProcessorParameters_Animations>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
