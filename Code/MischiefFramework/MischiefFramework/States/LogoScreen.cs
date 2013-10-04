@@ -14,7 +14,7 @@ namespace MischiefFramework.States {
         private float displayTime = 2.5f;
 
         public LogoScreen() {
-            logo = ResourceManager.LoadAsset<Texture2D>("HUD/LOR logo");
+            logo = ResourceManager.LoadAsset<Texture2D>("HUD/LOR logo2");
             sb = new SpriteBatch(Game.device);
         }
 
@@ -34,7 +34,7 @@ namespace MischiefFramework.States {
         }
 
         public bool Render(GameTime gt) {
-            Game.device.Clear(Color.White);
+            Game.device.Clear(Color.Black);
             
             sb.Begin();
 

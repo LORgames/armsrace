@@ -161,6 +161,16 @@ namespace MischiefFramework.Core {
                 dy = -1.0f;
             }
 
+            // TODO: remove mouse lock after testing
+            // lock mouse on F1 press
+            if (currentKeyboardState.IsKeyDown(Keys.F1)) {
+                SetMouseLock(true);
+            }
+            // unlock mouse on F2 press
+            if (currentKeyboardState.IsKeyDown(Keys.F2)) {
+                SetMouseLock(false);
+            }
+
             ax = ((float)(currentMouseState.X - prevX) / 10.0f);
             ay = -((float)(currentMouseState.Y - prevY) / 10.0f);
 

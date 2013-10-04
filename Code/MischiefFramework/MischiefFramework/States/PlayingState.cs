@@ -19,7 +19,7 @@ namespace MischiefFramework.States {
             //mainCam = new Camera(16, 9);
             //mainCam = new Camera(12, 6.75f);
             //mainCam = new Camera(8, 4.5f);
-            //mainCam = new Camera(4, 2.25f);
+            //mainCam = new Camera(4, 2.25f);0
             //mainCam = new Camera(2, 1.125f);
             //mainCam = new Camera(1, 0.5625f);
 
