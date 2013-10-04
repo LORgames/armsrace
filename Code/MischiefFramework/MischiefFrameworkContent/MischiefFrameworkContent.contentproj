@@ -176,22 +176,22 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </None>
-    <None Include="Meshes\Character\TankBlob.mtl">
-      <Name>TankBlob</Name>
-    </None>
     <Compile Include="Meshes\Character\TankBlob.obj">
       <Name>TankBlob</Name>
       <Importer>ObjImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
-    <None Include="Meshes\Character\TankTurret.mtl">
-      <Name>TankTurret</Name>
-    </None>
     <Compile Include="Meshes\Character\TankTurret.obj">
       <Name>TankTurret</Name>
       <Importer>ObjImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
+    <None Include="Meshes\Character\TankBlob.mtl">
+      <Name>TankBlob</Name>
+    </None>
+    <None Include="Meshes\Character\TankTurret.mtl">
+      <Name>TankTurret</Name>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Meshes\Character\Blob Phase one.fbx">

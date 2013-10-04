@@ -32,10 +32,13 @@ namespace MischiefFramework.Core {
             if (_active && ActivePlayers.Count < MAX_ACTIVE) {
                 i = TOTAL_INPUTS;
                 while (--i > -1) {
-                    Controllers[i].Update(dt);
+                    if (!Controllers[i].isUsed) {
+                        Controllers[i].Update(dt);
 
-                    if (Controllers[i].GetStart()) {
-                        ActivePlayers.Add(new GamePlayer(Controllers[i], ActivePlayers.Count));
+                        if (Controllers[i].GetStart()) {
+                            Controllers[i].isUsed = true;
+                            ActivePlayers.Add(new GamePlayer(Controllers[i], ActivePlayers.Count));
+                        }
                     }
                 }
             }

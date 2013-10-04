@@ -10,6 +10,8 @@ namespace MischiefFramework.Core {
         //Mouse locking to center of screen
         protected static bool locked = true;
 
+        public bool isUsed = false;
+
         public static void SetMouseLock(bool lockState) {
             locked = lockState;
             Game.instance.IsMouseVisible = !locked;
