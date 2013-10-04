@@ -13,32 +13,19 @@ namespace MischiefFramework.States {
 
         private SpriteFont font;
 
-        private List<PlayerInput> inputs;
-
         public IntroState() {
             renderTarget = new SpriteBatch(Game.device);
             font = Cache.ResourceManager.LoadAsset<SpriteFont>("Fonts/MenuFont");
 
-            inputs = new List<PlayerInput>();
-
-            inputs.Add(new InputGamepad(PlayerIndex.One));
-            inputs.Add(new InputGamepad(PlayerIndex.Two));
-            inputs.Add(new InputGamepad(PlayerIndex.Three));
-            inputs.Add(new InputGamepad(PlayerIndex.Four));
-            inputs.Add(new InputKeyboardMouse());
-
             PlayerInput.SetMouseLock(false);
+            Game.players.Activate();
         }
 
         public bool Update(GameTime gameTime) {
-            foreach (PlayerInput input in inputs) {
-                input.Update(gameTime);
-
-                if (input.GetStart()) {
-                    Cache.Player.Input = input;
-                    StateManager.Push(new MenuState(Game.device));
-                    break;
-                }
+            if (PlayerManager.ActivePlayers.Count > 0) {
+                Cache.Player.Input = PlayerManager.ActivePlayers[0].Input;
+                StateManager.Push(new MenuState(Game.device));
+                Game.players.Deactivate();
             }
 
             return false;

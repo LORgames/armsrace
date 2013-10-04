@@ -50,6 +50,9 @@ namespace MischiefFramework {
             device.DeviceReset += new EventHandler<EventArgs>(device_DeviceReset);
 
             ResourceManager.SetContent(Content);
+
+            players = new PlayerManager();
+
             StateManager.Initilize();
 
             base.Initialize();
@@ -90,8 +93,8 @@ namespace MischiefFramework {
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime) {
+            players.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             StateManager.Update(gameTime);
-            players.Update();
 
             base.Update(gameTime);
         }

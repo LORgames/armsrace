@@ -12,5 +12,10 @@ namespace MischiefFramework.WorldX.Information {
         public int baseID;
 
         public int score;
+
+        public GamePlayer(PlayerInput input, int playerID) {
+            this.Input = input;
+            this.playerID = playerID;
+        }
     }
 }

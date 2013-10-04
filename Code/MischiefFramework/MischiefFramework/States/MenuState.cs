@@ -41,7 +41,6 @@ namespace MischiefFramework.States {
         }
 
         public bool Update(GameTime gameTime) {
-            Player.Input.Update(gameTime);
             menu.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             return false;
         }

@@ -60,25 +60,25 @@ namespace MischiefFramework.Core {
         internal Vector2 GetCursorPosition() { return cursorPosition; }
 
         // Functions that need to be called
-        public abstract void Update(GameTime dt);
+        public abstract void Update(float dt);
         public virtual void Rumble() { }
         public virtual void Rumble(float sine_motor, float cos_motor, float time) { }
     }
 
     public class InputGamepad : PlayerInput {
-        private TimeSpan vibration_time_remaining;
+        private float vibration_time_remaining;
 
         public InputGamepad(PlayerIndex myPlayer) {
             this.myPlayer = myPlayer;
-            vibration_time_remaining = TimeSpan.Zero;
+            vibration_time_remaining = 0f;
         }
 
-        public override void Update(GameTime dt) {
+        public override void Update(float dt) {
             GamePadState currentGamePadState = GamePad.GetState(myPlayer);
 
-            if (vibration_time_remaining >= TimeSpan.Zero) {
-                vibration_time_remaining -= dt.ElapsedGameTime;
-                if (vibration_time_remaining < TimeSpan.Zero) {
+            if (vibration_time_remaining >= 0f) {
+                vibration_time_remaining -= dt;
+                if (vibration_time_remaining < 0f) {
                     RumbleOff();
                 }
             }
@@ -105,7 +105,7 @@ namespace MischiefFramework.Core {
         }
 
         public override void Rumble(float sine_motor, float cos_motor, float time) {
-            vibration_time_remaining = TimeSpan.FromSeconds(time);
+            vibration_time_remaining = time;
             GamePad.SetVibration(myPlayer, sine_motor, cos_motor);
         }
 
@@ -125,7 +125,7 @@ namespace MischiefFramework.Core {
             prevY = currentMouseState.Y;
         }
 
-        public override void Update(GameTime dt) {
+        public override void Update(float dt) {
             KeyboardState currentKeyboardState = Keyboard.GetState();
             MouseState currentMouseState = Mouse.GetState();
 

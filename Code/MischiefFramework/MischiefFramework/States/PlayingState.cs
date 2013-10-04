@@ -48,7 +48,6 @@ namespace MischiefFramework.States {
 
         public bool Update(GameTime gameTime) {
             Renderer.Update(gameTime);
-            Player.Input.Update(gameTime);
 
 #if DEBUG_PHYSICS
             Game.instance.ConstraintDrawer.Update();
