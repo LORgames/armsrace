@@ -113,6 +113,7 @@
     <Compile Include="Cache\ResourceManager.cs" />
     <Compile Include="Cache\SettingManager.cs" />
     <Compile Include="Core\Camera.cs" />
+    <Compile Include="Core\DebugRenderer.cs" />
     <Compile Include="Core\Helpers\MenuHelper.cs" />
     <Compile Include="Core\Helpers\MeshHelper.cs" />
     <Compile Include="Core\Helpers\QuadRenderer.cs" />
@@ -121,6 +122,7 @@
     <Compile Include="Core\Interfaces\IOpaque.cs" />
     <Compile Include="Core\Interfaces\IShadowLight.cs" />
     <Compile Include="Core\Interfaces\ITransparent.cs" />
+    <Compile Include="Core\PlayerManager.cs" />
     <Compile Include="Core\PlayerInput.cs" />
     <Compile Include="Core\Renderer.cs" />
     <Compile Include="Networking\GameClient.cs" />
@@ -145,6 +147,7 @@
     <Compile Include="WorldX\Information\GameInformation.cs" />
     <Compile Include="WorldX\Information\IInfoPanel.cs" />
     <Compile Include="WorldX\Information\InfoPanel.cs" />
+    <Compile Include="WorldX\Information\GamePlayer.cs" />
     <Compile Include="WorldX\Stage\Level.cs" />
     <Compile Include="WorldX\Stage\Sun.cs" />
     <Compile Include="WorldX\TestItems\TestCharacterController.cs" />

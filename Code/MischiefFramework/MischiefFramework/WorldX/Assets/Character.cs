@@ -24,6 +24,8 @@ namespace MischiefFramework.WorldX.Assets {
         private Matrix postmultiplied;
 
         private PlayerInput input;
+
+        private const float SPEED = 10f;
         
         public Character(PlayerInput input, World w) {
             model = ResourceManager.LoadAsset<Model>("Meshes/Character/Blob Phase one");
@@ -39,22 +41,32 @@ namespace MischiefFramework.WorldX.Assets {
             animPlayer = new AnimationPlayer(skinData);
             animPlayer.StartClip(skinData.AnimationClips["Walk"]);
 
-            premultiplied = Matrix.CreateTranslation(0, 1, 0);
+            premultiplied =  Matrix.CreateTranslation(0, 1, 0);
             postmultiplied = Matrix.Identity;
 
-            body = BodyFactory.CreateCircle(w, 2.5f, 1.0f);
-            body.Position = new Vector2(5, 5);
+            body = BodyFactory.CreateCircle(w, 1.0f, 1.0f, new Vector2(5, 5), this);
+            body.BodyType = BodyType.Dynamic;
 
             Renderer.Add(this);
             AssetManager.AddAsset(this);
+
+            this.input = input;
         }
 
         public override void AsyncUpdate(float dt) {
+            float x = -input.GetX();
+            float y = -input.GetY();
 
-            //input.GetX();
+            if (x != 0 || y != 0) {
+                body.Rotation = (float)(Math.Atan2(x, y) + Math.PI / 4);
+                body.LinearVelocity = Vector2.UnitX * (float)Math.Cos(body.Rotation) * SPEED + Vector2.UnitY * (float)Math.Sin(body.Rotation) * SPEED;
+            } else {
+                body.AngularVelocity = 0;
+                body.LinearVelocity = Vector2.Zero;
+            }
 
             animPlayer.Update(TimeSpan.FromSeconds(dt), true, Matrix.Identity);
-            postmultiplied = premultiplied * Matrix.CreateRotationY(body.Rotation) * Matrix.CreateTranslation(body.Position.X, 0, body.Position.Y);
+            postmultiplied = Matrix.CreateRotationY(-body.Rotation - (float)Math.PI/2) * Matrix.CreateTranslation(body.Position.X, 0.85f, body.Position.Y);
         }
 
         public void RenderOpaque() {

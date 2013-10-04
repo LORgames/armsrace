@@ -35,8 +35,8 @@ namespace MischiefFramework.WorldX.Map {
         }
 
         public override void AsyncUpdate(float dt) {
-            time += dt;
-            //time = 6;
+            //time += dt;
+            time = 9;
 
             if(time > 12) { time -= 12; night = !night; };
 

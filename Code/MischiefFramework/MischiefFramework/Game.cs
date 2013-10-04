@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Media;
 using MischiefFramework.States;
 using MischiefFramework.Cache;
 using MischiefFramework.WorldX.Information;
+using MischiefFramework.Core;
 
 namespace MischiefFramework {
     /// <summary>
@@ -19,6 +20,7 @@ namespace MischiefFramework {
     internal class Game : Microsoft.Xna.Framework.Game {
         internal static GraphicsDeviceManager graphics;
         internal static GraphicsDevice device;
+        internal static PlayerManager players;
 
         internal static Game instance;
 

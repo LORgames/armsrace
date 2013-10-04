@@ -27,7 +27,7 @@ namespace MischiefFramework.Networking {
                 listenThread.Start();
 
                 NetworkMessage nmo = new NetworkMessage(NetworkMessageTypes.ClientConnect);
-                nmo.AddString(Player.Name);
+                nmo.AddString(MischiefFramework.Cache.Player.Name);
                 SendMessage(nmo);
             } catch (ArgumentNullException e) {
                 System.Diagnostics.Debug.WriteLine("ArgumentNullException: {0}", e);

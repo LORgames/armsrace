@@ -23,7 +23,7 @@ texture depthMap;
 texture shadowMap;
 float4x4 lightViewProjection;
 static const float SMAP_SIZE = 1024.0f;
-static const float SHADOW_EPSILON = 0.00033f;
+static const float SHADOW_EPSILON = 0.0033f;
 
 sampler colorSampler = sampler_state {
     Texture = (colorMap);
