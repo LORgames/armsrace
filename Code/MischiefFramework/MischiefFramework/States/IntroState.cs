@@ -11,11 +11,12 @@ namespace MischiefFramework.States {
     internal class IntroState : IState {
         private SpriteBatch renderTarget;
 
-        private SpriteFont font;
+        private Texture2D background;
+        private Rectangle bgRect = new Rectangle(0, 0, Game.device.Viewport.Width, Game.device.Viewport.Height);
 
         public IntroState() {
             renderTarget = new SpriteBatch(Game.device);
-            font = Cache.ResourceManager.LoadAsset<SpriteFont>("Fonts/MenuFont");
+            background = Cache.ResourceManager.LoadAsset<Texture2D>("HUD/menu");
 
             PlayerInput.SetMouseLock(false);
             Game.players.Activate();
@@ -32,16 +33,8 @@ namespace MischiefFramework.States {
         }
 
         public bool Render(GameTime gameTime) {
-            Vector2 corner = Vector2.Zero;
-            corner.X = Game.device.Viewport.TitleSafeArea.Left;
-            corner.Y = Game.device.Viewport.TitleSafeArea.Top;
-
             renderTarget.Begin();
-            renderTarget.DrawString(font, "Press Enter Or Start to begin!", corner, Color.White);
-
-            corner.X = Game.device.Viewport.Width / 2;
-            corner.Y = Game.device.Viewport.Height / 2;
-
+            renderTarget.Draw(background, bgRect, Color.White);
             renderTarget.End();
 
             return false;

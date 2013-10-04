@@ -11,17 +11,28 @@ namespace MischiefFramework.States {
         private SpriteBatch renderTarget;
         private SpriteFont font;
 
+        private Texture2D background;
+        private Rectangle bgRect = new Rectangle(0, 0, Game.device.Viewport.Width, Game.device.Viewport.Height);
+
         private Core.Helpers.MenuHelper menu;
 
         private delegate bool ActiveDelegate();
         private delegate void StartDelegate();
         private delegate void BackDelegate();
 
+        private Viewport nathanViewport;
+
         public MenuState(GraphicsDevice device) {
             renderTarget = new SpriteBatch(device);
+            background = Cache.ResourceManager.LoadAsset<Texture2D>("HUD/menu");
             font = ResourceManager.LoadAsset<SpriteFont>("Fonts/MenuFont");
 
-            menu = new Core.Helpers.MenuHelper(device.Viewport, Core.Helpers.Positions.CENTER, new BackDelegate(Quit));
+            nathanViewport.X = device.Viewport.X + 50;
+            nathanViewport.Y = device.Viewport.Y + device.Viewport.Height / 3;
+            nathanViewport.Width = 500;
+            nathanViewport.Height = 500;
+
+            menu = new Core.Helpers.MenuHelper(nathanViewport, Core.Helpers.Positions.CENTERLEFT, new BackDelegate(Quit));
             menu.AddTextMenuItem("Play", ref font, Color.White, Color.Red, new StartDelegate(PlayGame));
             menu.AddTextMenuItem("Settings", ref font, Color.White, Color.Red, new StartDelegate(Settings));
             menu.AddTextMenuItem("Quit", ref font, Color.White, Color.Red, new StartDelegate(Quit));
@@ -29,7 +40,8 @@ namespace MischiefFramework.States {
         }
 
         public void PlayGame() {
-            StateManager.Push(new PlayingState());
+            StateManager.Push(new SetupState(Game.device));
+            //StateManager.Push(new PlayingState());
         }
 
         public void Settings() {
@@ -46,6 +58,9 @@ namespace MischiefFramework.States {
         }
 
         public bool Render(GameTime gameTime) {
+            renderTarget.Begin();
+            renderTarget.Draw(background, bgRect, Color.White);
+            renderTarget.End();
             menu.Render(renderTarget);
             return false;
         }

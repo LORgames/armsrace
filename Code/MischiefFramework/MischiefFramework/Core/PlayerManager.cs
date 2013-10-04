@@ -6,7 +6,7 @@ using MischiefFramework.WorldX.Information;
 
 namespace MischiefFramework.Core {
     public class PlayerManager {
-        private const int MAX_ACTIVE = 4;
+        public const int MAX_ACTIVE = 4;
         public static List<GamePlayer> ActivePlayers = new List<GamePlayer>();
 
         private const int TOTAL_INPUTS = 5;

@@ -77,9 +77,9 @@ namespace MischiefFramework.Core.Helpers {
                 if (menuPosition == Positions.TOPLEFT || menuPosition == Positions.TOPCENTER || menuPosition == Positions.TOPRIGHT) {
                     itemStringPosition.Y = vp.Y + yOffset;
                 } else if (menuPosition == Positions.CENTERLEFT || menuPosition == Positions.CENTER || menuPosition == Positions.CENTERRIGHT) {
-                    itemStringPosition.Y = (vp.Height - menuSize.Y) / 2.0f + yOffset;
+                    itemStringPosition.Y = vp.Y + (vp.Height - menuSize.Y) / 2.0f + yOffset;
                 } else {
-                    itemStringPosition.Y = vp.Height - menuSize.Y + yOffset;
+                    itemStringPosition.Y = vp.Y + vp.Height - menuSize.Y + yOffset;
                 }
 
                 position = itemStringPosition;
@@ -471,6 +471,8 @@ namespace MischiefFramework.Core.Helpers {
 
         private Delegate backMethod;
 
+        private float yOffset = 0.0f;
+
         private const float MAX_HELD_TIME = 0.5f;
         private float getXHeldTime = MAX_HELD_TIME;
         private float getYHeldTime = MAX_HELD_TIME;
@@ -633,8 +635,12 @@ namespace MischiefFramework.Core.Helpers {
             menuItems.Add(temp);
         }
 
+        internal void SetGapBetweenItems(float yOffset) {
+            this.yOffset = yOffset;
+        }
+
         internal void Update(float dt) {
-            vp = Game.device.Viewport;
+            //vp = Game.device.Viewport;
             // Update Input
             // Keyboard
             bool backHeld = Player.Input.GetMenuBack();
@@ -665,6 +671,11 @@ namespace MischiefFramework.Core.Helpers {
             Vector2 menuSize = Vector2.Zero;
             // Perform multiple operations on all the items.
             for (int i = 0; i < menuItems.Count; i++) {
+                // Update menuItems current value
+                if (menuItems[i].type == typeof(SubListItem)) {
+                    SubListItem temp = ((SubListItem)menuItems[i]);
+                    temp.currentValue = (int)temp.currentValueMethod.DynamicInvoke(null);
+                }
                 // Ensure the menu is on the correct item
                 if (!(bool)menuItems[i].activeMethod.DynamicInvoke(null) && current_menu_item == i) {
                     current_menu_item++;
@@ -676,7 +687,7 @@ namespace MischiefFramework.Core.Helpers {
                 // Calculate the menu size
                 if ((bool)menuItems[i].activeMethod.DynamicInvoke(null) || (!(bool)menuItems[i].activeMethod.DynamicInvoke(null) && menuItems[i].deactivatedColor != Color.Transparent)) {
                     menuSize.X = menuSize.X > menuItems[i].GetSize().X ? menuSize.X : menuItems[i].GetSize().X;
-                    menuSize.Y += menuItems[i].GetSize().Y;
+                    menuSize.Y += menuItems[i].GetSize().Y + this.yOffset;
                 }
             }
 
@@ -684,7 +695,7 @@ namespace MischiefFramework.Core.Helpers {
             float yOffset = 0.0f;
             for (int i = 0; i < menuItems.Count; i++) {
                 menuItems[i].UpdatePosition(vp, menuSize, yOffset, menuPosition);
-                yOffset += menuItems[i].GetSize().Y;
+                yOffset += menuItems[i].GetSize().Y + this.yOffset;
             }
 
             // More input Logic
