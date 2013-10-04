@@ -9,7 +9,7 @@ namespace MischiefFramework.Core {
         public static List<GamePlayer> ActivePlayers = new List<GamePlayer>();
 
         private PlayerInput[] Controllers;
-
+        private bool _active = false;
 
         public PlayerManager() {
             Controllers = new PlayerInput[5];
@@ -21,8 +21,18 @@ namespace MischiefFramework.Core {
             Controllers[4] = new InputGamepad(Microsoft.Xna.Framework.PlayerIndex.Four);
         }
 
-        public void Update(float dt) {
+        public void Update() {
+            if (_active) {
 
+            }
+        }
+
+        public void Activate() {
+            _active = true;
+        }
+
+        public void Deactivate() {
+            _active = false;
         }
 
 

@@ -171,10 +171,26 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Meshes\Character\Blob Test.png">
+    <None Include="Meshes\Character\Blob Test.png">
       <Name>Blob Test</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+    </None>
+    <None Include="Meshes\Character\TankBlob.mtl">
+      <Name>TankBlob</Name>
+    </None>
+    <Compile Include="Meshes\Character\TankBlob.obj">
+      <Name>TankBlob</Name>
+      <Importer>ObjImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <None Include="Meshes\Character\TankTurret.mtl">
+      <Name>TankTurret</Name>
+    </None>
+    <Compile Include="Meshes\Character\TankTurret.obj">
+      <Name>TankTurret</Name>
+      <Importer>ObjImporter</Importer>
+      <Processor>ModelProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +200,23 @@
       <Processor>SkinnedModelProcessor</Processor>
       <ProcessorParameters_Animations>Walk 5 20%3bIdle 25 45</ProcessorParameters_Animations>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Meshes\Character\Stage2.png">
+      <Name>Stage2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Meshes\Character\Blob.png">
+      <Name>Blob</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Meshes\Weapons\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 

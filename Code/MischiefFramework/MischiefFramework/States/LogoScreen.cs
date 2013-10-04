@@ -19,6 +19,10 @@ namespace MischiefFramework.States {
         }
 
         public bool Update(GameTime gt) {
+#if DEBUG
+           displayTime = 0;
+#endif
+
             displayTime -= (float)gt.ElapsedGameTime.TotalSeconds;
 
             if (displayTime < 0.0f) {

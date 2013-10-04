@@ -30,12 +30,11 @@ namespace MischiefFramework.WorldX.Assets {
         public Character(PlayerInput input, World w) {
             model = ResourceManager.LoadAsset<Model>("Meshes/Character/Blob Phase one");
             MeshHelper.ChangeEffectUsedByModel(model, Renderer.EffectAnimated);
-
+            
             // Look up our custom skinning information.
             skinData = model.Tag as SkinningData;
 
-            if (skinData == null)
-                throw new InvalidOperationException("This model does not contain a SkinningData tag.");
+            if (skinData == null) throw new InvalidOperationException("This model does not contain a SkinningData tag.");
 
             // Create an animation player, and start decoding an animation clip.
             animPlayer = new AnimationPlayer(skinData);
@@ -66,7 +65,7 @@ namespace MischiefFramework.WorldX.Assets {
             }
 
             animPlayer.Update(TimeSpan.FromSeconds(dt), true, Matrix.Identity);
-            postmultiplied = Matrix.CreateRotationY(-body.Rotation - (float)Math.PI/2) * Matrix.CreateTranslation(body.Position.X, 0.85f, body.Position.Y);
+            postmultiplied = Matrix.CreateScale(0.5f) * Matrix.CreateRotationY(-body.Rotation - (float)Math.PI/2) * Matrix.CreateTranslation(body.Position.X, 0.90f, body.Position.Y);
         }
 
         public void RenderOpaque() {

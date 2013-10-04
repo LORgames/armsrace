@@ -91,6 +91,8 @@ namespace MischiefFramework {
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime) {
             StateManager.Update(gameTime);
+            players.Update();
+
             base.Update(gameTime);
         }
 

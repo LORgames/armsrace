@@ -42,7 +42,7 @@ namespace MischiefFramework.WorldX.Map {
 
             float timeDeg = time / 12 * (float)Math.PI;
 
-            x.Position = Vector3.Up * 70 * (float)Math.Sin(timeDeg) + Vector3.Right * 70 * (float)Math.Cos(timeDeg);
+            x.Position = Vector3.Up * 70 * (float)Math.Sin(timeDeg) + Vector3.Forward * 70 * (float)Math.Cos(timeDeg);
             x.GenerateMatrices();
 
             if (night) {

@@ -22,7 +22,8 @@ namespace MischiefFramework.WorldX.Containers {
 
             new Sun();
 
-            new Character(Player.Input, world);
+            //new Character(Player.Input, world);
+            new TankCharacter(Player.Input, world);
         }
 
         public void Update(float dt) {

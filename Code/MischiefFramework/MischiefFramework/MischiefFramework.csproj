@@ -143,6 +143,7 @@
     <Compile Include="States\PlayingState.cs" />
     <Compile Include="States\StateManager.cs" />
     <Compile Include="WorldX\Assets\Character.cs" />
+    <Compile Include="WorldX\Assets\TankCharacter.cs" />
     <Compile Include="WorldX\Containers\WorldController.cs" />
     <Compile Include="WorldX\Information\GameInformation.cs" />
     <Compile Include="WorldX\Information\IInfoPanel.cs" />
