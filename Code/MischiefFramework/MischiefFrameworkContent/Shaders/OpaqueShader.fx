@@ -136,8 +136,6 @@ PSOutput PS_GBuffer(VSOutput Input) {
     // SPECULAR POWER
     Output.Normal.a = MaterialSpecularPower;
 
-	Output.Color.rgb = Output.Normal.rgb;
-
 	// DEPTH
     Output.Depth = Input.Depth.x / Input.Depth.y;
 

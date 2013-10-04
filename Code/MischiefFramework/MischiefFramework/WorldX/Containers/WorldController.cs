@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using FarseerPhysics;
 using FarseerPhysics.Dynamics;
 using MischiefFramework.WorldX.Stage;
+using MischiefFramework.WorldX.Map;
 
 namespace MischiefFramework.WorldX.Containers {
     internal class WorldController : IDisposable {
@@ -16,6 +17,8 @@ namespace MischiefFramework.WorldX.Containers {
         public WorldController() {
             world = new FarseerPhysics.Dynamics.World(Vector2.Zero);
             level = new Level(world);
+
+            new Sun();
         }
 
         public void Update(float dt) {

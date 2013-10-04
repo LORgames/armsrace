@@ -15,10 +15,8 @@ namespace MischiefFramework.WorldX.Stage {
         private Model visuals;
 
         public Level(World world) {
-            visuals = ResourceManager.LoadAsset<Model>("Level");
+            visuals = ResourceManager.LoadAsset<Model>("Meshes/Levels/Level");
             MeshHelper.ChangeEffectUsedByModel(visuals, Renderer.Effect3D);
-            
-            Renderer.Add(this);
 
             const float CAMERA_ZOOM = 50.0f;
             Renderer.CharacterCamera.LookAt = Vector3.Zero;
@@ -26,6 +24,8 @@ namespace MischiefFramework.WorldX.Stage {
             Renderer.CharacterCamera.Position.Y = CAMERA_ZOOM * 0.500f + Renderer.CharacterCamera.LookAt.Y;
             Renderer.CharacterCamera.Position.Z = CAMERA_ZOOM * 0.612f + Renderer.CharacterCamera.LookAt.Z;
             Renderer.CharacterCamera.GenerateMatrices();
+
+            Renderer.Add(this);
         }
 
         public void RenderOpaque() {

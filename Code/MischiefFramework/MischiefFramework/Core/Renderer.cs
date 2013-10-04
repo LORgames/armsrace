@@ -229,6 +229,18 @@ namespace MischiefFramework.Core {
 
             Game.device.SetRenderTargets(null);
 
+            if (Player.Input.GetJump()) {
+                if(File.Exists(@"C:\\Users\\Paul\\Desktop\\Diffuse.png")) File.Delete(@"C:\\Users\\Paul\\Desktop\\Diffuse.png");
+                FileStream fs = new FileStream(@"C:\\Users\\Paul\\Desktop\\Diffuse.png", FileMode.Create);
+                ColorRT.SaveAsPng(fs, 4096, 4096);
+                fs.Close();
+
+                if (File.Exists(@"C:\\Users\\Paul\\Desktop\\Normals.png")) File.Delete(@"C:\\Users\\Paul\\Desktop\\Normals.png");
+                fs = new FileStream(@"C:\\Users\\Paul\\Desktop\\Normals.png", FileMode.Create);
+                NormalRT.SaveAsPng(fs, 4096, 4096);
+                fs.Close();
+            }
+
             Game.device.SetRenderTarget(LightRT);
             Game.device.Clear(Color.Transparent);
 

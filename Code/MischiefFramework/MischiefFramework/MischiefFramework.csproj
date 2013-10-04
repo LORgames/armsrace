@@ -145,6 +145,7 @@
     <Compile Include="WorldX\Information\IInfoPanel.cs" />
     <Compile Include="WorldX\Information\InfoPanel.cs" />
     <Compile Include="WorldX\Stage\Level.cs" />
+    <Compile Include="WorldX\Stage\Sun.cs" />
     <Compile Include="WorldX\TestItems\TestCharacterController.cs" />
     <Compile Include="WorldX\TestItems\TestLight.cs" />
   </ItemGroup>

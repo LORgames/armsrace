@@ -158,10 +158,31 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Level.fbx">
+    <Compile Include="Meshes\Levels\Level.fbx">
       <Name>Level</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AnimationExtension\AnimationExtension.csproj">
+      <Project>{F69747B2-A475-469E-996A-306C1AD5AC87}</Project>
+      <Name>AnimationExtension</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Meshes\Character\Blob Test.png">
+      <Name>Blob Test</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Meshes\Character\Blob Phase one.fbx">
+      <Name>Blob Phase one</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>SkinnedModelProcessor</Processor>
+      <ProcessorParameters_Animations>Walk 5 20</ProcessorParameters_Animations>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
