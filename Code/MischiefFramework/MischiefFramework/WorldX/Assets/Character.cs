@@ -43,7 +43,7 @@ namespace MischiefFramework.WorldX.Assets {
             premultiplied =  Matrix.CreateTranslation(0, 1, 0);
             postmultiplied = Matrix.Identity;
 
-            body = BodyFactory.CreateCircle(w, 1.0f, 1.0f, new Vector2(5, 5), this);
+            body = BodyFactory.CreateCircle(w, 0.5f, 1.0f, new Vector2(5, 5), this);
             body.BodyType = BodyType.Dynamic;
 
             Renderer.Add(this);

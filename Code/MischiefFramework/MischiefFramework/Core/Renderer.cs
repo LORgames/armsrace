@@ -314,8 +314,7 @@ namespace MischiefFramework.Core {
             spriteBatch.End();
 
 #if DEBUG_PHYSICS
-            Game.instance.ModelDrawer.Draw(CharacterCamera.View, CharacterCamera.Projection);
-            Game.instance.ConstraintDrawer.Draw(CharacterCamera.View, CharacterCamera.Projection);
+            WorldX.Containers.WorldController.dbg.RenderDebugData(CharacterCamera.Projection, Matrix.CreateRotationX((float)Math.PI/2) * CharacterCamera.View * Matrix.CreateTranslation(0, 0.9f, 0));
 #endif
         }
 

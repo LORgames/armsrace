@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MischiefFramework.Cache;
 using FarseerPhysics.Dynamics;
+using FarseerPhysics.Factories;
 
 namespace MischiefFramework.WorldX.Stage {
     internal class Level : IOpaque {
@@ -26,6 +27,12 @@ namespace MischiefFramework.WorldX.Stage {
             Renderer.CharacterCamera.GenerateMatrices();
 
             Renderer.Add(this);
+
+            BodyFactory.CreateRectangle(world, 26, 1, 0, new Vector2(0, 12));
+            BodyFactory.CreateRectangle(world, 26, 1, 0, new Vector2(0,-12));
+            BodyFactory.CreateRectangle(world, 1, 26, 0, new Vector2(12, 0));
+            BodyFactory.CreateRectangle(world, 1, 26, 0, new Vector2(-12, 0));
+            BodyFactory.CreateCircle(world, 1, 0);
         }
 
         public void RenderOpaque() {

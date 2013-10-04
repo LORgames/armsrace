@@ -4,10 +4,6 @@ using MischiefFramework.Cache;
 using MischiefFramework.Core;
 using MischiefFramework.WorldX.Containers;
 
-#if DEBUG_PHYSICS
-using BEPUphysics.Entities;
-#endif
-
 namespace MischiefFramework.States {
     internal class PlayingState : IState {
         private Camera mainCam;
@@ -35,24 +31,10 @@ namespace MischiefFramework.States {
             MischiefFramework.Core.Renderer.Add(new MischiefFramework.WorldX.Information.InfoPanel());
 
             worldController = new WorldController();
-
-#if DEBUG_PHYSICS
-            foreach (Entity e in WorldController.space.Entities) {
-                if (e.Tag != null && e.Tag.ToString() != "noDisplayObject") {
-                    Game.instance.ModelDrawer.Add(e);
-                } else //Remove the now unnecessary tag.
-                    e.Tag = null;
-            }
-#endif
         }
 
         public bool Update(GameTime gameTime) {
             Renderer.Update(gameTime);
-
-#if DEBUG_PHYSICS
-            Game.instance.ConstraintDrawer.Update();
-            Game.instance.ModelDrawer.Update();
-#endif
 
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 

@@ -38,7 +38,7 @@ namespace MischiefFramework.WorldX.Assets {
             postmultiplied_tank = Matrix.Identity;
             postmultiplied_turret = Matrix.Identity;
 
-            body = BodyFactory.CreateCircle(w, 1.0f, 1.0f, new Vector2(5, 5), this);
+            body = BodyFactory.CreateRectangle(w, 2.0f, 2.0f, 1.0f, new Vector2(5, 5), this);
             body.BodyType = BodyType.Dynamic;
 
             Renderer.Add(this);

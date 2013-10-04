@@ -39,7 +39,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\x86\Debug</OutputPath>
-    <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;WINDOWS;DEBUG_PHYSICS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoStdLib>true</NoStdLib>
@@ -124,6 +124,7 @@
     <Compile Include="Core\Interfaces\ITransparent.cs" />
     <Compile Include="Core\PlayerManager.cs" />
     <Compile Include="Core\PlayerInput.cs" />
+    <Compile Include="Core\PrimitiveBatch.cs" />
     <Compile Include="Core\Renderer.cs" />
     <Compile Include="Networking\GameClient.cs" />
     <Compile Include="Networking\GameServer.cs" />
