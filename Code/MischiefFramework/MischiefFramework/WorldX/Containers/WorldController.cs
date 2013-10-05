@@ -39,10 +39,16 @@ namespace MischiefFramework.WorldX.Containers {
             foreach (GamePlayer plr in PlayerManager.ActivePlayers) {
                 Vector2 pos = Vector2.Zero;
 
-                if (SettingManager._baseSharing == 1) {
-                    
-                } else {
-
+                foreach(BaseArea _base in Level.bases) {
+                    if (SettingManager._baseSharing == 1) {
+                        if (plr.teamID == _base.teamID) {
+                            pos = _base.CenterPoint;
+                        }
+                    } else {
+                        if (plr.baseID == _base.baseID) {
+                            pos = _base.CenterPoint;
+                        }
+                    }
                 }
 
                 plr.character = new BlobCharacter(plr, world, pos);
