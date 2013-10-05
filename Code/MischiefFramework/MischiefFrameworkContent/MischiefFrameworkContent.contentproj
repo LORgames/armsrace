@@ -229,16 +229,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Blob\sourceimages\Bullet.png">
+    <None Include="Blob\sourceimages\Bullet.png">
       <Name>Bullet</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Blob\sourceimages\Guns.png">
+    </None>
+    <None Include="Blob\sourceimages\Guns.png">
       <Name>Guns</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
-    </Compile>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HUD\menu.png">
