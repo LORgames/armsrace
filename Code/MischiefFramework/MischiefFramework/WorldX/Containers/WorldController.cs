@@ -37,7 +37,15 @@ namespace MischiefFramework.WorldX.Containers {
             new Sun();
 
             foreach (GamePlayer plr in PlayerManager.ActivePlayers) {
-                plr.character = new BlobCharacter(plr, world);
+                Vector2 pos = Vector2.Zero;
+
+                if (SettingManager._baseSharing == 1) {
+                    
+                } else {
+
+                }
+
+                plr.character = new BlobCharacter(plr, world, pos);
                 //plr.character = new TankCharacter(plr, world, hasCannon:true);
             }
 

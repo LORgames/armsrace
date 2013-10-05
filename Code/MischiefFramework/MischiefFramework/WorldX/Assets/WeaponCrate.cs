@@ -51,30 +51,33 @@ namespace MischiefFramework.WorldX.Assets {
                 other = fixtureA.Body;
             }
 
-            BlobCharacter charCollider;
+            if (other.UserData is BlobCharacter) {
+                BlobCharacter charCollider = (BlobCharacter)other.UserData;
 
-            if (other.UserData is BlobCharacter && ownedBy != other.UserData) {
-                charCollider = (BlobCharacter)other.UserData;
-                if (ownedBy != null && ownedBy.player.teamID == charCollider.player.teamID && inBase) return false;
+                if (ownedBy != other.UserData) {
+                    if (ownedBy != null && ownedBy.player.teamID == charCollider.player.teamID && inBase) return false;
 
-                if (!charCollider.IsCarrying() && charCollider.body.JointList == null) {
+                    if (!charCollider.IsCarrying() && charCollider.body.JointList == null) {
 
-                    if (ownedBy != null) {
-                        body.World.RemoveJoint(joint);
-                        ownedBy.Pickup(null);
+                        if (ownedBy != null) {
+                            body.World.RemoveJoint(joint);
+                            ownedBy.Pickup(null);
+                        }
+
+                        joint = JointFactory.CreateWeldJoint(body.World, body, other, Vector2.Zero, Vector2.Zero);
+                        joint.Broke += new Action<Joint, float>(joint_Broke);
+
+                        ownedBy = charCollider;
+
+                        charCollider.Pickup(this);
+
+                        body.IsSensor = true;
                     }
 
-                    joint = JointFactory.CreateWeldJoint(body.World, body, other, Vector2.Zero, Vector2.Zero);
-                    joint.Broke += new Action<Joint, float>(joint_Broke);
-
-                    ownedBy = charCollider;
-
-                    charCollider.Pickup(this);
-
-                    body.IsSensor = true;
+                    return false;
+                } else if (inBase) {
+                    return false;
                 }
-
-                return false;
             }
 
             return true;

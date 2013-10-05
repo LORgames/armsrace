@@ -10,10 +10,12 @@ using MischiefFramework.Core;
 
 namespace MischiefFramework.WorldX.Assets {
     public class BaseArea {
-        Body area;
-        int baseID;
-        int basePos;
-        int teamID;
+        public Body area;
+        public int baseID;
+        public int basePos;
+        public int teamID;
+
+        public Vector2 CenterPoint = Vector2.Zero;
 
         internal int crates = 0;
 
@@ -35,6 +37,9 @@ namespace MischiefFramework.WorldX.Assets {
 
             float angle = (float)Math.PI / 2 * basePos;
             area.Position = 14f * (Vector2.UnitX * (float)Math.Cos(angle) + Vector2.UnitY * (float)Math.Sin(angle));
+
+            CenterPoint.X = 14f * (float)Math.Cos(angle);
+            CenterPoint.Y = 14f * (float)Math.Sin(angle);
 
             this.baseID = baseID;
             this.teamID = teamID;

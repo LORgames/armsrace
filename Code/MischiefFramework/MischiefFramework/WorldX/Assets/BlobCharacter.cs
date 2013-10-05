@@ -24,8 +24,8 @@ namespace MischiefFramework.WorldX.Assets {
 
         private bool isMoving = false;
 
-        public BlobCharacter(GamePlayer player, World w) : base(player, w) {
-            body = BodyFactory.CreateCircle(w, 0.5f, 1.0f, new Vector2(5, 5), this);
+        public BlobCharacter(GamePlayer player, World w, Vector2 pos) : base(player, w) {
+            body = BodyFactory.CreateCircle(w, 0.5f, 1.0f, pos, this);
             body.BodyType = BodyType.Dynamic;
             body.UserData = this;
             body.FixtureList[0].CollisionGroup = -1;
@@ -87,6 +87,7 @@ namespace MischiefFramework.WorldX.Assets {
         }
 
         internal void Pickup(WeaponCrate weaponCrate) {
+            if (IsCarrying() && weaponCrate != null) throw new Exception("Cannot pick up while holding a crate!");
             carrying = weaponCrate;
         }
     }
