@@ -22,13 +22,13 @@ namespace MischiefFramework.WorldX.Assets {
         private Matrix postmultiplied_tank;
         private Matrix postmultiplied_turret;
 
-        private float turretAngle = 0;
+        private float turretAngle = 0.0f;
 
         private const float SPEED = 10f;
 
+        // guns
         private bool firing = false;
 
-        // guns
         private bool hasMG = false;
         private bool hasLaser = false;
         private bool hasCannon = false;
@@ -47,6 +47,10 @@ namespace MischiefFramework.WorldX.Assets {
         private float cannonInterval = 1.0f;
         private float rocketTimer = 0.0f;
         private float rocketInterval = 6.0f;
+
+        // health
+        private const float MAXHEALTH = 100.0f;
+        private float health = MAXHEALTH;
 
         public TankCharacter(GamePlayer player, World w, 
             bool hasMG = false, bool hasLaser = false, bool hasCannon = false, bool hasRocket = false)
@@ -132,22 +136,21 @@ namespace MischiefFramework.WorldX.Assets {
 
                     // shoot MG
                     Vector3 bulletPos = Vector3.Transform(Vector3.Forward * 5.2f, postmultiplied_turret);
-                    Projectile projectile = new MGBullet(body.World, turretAngle + MathHelper.ToRadians((float)Game.random.Next(MGSPREAD)), new Vector2(bulletPos.X, bulletPos.Z));
+                    new MGBullet(body.World, turretAngle + MathHelper.ToRadians((float)Game.random.Next(MGSPREAD)), new Vector2(bulletPos.X, bulletPos.Z));
                 }
                 if (hasLaser && laserTimer <= 0.0f) {
                     laserTimer = laserInterval;
 
                     // shoot Laser
-
+                    Vector3 bulletPos = Vector3.Transform(Vector3.Forward * 5.2f, postmultiplied_tank);
+                    new LaserBullet(body.World, body.Rotation, new Vector2(bulletPos.X, bulletPos.Z));
                 }
-
                 if (hasCannon && cannonTimer <= 0.0f) {
                     cannonTimer = cannonInterval;
 
                     // shoot Cannon
 
                 }
-
                 if (hasRocket && rocketTimer <= 0.0f) {
                     rocketTimer = rocketInterval;
 

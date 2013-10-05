@@ -19,17 +19,15 @@ namespace MischiefFramework.WorldX.Assets {
 
         internal Matrix postmultiplied;
 
-        internal const float SPEED = 20.0f;
+        internal float speed;
 
-        internal const float LIFESPAN = 2.0f;
+        internal float lifespan;
 
         internal float timer = 0.0f;
 
         internal float angle = 0.0f;
 
-        internal float radius = 0.5f;
-
-        internal float heightOffGround = 1.7f;
+        internal float heightOffGround;
 
         public Projectile(float angle) {
             this.angle = angle;
@@ -38,17 +36,6 @@ namespace MischiefFramework.WorldX.Assets {
         public override void Dispose() {
             body.Dispose();
             Renderer.Remove(this);
-        }
-
-        public override void AsyncUpdate(float dt) {
-            postmultiplied = Matrix.CreateScale(radius) * Matrix.CreateRotationY((float)Math.PI / -2 - angle) * Matrix.CreateTranslation(body.Position.X, heightOffGround, body.Position.Y);
-            body.LinearVelocity = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle)) * SPEED;
-
-            if (timer <= LIFESPAN) {
-                timer += dt;
-            } else {
-                AssetManager.RemoveAsset(this);
-            }
         }
 
         public void RenderOpaque() {
