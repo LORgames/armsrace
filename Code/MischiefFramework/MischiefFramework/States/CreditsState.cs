@@ -32,7 +32,6 @@ namespace MischiefFramework.States {
         private float currentTime = 0.0f;
         private int currentBackground = 0;
         private List<Texture2D> backgrounds = new List<Texture2D>();
-        private List<string> backgroundStrings = new List<string>();
         private List<CreditStruct> creditsList = new List<CreditStruct>();
         private bool getStartHeld = true;
         private bool rollingLong = true;
@@ -40,7 +39,7 @@ namespace MischiefFramework.States {
         private float shortOffset = 0.0f;
 
         // Strings
-        private const string CREDITS_SCREEN_SHORT = "Art\n\tNathan \"Sleep it Off\" Perry\n\tRyan \"Cigar Lover\" Furlong\n\tYing \"Make it Cute\" Luo\n\nProgramming\n\tMiles \"AFK\" Till\n\tPaul \"Magic Numbers\" Fox\n\tSamuel \"Bug Smasher\" Surtees\n\nPowered By\n\tFarseer Physics\n\tXNA Game Studio\n\nSanity Restoration\n\tCOFFEE!!!!!!!!\n\tSubway (Thanks Katie XD)";
+        private const string CREDITS_SCREEN_SHORT = "Art\n\tNathan \"Sleep it Off\" Perry\n\tRyan \"Cigar Lover\" Furlong\n\tYing \"=^.^=\" Luo\n\nProgramming\n\tMiles \"AFK\" Till\n\tPaul \"Magic Numbers\" Fox\n\tSamuel \"Bug Smasher\" Surtees\n\nPowered By\n\tFarseer Physics\n\tXNA Game Studio\n\nSanity Restoration\n\tCOFFEE!!!!!!!!\n\tSubway (Thanks Katie XD)";
         private const string CREDITS_SCREEN_LONG = "Music\n\t\tSONG NAME\n\t\tBy PERSON from URL";
 
         public CreditsState(GraphicsDevice device) {
@@ -49,10 +48,7 @@ namespace MischiefFramework.States {
             defaultFont = ResourceManager.LoadAsset<SpriteFont>("Fonts/MenuFont");
 
             //Add Background images
-            //backgrounds.Add(ResourceManager.LoadAsset<Texture2D>("Menus/Credits/Old_Build_1"));
-
-            //Add background text
-            //backgroundStrings.Add("Old School-Admiring Grass");
+            backgrounds.Add(ResourceManager.LoadAsset<Texture2D>("HUD/Credits/overlay"));
 
             string credits = "";
             for (int j = 0; j < 2; j++) {
@@ -184,22 +180,30 @@ namespace MischiefFramework.States {
 
             if (backgrounds.Count > 0) {
                 Vector2 backgroundPos = new Vector2((Game.device.Viewport.TitleSafeArea.Width - backgrounds[currentBackground].Bounds.Width) / 2, 0);
+
+                float xScale = backgrounds[currentBackground].Width / Game.device.Viewport.TitleSafeArea.Width;
+                float yScale = backgrounds[currentBackground].Height / Game.device.Viewport.TitleSafeArea.Height;
+
+                float scale = xScale > yScale ? xScale : yScale;
+
+                Rectangle bgRect = new Rectangle();
+                bgRect.Width = (int)(backgrounds[currentBackground].Width / scale);
+                bgRect.Height = (int)(backgrounds[currentBackground].Height / scale);
+                bgRect.X = (Game.device.Viewport.TitleSafeArea.Width - bgRect.Width) / 2;
+                bgRect.Y = (Game.device.Viewport.TitleSafeArea.Height - bgRect.Height) / 2;
+
                 float alpha = currentTime / backgroundTiming;
                 if (alpha < 0.5)
                     alpha *= 2;
                 else
                     alpha = 1 - (alpha - 0.5f) * 2f;
                 Color color = new Color(255, 255, 255, (byte)(alpha * 255));
-                spritebatch.Draw(backgrounds[currentBackground], backgroundPos, color);
-                string[] strings = backgroundStrings[currentBackground].Split('-');
-                Vector2 stringPos = Vector2.Zero;
-                spritebatch.DrawString(defaultFont, strings[0], stringPos, color);
-                stringPos.Y += defaultFont.MeasureString(strings[0]).Y;
-                for (int i = 0; i < strings[1].Length; i++) {
-                    spritebatch.DrawString(defaultFont, strings[1][i].ToString(), stringPos, color);
-                    stringPos.Y += defaultFont.MeasureString(strings[1][i].ToString()).Y - 15;
-                }
+                spritebatch.Draw(backgrounds[currentBackground], bgRect, color);
             }
+
+            spritebatch.End();
+
+            spritebatch.Begin();
 
             if (rollingLong) {
                 Vector2 temp = Vector2.Zero;
@@ -207,9 +211,11 @@ namespace MischiefFramework.States {
                     temp.X = credit.position.X;
                     temp.Y = credit.position.Y - longOffset;
                     if (credit.isHeader)
-                        spritebatch.DrawString(headerFont, credit.line, temp, Color.White);
+                        DrawText(spritebatch, ref headerFont, credit.line, Color.Black, Color.White, 1, 0, temp);
+                    //spritebatch.DrawString(headerFont, credit.line, temp, Color.White);
                     else
-                        spritebatch.DrawString(defaultFont, credit.line, temp, Color.White);
+                        DrawText(spritebatch, ref defaultFont, credit.line, Color.Black, Color.White, 1, 0, temp);
+                        //spritebatch.DrawString(defaultFont, credit.line, temp, Color.White);
                 }
             } else {
                 foreach (CreditStruct credit in creditsList) {
@@ -218,14 +224,34 @@ namespace MischiefFramework.States {
                         temp.X = credit.position.X;
                         temp.Y = credit.position.Y - shortOffset;
                         if (credit.isHeader)
-                            spritebatch.DrawString(headerFont, credit.line, temp, Color.White);
+                            DrawText(spritebatch, ref headerFont, credit.line, Color.Black, Color.White, 1, 0, temp);
+                        //spritebatch.DrawString(headerFont, credit.line, temp, Color.White);
                         else
-                            spritebatch.DrawString(defaultFont, credit.line, temp, Color.White);
+                            DrawText(spritebatch, ref defaultFont, credit.line, Color.Black, Color.White, 1, 0, temp);
+                            //spritebatch.DrawString(defaultFont, credit.line, temp, Color.White);
                     }
                 }
             }
             spritebatch.End();
             return false;
+        }
+
+        private void DrawText(SpriteBatch sb, ref SpriteFont font, string text, Color backColor, Color frontColor, float scale, float rotation, Vector2 position) {
+
+            //If we want to draw the text from the origin we need to find that point, otherwise you can set all origins to Vector2.Zero.
+
+            Vector2 origin = Vector2.Zero;//new Vector2(font.MeasureString(text).X / 2, font.MeasureString(text).Y / 2);
+
+            //These 4 draws are the background of the text and each of them have a certain displacement each way.
+
+            sb.DrawString(font, text, position + new Vector2(1f * scale, 1f * scale), backColor, rotation, origin, scale, SpriteEffects.None, 1f);
+            sb.DrawString(font, text, position + new Vector2(-1f * scale, -1f * scale), backColor, rotation, origin, scale, SpriteEffects.None, 1f);
+            sb.DrawString(font, text, position + new Vector2(-1f * scale, 1f * scale), backColor, rotation, origin, scale, SpriteEffects.None, 1f);
+            sb.DrawString(font, text, position + new Vector2(1f * scale, -1f * scale), backColor, rotation, origin, scale, SpriteEffects.None, 1f);
+
+            //This is the top layer which we draw in the middle so it covers all the other texts except that displacement.
+            sb.DrawString(font, text, position, frontColor, rotation, origin, scale, SpriteEffects.None, 1f);
+
         }
 
         public bool OnRemove() {
