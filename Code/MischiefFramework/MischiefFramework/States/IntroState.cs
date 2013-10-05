@@ -55,8 +55,6 @@ namespace MischiefFramework.States {
                 background = player.GetTexture();
             }
             renderTarget.Draw(background, renderTarget.GraphicsDevice.Viewport.Bounds, Color.White);
-
-            renderTarget.Draw(background, renderTarget.GraphicsDevice.Viewport.Bounds, Color.White);
             renderTarget.End();
 
             return false;

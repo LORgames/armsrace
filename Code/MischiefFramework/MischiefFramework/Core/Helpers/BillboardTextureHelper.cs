@@ -14,9 +14,9 @@ namespace MischiefFramework.Core.Helpers {
         private static RenderTarget2D retValHealthBar;
         private static SpriteBatch sb;
 
-        public static RenderTarget2D GeneratePlayerIconTexture(int playerID) {
+        public static RenderTarget2D GeneratePlayerIconTexture(int playerID, bool hasCrate) {
             if (playerIconTexture == null) {
-                playerIconTexture = ResourceManager.LoadAsset<Texture2D>("HUD/Info Panel");
+                playerIconTexture = ResourceManager.LoadAsset<Texture2D>("HUD/Player Markers");
             }
 
             if (retValPlayerIcon == null) {
@@ -30,7 +30,10 @@ namespace MischiefFramework.Core.Helpers {
             Game.device.SetRenderTarget(retValPlayerIcon);
 
             sb.Begin();
-            sb.Draw(playerIconTexture, new Rectangle(0, 0, 128, 64), new Rectangle(128 * (playerID % 2), 64 * (playerID / 2), 128, 64), Color.White);
+            sb.Draw(playerIconTexture, new Rectangle(0, 0, 64, 64), new Rectangle(64 * (playerID % 4), 0, 64, 64), Color.White);
+            if (hasCrate) {
+                sb.Draw(playerIconTexture, new Rectangle(64, 0, 64, 64), new Rectangle(64 * 4, 0, 64, 64), Color.White);
+            }
             sb.End();
 
             Game.device.SetRenderTarget(null);

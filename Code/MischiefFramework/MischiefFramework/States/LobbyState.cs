@@ -33,7 +33,8 @@ namespace MischiefFramework.States {
         private Rectangle tablePlayer34Line = new Rectangle(300, 100, 1, 600);
         private Texture2D tableTexture = new Texture2D(Game.device, 1, 1);
 
-        private List<Texture2D> playerIconTextures = new List<Texture2D>();
+        private Texture2D playerIconTextures;
+        private Vector2 PLAYER_ICON_SIZES = new Vector2(64, 64);
 
         public LobbyState() {
             renderTarget = new SpriteBatch(Game.device);
@@ -41,14 +42,7 @@ namespace MischiefFramework.States {
 
             tableTexture.SetData<Color>(new Color[] { Color.White });
 
-            for (int i = 0; i < PlayerManager.MAX_ACTIVE; i++) {
-                List<Color> playerTextureColor = new List<Color>();
-                playerIconTextures.Add(new Texture2D(Game.device, 50, 50));
-                for (int j = 0; j < playerIconTextures[i].Height * playerIconTextures[i].Width; j++) {
-                    playerTextureColor.Add(i == 0 ? Color.Blue : i == 1 ? Color.Red : i == 2 ? Color.Green : Color.Yellow);
-                }
-                playerIconTextures[i].SetData<Color>(playerTextureColor.ToArray());
-            }
+            playerIconTextures = ResourceManager.LoadAsset<Texture2D>("HUD/Player Markers");
 
             Update(new GameTime());
 
@@ -101,11 +95,11 @@ namespace MischiefFramework.States {
             Vector2 footerStringSize = font.MeasureString("Press A (Controller) or Space (Keyboard) to Lock-in");
             //Vector2 playerIconSize = new Vector2(50f, 50f);
 
-            int columnWidth = (int)(team1StringSize.X > playerIconTextures[0].Width ? team1StringSize.X : playerIconTextures[0].Width);
+            int columnWidth = (int)(team1StringSize.X > PLAYER_ICON_SIZES.X ? team1StringSize.X : PLAYER_ICON_SIZES.X);
 
             tableBoxTop.Width = columnWidth * 4;
             tableBoxBottom.Width = tableBoxTop.Width;
-            tableBoxLeft.Height = (int)(team1StringSize.Y + playerIconTextures[0].Height * PlayerManager.ActivePlayers.Count);
+            tableBoxLeft.Height = (int)(team1StringSize.Y + PLAYER_ICON_SIZES.Y * PlayerManager.ActivePlayers.Count);
             tableBoxRight.Height = tableBoxLeft.Height;
             tableHeaderLine.Width = tableBoxTop.Width;
             tablePlayer12Line.Height = tableBoxLeft.Height;
@@ -181,12 +175,14 @@ namespace MischiefFramework.States {
             renderTarget.Draw(tableTexture, tablePlayer23Line, Color.White);
             renderTarget.Draw(tableTexture, tablePlayer34Line, Color.White);
 
-            int columnWidth = (int)(playerIconTextures[0].Width > font.MeasureString("Team 4").X ? playerIconTextures[0].Width : font.MeasureString("Team 4").X);
+            int columnWidth = (int)(PLAYER_ICON_SIZES.X > font.MeasureString("Team 4").X ? PLAYER_ICON_SIZES.X : font.MeasureString("Team 4").X);
 
             for (int i = 0; i < PlayerManager.ActivePlayers.Count; i++) {
-                renderTarget.Draw(playerIconTextures[i], new Rectangle(tableHeaderLine.X + 1 + (PlayerManager.ActivePlayers[i].teamID * columnWidth),
-                                                                 tableHeaderLine.Y + (i * playerIconTextures[i].Height) + 1, playerIconTextures[i].Width,
-                                                                 playerIconTextures[i].Height), Color.White);
+                Rectangle src = new Rectangle(i * (int)PLAYER_ICON_SIZES.X, 0, (int)PLAYER_ICON_SIZES.X, (int)PLAYER_ICON_SIZES.Y);
+                Rectangle dst = new Rectangle(tableHeaderLine.X + 1 + (PlayerManager.ActivePlayers[i].teamID * columnWidth),
+                                              tableHeaderLine.Y + (i * (int)PLAYER_ICON_SIZES.Y) + 1, (int)PLAYER_ICON_SIZES.X,
+                                              (int)PLAYER_ICON_SIZES.Y);
+                renderTarget.Draw(playerIconTextures, dst, src, Color.White);
             }
 
             renderTarget.End();

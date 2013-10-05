@@ -76,7 +76,7 @@ namespace MischiefFramework.WorldX.Information {
             if (visible) {
                 Vector2 pos = Vector2.Zero;
                 for (int i = 0; i < PlayerManager.ActivePlayers.Count; i++) {
-                    string text = string.Format("Player {0}: {1}", i, Level.bases[i].crates);
+                    string text = string.Format("Player {0}: {1}", i + 1, Level.bases[i].crates);
                     drawtome.DrawString(headerFont, text, pos, Color.Red);
                     pos.X += headerFont.MeasureString(text).X + 10;
                 }

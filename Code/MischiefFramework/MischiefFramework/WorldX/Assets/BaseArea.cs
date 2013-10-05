@@ -57,7 +57,7 @@ namespace MischiefFramework.WorldX.Assets {
             if (other.UserData is WeaponCrate) {
                 if ((other.UserData as WeaponCrate).joint != null) {
                     if ((other.UserData as WeaponCrate).inBase) {
-                        if ((other.UserData as WeaponCrate).ownedBy.player.teamID == teamID) {
+                        if ((other.UserData as WeaponCrate).ownedBy.player.teamID != teamID) {
                             crates--;
                         }
                     }
