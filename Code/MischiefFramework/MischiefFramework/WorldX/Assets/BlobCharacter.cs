@@ -22,7 +22,8 @@ namespace MischiefFramework.WorldX.Assets {
         private Matrix premultiplied;
         private Matrix postmultiplied;
 
-        private bool isMoving = false;
+        public bool isAttacking = false;
+        public bool isMoving = false;
 
         public BlobCharacter(GamePlayer player, World w, Vector2 pos) : base(player, w) {
             body = BodyFactory.CreateCircle(w, 0.5f, 1.0f, pos, this);

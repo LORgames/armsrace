@@ -73,11 +73,9 @@ namespace MischiefFramework.WorldX.Assets {
 
                         body.IsSensor = true;
                     }
-
-                    return false;
-                } else if (inBase) {
-                    return false;
                 }
+
+                return false;
             }
 
             return true;
