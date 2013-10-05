@@ -35,8 +35,8 @@ namespace MischiefFramework.States {
 
         private List<Texture2D> playerIconTextures = new List<Texture2D>();
 
-        public LobbyState(GraphicsDevice device) {
-            renderTarget = new SpriteBatch(device);
+        public LobbyState() {
+            renderTarget = new SpriteBatch(Game.device);
             font = ResourceManager.LoadAsset<SpriteFont>("Fonts/MenuFont");
 
             tableTexture.SetData<Color>(new Color[] { Color.White });

@@ -36,11 +36,11 @@ namespace MischiefFramework.States {
         private List<string> baseSharingOptions = new List<string>() { "No", "Yes" };
         #endregion
 
-        public SetupState(GraphicsDevice device) {
-            renderTarget = new SpriteBatch(device);
+        public SetupState() {
+            renderTarget = new SpriteBatch(Game.device);
             font = ResourceManager.LoadAsset<SpriteFont>("Fonts/MenuFont");
 
-            menu = new Core.Helpers.MenuHelper(device.Viewport, Core.Helpers.Positions.CENTER, new BackDelegate(Back));
+            menu = new Core.Helpers.MenuHelper(Game.device.Viewport, Core.Helpers.Positions.CENTER, new BackDelegate(Back));
             menu.SetGapBetweenItems(20.0f);
             menu.AddSublistMenuItem("Spawn Type", ref font, Color.White, Color.Red, Color.Gray, Color.Red, spawnTypes, new ListDelegate(GetSpawnType), new ListUpdateDelegate(UpdateSpawnType));
             menu.AddSublistMenuItem("Game Length", ref font, Color.White, Color.Red, Color.Gray, Color.Red, gameLengthOptions, new ListDelegate(GetGameLength), new ListUpdateDelegate(UpdateGameLength));
@@ -88,7 +88,7 @@ namespace MischiefFramework.States {
         }
 
         public void PlayGame() {
-            StateManager.Push(new LobbyState(Game.device));
+            StateManager.Push(new LobbyState());
         }
 
         public void Back() {
