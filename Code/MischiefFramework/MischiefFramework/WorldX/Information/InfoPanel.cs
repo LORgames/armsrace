@@ -76,8 +76,9 @@ namespace MischiefFramework.WorldX.Information {
             if (visible) {
                 Vector2 pos = Vector2.Zero;
                 for (int i = 0; i < PlayerManager.ActivePlayers.Count; i++) {
-                    drawtome.DrawString(headerFont, string.Format("Player {0}: {1}", i, Level.bases[i].crates), pos, Color.Red);
-                    pos.Y += headerFont.MeasureString("Player").Y;
+                    string text = string.Format("Player {0}: {1}", i, Level.bases[i].crates);
+                    drawtome.DrawString(headerFont, text, pos, Color.Red);
+                    pos.X += headerFont.MeasureString(text).X + 10;
                 }
                 /*
                 // Draw background
