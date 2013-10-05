@@ -85,7 +85,7 @@ namespace FarseerPhysics.Dynamics
         internal float SleepTime;
         internal Sweep Sweep; // the swept motion for CCD
         internal float Torque;
-        internal World World;
+        public World World;
         internal Transform Xf; // the body origin transform
         private float _angularDamping;
         private BodyType _bodyType;
