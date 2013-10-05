@@ -363,21 +363,21 @@
     <Compile Include="Sounds\Phase2.mp3">
       <Name>Phase2</Name>
       <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
+      <Processor>SoundEffectProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Sounds\Phase1.mp3">
       <Name>Phase1</Name>
       <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
+      <Processor>SoundEffectProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Sounds\Gatling_Gun.mp3">
       <Name>Gatling_Gun</Name>
       <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
+      <Processor>SoundEffectProcessor</Processor>
     </Compile>
     <Compile Include="Sounds\Laser_Shot.wav">
       <Name>Laser_Shot</Name>
@@ -397,7 +397,7 @@
     <Compile Include="Sounds\Rocket_Shot.mp3">
       <Name>Rocket_Shot</Name>
       <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
+      <Processor>SoundEffectProcessor</Processor>
     </Compile>
     <Compile Include="Sounds\Engine.wav">
       <Name>Engine</Name>
@@ -414,7 +414,7 @@
     <Compile Include="Sounds\MenuMusic.mp3">
       <Name>MenuMusic</Name>
       <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
+      <Processor>SoundEffectProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
