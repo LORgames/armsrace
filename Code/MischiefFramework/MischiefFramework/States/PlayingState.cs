@@ -3,12 +3,17 @@ using Microsoft.Xna.Framework;
 using MischiefFramework.Cache;
 using MischiefFramework.Core;
 using MischiefFramework.WorldX.Containers;
+using MischiefFramework.WorldX.Information;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace MischiefFramework.States {
     internal class PlayingState : IState {
         private Camera mainCam;
 
         private WorldController worldController;
+
+        private InfoPanel ui;
+        private SpriteBatch sb;
 
         public PlayingState() {
             Renderer.Initialize();
@@ -26,6 +31,11 @@ namespace MischiefFramework.States {
             MischiefFramework.Core.Renderer.Add(new MischiefFramework.WorldX.Information.InfoPanel());
 
             worldController = new WorldController();
+            ui = new InfoPanel();
+            ui.Show();
+            Renderer.Add(ui);
+
+            sb = new SpriteBatch(Game.device);
         }
 
         public bool Update(GameTime gameTime) {

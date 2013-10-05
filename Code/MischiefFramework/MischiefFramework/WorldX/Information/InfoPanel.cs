@@ -7,6 +7,8 @@ using Microsoft.Xna.Framework;
 using MischiefFramework.Core.Interfaces;
 using MischiefFramework.Cache;
 using ZDataTypes;
+using MischiefFramework.WorldX.Stage;
+using MischiefFramework.Core;
 
 namespace MischiefFramework.WorldX.Information {
     internal class InfoPanel : IHeadsUpDisplay {
@@ -72,6 +74,12 @@ namespace MischiefFramework.WorldX.Information {
 
         public void RenderHeadsUpDisplay(SpriteBatch drawtome) {
             if (visible) {
+                Vector2 pos = Vector2.Zero;
+                for (int i = 0; i < PlayerManager.ActivePlayers.Count; i++) {
+                    drawtome.DrawString(headerFont, string.Format("Player {0}: {1}", i, Level.bases[i].crates), pos, Color.Red);
+                    pos.Y += headerFont.MeasureString("Player").Y;
+                }
+                /*
                 // Draw background
                 Rectangle backgroundSourcePos = FindSourcePosition("InfoPanel");
                 Vector2 backgroundDestPos = Vector2.Zero;
@@ -114,6 +122,7 @@ namespace MischiefFramework.WorldX.Information {
                 Vector2 upgradeIconDestPos = backgroundDestPos + new Vector2(305f, 335f);
                 Rectangle upgradeIconSourcePos = FindSourcePosition("InfoPanelUpgradeIcon");
                 drawtome.Draw(ninjaSpritesheet, upgradeIconDestPos, upgradeIconSourcePos, Color.White);
+                 */
             }
         }
     }

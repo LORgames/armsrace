@@ -61,6 +61,7 @@ namespace MischiefFramework.WorldX.Assets {
 
                     if (ownedBy != null) {
                         body.World.RemoveJoint(joint);
+                        ownedBy.Pickup(null);
                     }
 
                     joint = JointFactory.CreateWeldJoint(body.World, body, other, Vector2.Zero, Vector2.Zero);

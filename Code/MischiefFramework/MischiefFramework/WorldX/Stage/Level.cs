@@ -22,9 +22,11 @@ namespace MischiefFramework.WorldX.Stage {
         private int TOTAL_WALLS = 8; //Convex stuff..?
         private Body[] walls;
 
-        private List<BaseArea> bases = new List<BaseArea>();
+        internal static List<BaseArea> bases;
 
         public Level(World world) {
+            bases = new List<BaseArea>();
+
             tex = ResourceManager.LoadAsset<Texture2D>("Meshes/Levels/overlay");
 
             fx = ResourceManager.LoadAsset<Effect>("Shaders/GroundShader");
@@ -82,7 +84,13 @@ namespace MischiefFramework.WorldX.Stage {
 
             for (int i = 0; i < 4; i++) {
                 if (i < PlayerManager.ActivePlayers.Count) {
-                    bases.Add(new BaseArea(PlayerManager.ActivePlayers[i].teamID, world));
+                    // Creates a base in one of two situations:
+                    // - Base sharing is turned off
+                    // - Base sharing is turned on and the team doesn't already have a base.
+                    if (SettingManager._baseSharing == 0 || (SettingManager._baseSharing == 1 && !PlayerManager.ActiveTeams.Contains(PlayerManager.ActivePlayers[i].teamID))) {
+                        bases.Add(new BaseArea(PlayerManager.ActiveTeams.Count, world, PlayerManager.ActivePlayers[i].teamID));
+                        PlayerManager.ActiveTeams.Add(PlayerManager.ActivePlayers[i].teamID);
+                    }
                 }
 
                 walls[i * 2 + 0] = BodyFactory.CreatePolygon(world, verts0, 0.0f);

@@ -8,6 +8,7 @@ namespace MischiefFramework.Core {
     public class PlayerManager {
         public const int MAX_ACTIVE = 4;
         public static List<GamePlayer> ActivePlayers = new List<GamePlayer>();
+        public static List<int> ActiveTeams = new List<int>();
 
         private const int TOTAL_INPUTS = 5;
         private PlayerInput[] Controllers;
