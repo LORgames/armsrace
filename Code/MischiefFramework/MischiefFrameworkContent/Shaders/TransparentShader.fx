@@ -139,6 +139,10 @@ PSOutput PS_GBuffer(VSOutput Input) {
 
 technique GBuffer {
 	pass P0 {
+		//AlphaBlendEnable=true;
+		//SrcBlend=srcalpha;
+		//DestBlend=invsrcColor;
+
 		vertexShader = compile vs_2_0 VS_GBuffer();
 		pixelShader = compile ps_2_0 PS_GBuffer();
 	}

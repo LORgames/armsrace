@@ -51,6 +51,7 @@ namespace MischiefFramework.WorldX.Containers {
             level = new Level(world);
 
             new Sun();
+            new FootEffects();
 
             foreach (GamePlayer plr in PlayerManager.ActivePlayers) {
                 plr.character = new BlobCharacter(plr, world, Level.bases[plr.baseID].CenterPoint);
