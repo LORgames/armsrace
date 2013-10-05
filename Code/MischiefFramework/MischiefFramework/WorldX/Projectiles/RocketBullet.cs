@@ -10,8 +10,9 @@ using Microsoft.Xna.Framework.Graphics;
 using MischiefFramework.Core.Helpers;
 using MischiefFramework.Core;
 using FarseerPhysics.Factories;
+using MischiefFramework.WorldX.Assets;
 
-namespace MischiefFramework.WorldX.Assets {
+namespace MischiefFramework.WorldX.Projectiles {
     class RocketBullet : Projectile, IOpaque {
         private float width = 3.0f;
         private float height = 0.5f;

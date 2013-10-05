@@ -149,12 +149,12 @@
     <Compile Include="States\StateManager.cs" />
     <Compile Include="WorldX\Assets\BaseArea.cs" />
     <Compile Include="WorldX\Assets\BlobCharacter.cs" />
-    <Compile Include="WorldX\Assets\CannonBullet.cs" />
+    <Compile Include="WorldX\Projectiles\CannonBullet.cs" />
     <Compile Include="WorldX\Assets\Character.cs" />
-    <Compile Include="WorldX\Assets\LaserBullet.cs" />
-    <Compile Include="WorldX\Assets\MGBullet.cs" />
-    <Compile Include="WorldX\Assets\Projectile.cs" />
-    <Compile Include="WorldX\Assets\RocketBullet.cs" />
+    <Compile Include="WorldX\Projectiles\LaserBullet.cs" />
+    <Compile Include="WorldX\Projectiles\MGBullet.cs" />
+    <Compile Include="WorldX\Projectiles\Projectile.cs" />
+    <Compile Include="WorldX\Projectiles\RocketBullet.cs" />
     <Compile Include="WorldX\Assets\TankCharacter.cs" />
     <Compile Include="WorldX\Assets\WeaponCrate.cs" />
     <Compile Include="WorldX\Containers\WorldController.cs" />
@@ -166,6 +166,11 @@
     <Compile Include="WorldX\Stage\Sun.cs" />
     <Compile Include="WorldX\TestItems\TestCharacterController.cs" />
     <Compile Include="WorldX\TestItems\TestLight.cs" />
+    <Compile Include="WorldX\Weapons\Cannon.cs" />
+    <Compile Include="WorldX\Weapons\GattlingGun.cs" />
+    <Compile Include="WorldX\Weapons\IWeapon.cs" />
+    <Compile Include="WorldX\Weapons\LaserGun.cs" />
+    <Compile Include="WorldX\Weapons\RocketLauncher.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

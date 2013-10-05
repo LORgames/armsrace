@@ -226,6 +226,16 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
+    <Compile Include="Meshes\Weapons\Cannon.fbx">
+      <Name>Cannon</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Meshes\Weapons\Laser Gun.fbx">
+      <Name>Laser Gun</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Meshes\Character\Stage2.png">
@@ -303,18 +313,18 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Meshes\Character\Treads.png">
+    <None Include="Meshes\Character\Treads.png">
       <Name>Treads</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
-    </Compile>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Meshes\Weapons\Guns.png">
+    <None Include="Meshes\Weapons\Guns.png">
       <Name>Guns</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
-    </Compile>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HUD\MenuVideoLooped.wmv">
@@ -326,6 +336,13 @@
       <Name>MenuVideo</Name>
       <Importer>WmvImporter</Importer>
       <Processor>VideoProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Meshes\Character\glass.png">
+      <Name>glass</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

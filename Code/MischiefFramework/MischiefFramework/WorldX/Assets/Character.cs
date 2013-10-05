@@ -15,8 +15,8 @@ using MischiefFramework.WorldX.Information;
 
 namespace MischiefFramework.WorldX.Assets {
     public class Character : Asset {
-        protected Body body;
-        protected PlayerInput Input;
+        public Body body;
+        public PlayerInput Input;
 
         private const float SPEED = 10f;
 

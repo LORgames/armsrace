@@ -11,7 +11,7 @@ using MischiefFramework.Core;
 using MischiefFramework.Core.Helpers;
 using FarseerPhysics.Factories;
 
-namespace MischiefFramework.WorldX.Assets {
+namespace MischiefFramework.WorldX.Projectiles {
     class Projectile : Asset {
         protected Body body;
 

@@ -10,16 +10,17 @@ using Microsoft.Xna.Framework.Graphics;
 using MischiefFramework.Core.Helpers;
 using MischiefFramework.Core;
 using FarseerPhysics.Factories;
+using MischiefFramework.WorldX.Assets;
 
-namespace MischiefFramework.WorldX.Assets {
-    class MGBullet : Projectile, IOpaque {
+namespace MischiefFramework.WorldX.Projectiles {
+    class CannonBullet : Projectile, IOpaque {
         private float radius = 0.5f;
 
-        private float damage = 1.0f;
+        private float damage = 10.0f;
 
-        public MGBullet(World w, float angle, Vector2 position, int teamID)
+        public CannonBullet(World w, float angle, Vector2 position, int teamID)
             : base(angle, teamID) {
-            speed = 20.0f;
+            speed = 2.0f;
             lifespan = 2.0f;
             heightOffGround = 1.7f;
 

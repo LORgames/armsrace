@@ -383,22 +383,12 @@ namespace FarseerPhysics.Dynamics
         /// Create a joint to constrain bodies together. This may cause the connected bodies to cease colliding.
         /// </summary>
         /// <param name="joint">The joint.</param>
-        public void AddJoint(Joint joint)
-        {
-            Debug.Assert(!_jointAddList.Contains(joint), "You are adding the same joint more than once.");
-
+        public void AddJoint(Joint joint) {
             if (!_jointAddList.Contains(joint))
                 _jointAddList.Add(joint);
         }
 
-        private void RemoveJoint(Joint joint, bool doCheck)
-        {
-            if (doCheck)
-            {
-                Debug.Assert(!_jointRemoveList.Contains(joint),
-                             "The joint is already marked for removal. You are removing the joint more than once.");
-            }
-
+        private void RemoveJoint(Joint joint, bool doCheck) {
             if (!_jointRemoveList.Contains(joint))
                 _jointRemoveList.Add(joint);
         }
@@ -407,8 +397,7 @@ namespace FarseerPhysics.Dynamics
         /// Destroy a joint. This may cause the connected bodies to begin colliding.
         /// </summary>
         /// <param name="joint">The joint.</param>
-        public void RemoveJoint(Joint joint)
-        {
+        public void RemoveJoint(Joint joint) {
             RemoveJoint(joint, true);
         }
 
