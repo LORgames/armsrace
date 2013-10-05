@@ -171,6 +171,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fonts\MenuFont24.spritefont">
+      <Name>MenuFont24</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
     <None Include="Meshes\Character\Blob Test.png">
       <Name>Blob Test</Name>
       <Importer>TextureImporter</Importer>

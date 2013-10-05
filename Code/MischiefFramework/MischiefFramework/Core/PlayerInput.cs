@@ -65,6 +65,10 @@ namespace MischiefFramework.Core {
         public abstract void Update(float dt);
         public virtual void Rumble() { }
         public virtual void Rumble(float sine_motor, float cos_motor, float time) { }
+
+        public bool GetAny() {
+            return stateStart || stateBack || stateMenuBack || stateJump || stateFireLeft || stateFireRight || stateEquipLeft || stateEquipRight;
+        }
     }
 
     public class InputGamepad : PlayerInput {

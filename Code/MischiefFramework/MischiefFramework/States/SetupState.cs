@@ -22,22 +22,18 @@ namespace MischiefFramework.States {
 
         #region Spawn Type Variables
         private List<string> spawnTypes = new List<string>() { "Random", "Center" };
-        private int spawnType = 1;
         #endregion
 
         #region Game Length Variables
         private List<string> gameLengthOptions = new List<string>() { "Quick", "Average", "Physics Lecture" };
-        private int gameLength = 1;
         #endregion
 
         #region Move Speed Variables
         private List<string> moveSpeedOptions = new List<string>() { "Old People", "Average", "Fast" };
-        private int moveSpeed = 1;
         #endregion
 
         #region Base Sharing Variables
         private List<string> baseSharingOptions = new List<string>() { "No", "Yes" };
-        private int baseSharing = 1;
         #endregion
 
         public SetupState(GraphicsDevice device) {
@@ -56,39 +52,39 @@ namespace MischiefFramework.States {
         }
 
         public int GetSpawnType() {
-            return spawnType;
+            return SettingManager._spawnType;
         }
 
         public void UpdateSpawnType(int value) {
-            spawnType = value + spawnTypes.Count;
-            spawnType %= spawnTypes.Count;
+            SettingManager._spawnType = value + spawnTypes.Count;
+            SettingManager._spawnType %= spawnTypes.Count;
         }
 
         public int GetGameLength() {
-            return gameLength;
+            return SettingManager._gameLength;
         }
 
         public void UpdateGameLength(int value) {
-            gameLength = value + gameLengthOptions.Count;
-            gameLength %= gameLengthOptions.Count;
+            SettingManager._gameLength = value + gameLengthOptions.Count;
+            SettingManager._gameLength %= gameLengthOptions.Count;
         }
 
         public int GetMoveSpeed() {
-            return moveSpeed;
+            return SettingManager._moveSpeed;
         }
 
         public void UpdateMoveSpeed(int value) {
-            moveSpeed = value + moveSpeedOptions.Count;
-            moveSpeed %= moveSpeedOptions.Count;
+            SettingManager._moveSpeed = value + moveSpeedOptions.Count;
+            SettingManager._moveSpeed %= moveSpeedOptions.Count;
         }
 
         public int GetBaseSharing() {
-            return baseSharing;
+            return SettingManager._baseSharing;
         }
 
         public void UpdateBaseSharing(int value) {
-            baseSharing = value + baseSharingOptions.Count;
-            baseSharing %= baseSharingOptions.Count;
+            SettingManager._baseSharing = value + baseSharingOptions.Count;
+            SettingManager._baseSharing %= baseSharingOptions.Count;
         }
 
         public void PlayGame() {

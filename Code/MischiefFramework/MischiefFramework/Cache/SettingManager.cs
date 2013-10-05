@@ -23,6 +23,12 @@ namespace MischiefFramework.Cache {
         internal static string filepath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\MischiefFramework\\";
         internal static string filename = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\MischiefFramework\\settings.bin";
 
+        // Game settings
+        internal static int _spawnType = 1;
+        internal static int _gameLength = 1;
+        internal static int _moveSpeed = 1;
+        internal static int _baseSharing = 1;
+
         public static void LoadFromFile() {
             if (File.Exists(filename)) {
                 byte[] data = File.ReadAllBytes(filename);

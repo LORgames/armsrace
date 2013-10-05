@@ -35,6 +35,7 @@ namespace MischiefFramework.States {
             menu = new Core.Helpers.MenuHelper(nathanViewport, Core.Helpers.Positions.CENTERLEFT, new BackDelegate(Quit));
             menu.AddTextMenuItem("Play", ref font, Color.White, Color.Red, new StartDelegate(PlayGame));
             menu.AddTextMenuItem("Settings", ref font, Color.White, Color.Red, new StartDelegate(Settings));
+            menu.AddTextMenuItem("Credits", ref font, Color.White, Color.Red, new StartDelegate(Credits));
             menu.AddTextMenuItem("Quit", ref font, Color.White, Color.Red, new StartDelegate(Quit));
             menu.Update(0f);
         }
@@ -46,6 +47,10 @@ namespace MischiefFramework.States {
 
         public void Settings() {
             //StateManager.Push(new SettingsState(Game.device));
+        }
+
+        public void Credits() {
+            StateManager.Push(new CreditsState(Game.device));
         }
 
         public void Quit() {
