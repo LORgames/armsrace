@@ -10,6 +10,7 @@ namespace MischiefFramework.States {
     class SetupState : IState {
         private SpriteBatch renderTarget;
         private SpriteFont font;
+        private Texture2D bg;
 
         private Core.Helpers.MenuHelper menu;
 
@@ -39,6 +40,7 @@ namespace MischiefFramework.States {
         public SetupState() {
             renderTarget = new SpriteBatch(Game.device);
             font = ResourceManager.LoadAsset<SpriteFont>("Fonts/MenuFont");
+            bg = ResourceManager.LoadAsset<Texture2D>("HUD/options");
 
             menu = new Core.Helpers.MenuHelper(Game.device.Viewport, Core.Helpers.Positions.CENTER, new BackDelegate(Back));
             menu.SetGapBetweenItems(20.0f);
@@ -101,6 +103,9 @@ namespace MischiefFramework.States {
         }
 
         public bool Render(GameTime gameTime) {
+            renderTarget.Begin();
+            renderTarget.Draw(bg, renderTarget.GraphicsDevice.Viewport.Bounds, bg.Bounds, Color.White);
+            renderTarget.End();
             menu.Render(renderTarget);
             return false;
         }
