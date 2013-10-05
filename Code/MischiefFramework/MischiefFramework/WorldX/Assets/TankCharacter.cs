@@ -28,7 +28,7 @@ namespace MischiefFramework.WorldX.Assets {
         private bool firing = false;
 
         // guns
-        private bool hasMG = false;
+        private bool hasMG = true;
         private bool hasLaser = false;
         private bool hasCannon = false;
         private bool hasRocket = false;
@@ -37,7 +37,7 @@ namespace MischiefFramework.WorldX.Assets {
         // weapon reader when timer == 0.0f
         // weapon reload time is interval
         private float mgTimer = 0.0f;
-        private float mgInterval = 0.5f;
+        private float mgInterval = 0.1f;
         private float laserTimer = 0.0f;
         private float laserInterval = 3.0f;
         private float cannonTimer = 0.0f;
@@ -62,13 +62,15 @@ namespace MischiefFramework.WorldX.Assets {
         }
 
         public override void Update(float dt) {
-            base.AsyncUpdate(dt);
+            base.Update(dt);
 
             float x1 = -Input.AimX();
             float y1 = -Input.AimY();
 
-            if (x1 != 0 && y1 != 0) {
-                turretAngle = (float)Math.Atan2(x1, y1);
+            Console.Out.WriteLine(x1 + ", " + y1);
+
+            if (x1 != 0 || y1 != 0) {
+                turretAngle = (float)(Math.Atan2(x1, y1) - Math.PI/4);
 
                 // shooting
                 if (!firing) {
@@ -82,7 +84,7 @@ namespace MischiefFramework.WorldX.Assets {
             }
 
             postmultiplied_tank = Matrix.CreateScale(0.4f) * Matrix.CreateRotationY(-body.Rotation - (float)Math.PI / 2) * Matrix.CreateTranslation(body.Position.X, 0f, body.Position.Y);
-            postmultiplied_turret = Matrix.CreateScale(0.4f) * Matrix.CreateRotationY(-turretAngle - (float)Math.PI / 4 * 3) * Matrix.CreateTranslation(body.Position.X, 0f, body.Position.Y);
+            postmultiplied_turret = Matrix.CreateScale(0.4f) * Matrix.CreateRotationY(-turretAngle - (float)Math.PI / 2) * Matrix.CreateTranslation(body.Position.X, 0f, body.Position.Y);
 
             if (hasMG && mgTimer > 0.0f) {
                 mgTimer -= dt;
@@ -102,8 +104,8 @@ namespace MischiefFramework.WorldX.Assets {
                     mgTimer = mgInterval;
 
                     // shoot MG
-                    Projectile projectile = new Projectile(body.World, body.Rotation);
-                    
+                    Vector3 bulletPos = Vector3.Transform(Vector3.Forward * 5.2f, postmultiplied_turret);
+                    Projectile projectile = new Projectile(body.World, turretAngle, new Vector2(bulletPos.X, bulletPos.Z));
                 }
                 if (hasLaser && laserTimer <= 0.0f) {
                     laserTimer = laserInterval;

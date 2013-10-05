@@ -15,28 +15,36 @@ namespace MischiefFramework.WorldX.Assets {
     class Projectile : Asset, IOpaque {
         private Body body;
 
-        private Model model_projectile;
+        private Model model;
 
         private Matrix postmultiplied;
 
-        private const float SPEED = 10f;
+        private const float SPEED = 20f;
 
         private const float LIFESPAN = 10.0f;
 
         private float timer = 0.0f;
 
-        private float angle;
+        private float angle = 0.0f;
 
-        public Projectile(World w, float angle) {
+        private float radius = 0.5f;
+
+        private float heightOffGround = 2.0f;
+
+        public Projectile(World w, float angle, Vector2 position) {
             this.angle = angle;
 
-            model_projectile = ResourceManager.LoadAsset<Model>("Meshes/TestObjects/ball");
-            MeshHelper.ChangeEffectUsedByModel(model_projectile, Renderer.Effect3D);
+            model = ResourceManager.LoadAsset<Model>("Meshes/TestObjects/ball");
+            MeshHelper.ChangeEffectUsedByModel(model, Renderer.Effect3D);
 
             postmultiplied = Matrix.Identity;
 
-            body = BodyFactory.CreateCircle(w, 0.5f, 1.0f, new Vector2(5, 5), this);
+            body = BodyFactory.CreateCircle(w, radius, 1.0f, position, this);
             body.BodyType = BodyType.Dynamic;
+            body.IsBullet = true;
+            body.IsSensor = true;
+
+            postmultiplied = Matrix.CreateScale(radius) * Matrix.CreateTranslation(body.Position.X, heightOffGround, body.Position.Y);
 
             Renderer.Add(this);
             AssetManager.AddAsset(this);
@@ -49,8 +57,8 @@ namespace MischiefFramework.WorldX.Assets {
         }
 
         public override void AsyncUpdate(float dt) {
-            postmultiplied = Matrix.CreateTranslation(body.Position.X, 1, body.Position.Y);
-            body.LinearVelocity = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle));
+            postmultiplied = Matrix.CreateScale(radius) * Matrix.CreateTranslation(body.Position.X, heightOffGround, body.Position.Y);
+            body.LinearVelocity = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle)) * SPEED;
 
             if (timer <= LIFESPAN) {
                 timer += dt;
@@ -60,7 +68,7 @@ namespace MischiefFramework.WorldX.Assets {
         }
 
         public void RenderOpaque() {
-            MeshHelper.DrawModel(postmultiplied, model_projectile);
+            MeshHelper.DrawModel(postmultiplied, model);
         }
     }
 }
