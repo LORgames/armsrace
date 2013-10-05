@@ -153,6 +153,7 @@
     <Compile Include="WorldX\Assets\MGBullet.cs" />
     <Compile Include="WorldX\Assets\Projectile.cs" />
     <Compile Include="WorldX\Assets\TankCharacter.cs" />
+    <Compile Include="WorldX\Assets\WeaponCrate.cs" />
     <Compile Include="WorldX\Containers\WorldController.cs" />
     <Compile Include="WorldX\Information\GameInformation.cs" />
     <Compile Include="WorldX\Information\IInfoPanel.cs" />

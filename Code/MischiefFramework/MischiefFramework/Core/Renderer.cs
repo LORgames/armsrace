@@ -266,7 +266,6 @@ namespace MischiefFramework.Core {
             spriteBatch.Draw(ColorRT, FullScreenRect, Color.White);
             spriteBatch.End();
 
-
             #region FXAA_DRAW
             Viewport viewport = Game.device.Viewport;
             Matrix projection = Matrix.CreateOrthographicOffCenter(0, viewport.Width, viewport.Height, 0, 0, 1);
@@ -315,7 +314,9 @@ namespace MischiefFramework.Core {
             spriteBatch.End();
 
 #if DEBUG_PHYSICS
-            WorldX.Containers.WorldController.dbg.RenderDebugData(CharacterCamera.Projection, Matrix.CreateRotationX((float)Math.PI/2) * CharacterCamera.View);
+            if (!Player.Input.GetFireRight()) {
+                WorldX.Containers.WorldController.dbg.RenderDebugData(CharacterCamera.Projection, Matrix.CreateRotationX((float)Math.PI / 2) * CharacterCamera.View);
+            }
 #endif
         }
 
