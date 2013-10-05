@@ -41,6 +41,8 @@ namespace MischiefFramework {
         protected override void Initialize() {
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
+            //graphics.PreferredBackBufferWidth = 4096;
+            //graphics.PreferredBackBufferHeight = 4096;
             graphics.ApplyChanges();
 
             base.IsMouseVisible = true;
@@ -63,7 +65,11 @@ namespace MischiefFramework {
         /// all of your content.
         /// </summary>
         protected override void LoadContent() {
-            StateManager.Push(new LogoScreen());
+            //StateManager.Push(new LogoScreen());
+
+            players.Activate();
+            Player.Input = players.Get(0);
+            StateManager.Push(new PlayingState());
         }
 
         /// <summary>

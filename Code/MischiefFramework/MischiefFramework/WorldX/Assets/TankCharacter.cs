@@ -46,6 +46,9 @@ namespace MischiefFramework.WorldX.Assets {
         private float rocketInterval = 6.0f;
 
         public TankCharacter(GamePlayer player, World w) : base(player, w) {
+            body = BodyFactory.CreateRectangle(w, 2.0f, 2.0f, 1.0f, new Vector2(5, 5), this);
+            body.BodyType = BodyType.Dynamic;
+
             model_tank = ResourceManager.LoadAsset<Model>("Meshes/Character/TankBlob");
             MeshHelper.ChangeEffectUsedByModel(model_tank, Renderer.Effect3D);
 
@@ -55,11 +58,7 @@ namespace MischiefFramework.WorldX.Assets {
             postmultiplied_tank = Matrix.Identity;
             postmultiplied_turret = Matrix.Identity;
 
-            body = BodyFactory.CreateRectangle(w, 2.0f, 2.0f, 1.0f, new Vector2(5, 5), this);
-            body.BodyType = BodyType.Dynamic;
-
             Renderer.Add(this);
-            AssetManager.AddAsset(this);
         }
 
         public override void Update(float dt) {

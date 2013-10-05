@@ -229,15 +229,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Meshes\Levels\overlay.png">
-      <Name>overlay</Name>
+    <Compile Include="HUD\LOR logo2.png">
+      <Name>LOR logo2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HUD\LOR logo2.png">
-      <Name>LOR logo2</Name>
+    <Compile Include="Meshes\Levels\overlay.png">
+      <Name>overlay</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

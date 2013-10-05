@@ -38,7 +38,7 @@ namespace MischiefFramework.WorldX.Assets {
             animPlayer = new AnimationPlayer(skinData);
             animPlayer.StartClip(skinData.AnimationClips["Walk"]);
 
-            premultiplied =  Matrix.CreateTranslation(0, 1, 0);
+            premultiplied = Matrix.Identity;
             postmultiplied = Matrix.Identity;
             
             Renderer.Add(this);
@@ -46,7 +46,7 @@ namespace MischiefFramework.WorldX.Assets {
 
         public override void AsyncUpdate(float dt) {
             animPlayer.Update(TimeSpan.FromSeconds(dt), true, Matrix.Identity);
-            postmultiplied = Matrix.CreateScale(0.5f) * Matrix.CreateRotationY(-body.Rotation - (float)Math.PI / 2) * Matrix.CreateTranslation(body.Position.X, 0.90f, body.Position.Y);
+            postmultiplied = Matrix.CreateScale(0.5f) * Matrix.CreateRotationY(-body.Rotation - (float)Math.PI / 2) * Matrix.CreateTranslation(body.Position.X, 0f, body.Position.Y);
         }
 
         public void  RenderOpaque() {

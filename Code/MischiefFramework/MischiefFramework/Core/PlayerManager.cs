@@ -52,6 +52,8 @@ namespace MischiefFramework.Core {
             _active = false;
         }
 
-
+        internal PlayerInput Get(int p) {
+            return Controllers[p];
+        }
     }
 }

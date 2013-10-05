@@ -24,6 +24,7 @@ namespace MischiefFramework.WorldX.Stage {
 
             visuals = ResourceManager.LoadAsset<Model>("Meshes/Levels/Level");
             MeshHelper.ChangeEffectUsedByModel(visuals, fx, false);
+            //MeshHelper.ChangeEffectUsedByModel(visuals, Renderer.Effect3D);
 
             Matrix position = Matrix.Identity;
 
@@ -31,9 +32,9 @@ namespace MischiefFramework.WorldX.Stage {
 
             Camera c = new Camera(35, 35);
             c.LookAt = Vector3.Zero;
-            c.Position.X = CAMERA_ZOOM * 0.612f + c.LookAt.X;
-            c.Position.Y = CAMERA_ZOOM * 0.500f + c.LookAt.Y;
-            c.Position.Z = CAMERA_ZOOM * -0.612f + c.LookAt.Z;
+            c.Position.X = 6 * 0.612f + c.LookAt.X;
+            c.Position.Y = 6 * 0.500f + c.LookAt.Y;
+            c.Position.Z = 6 * -0.612f + c.LookAt.Z;
             c.GenerateMatrices();
 
             fx.Parameters["Texture"].SetValue(tex);
