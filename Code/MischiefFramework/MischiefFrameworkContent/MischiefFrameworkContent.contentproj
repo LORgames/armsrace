@@ -200,22 +200,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </None>
-    <Compile Include="Meshes\Character\TankBlob.obj">
-      <Name>TankBlob</Name>
-      <Importer>ObjImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-    </Compile>
-    <Compile Include="Meshes\Character\TankTurret.obj">
-      <Name>TankTurret</Name>
-      <Importer>ObjImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-    </Compile>
-    <None Include="Meshes\Character\TankBlob.mtl">
-      <Name>TankBlob</Name>
-    </None>
-    <None Include="Meshes\Character\TankTurret.mtl">
-      <Name>TankTurret</Name>
-    </None>
     <Compile Include="Meshes\Weapons\Gatling Gun.fbx">
       <Name>Gatling Gun</Name>
       <Importer>FbxImporter</Importer>
@@ -292,13 +276,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Meshes\Levels\overlay.png">
-      <Name>overlay</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Meshes\TestObjects\CrateTexture.png">
       <Name>CrateTexture</Name>
       <Importer>TextureImporter</Importer>
@@ -341,6 +318,13 @@
   <ItemGroup>
     <Compile Include="Meshes\Character\glass.png">
       <Name>glass</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Meshes\Levels\overlay.png">
+      <Name>overlay</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

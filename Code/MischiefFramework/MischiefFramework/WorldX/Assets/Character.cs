@@ -18,7 +18,7 @@ namespace MischiefFramework.WorldX.Assets {
         public Body body;
         public PlayerInput Input;
 
-        private const float SPEED = 10f;
+        protected float SPEED = 10f;
 
         internal GamePlayer player;
 

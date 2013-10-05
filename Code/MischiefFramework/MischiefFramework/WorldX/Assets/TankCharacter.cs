@@ -16,7 +16,6 @@ using MischiefFramework.WorldX.Weapons;
 
 namespace MischiefFramework.WorldX.Assets {
     public class TankCharacter : Character, IOpaque {
-        private const float MOVE_SPEED = 5f;
         private const float TURN_SPEED = 10f;
 
         private Model model_tank;
@@ -35,6 +34,8 @@ namespace MischiefFramework.WorldX.Assets {
 
         public TankCharacter(GamePlayer player, World w, 
             bool hasMG = false, bool hasLaser = false, bool hasCannon = false, bool hasRocket = false) : base(player, w) {
+
+                SPEED = 5;
 
             body = BodyFactory.CreateRectangle(w, 2.0f, 2.0f, 1.0f, new Vector2(5, 5), this);
             body.BodyType = BodyType.Dynamic;

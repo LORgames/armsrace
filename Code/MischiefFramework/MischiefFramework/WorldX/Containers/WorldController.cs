@@ -37,8 +37,8 @@ namespace MischiefFramework.WorldX.Containers {
             new Sun();
 
             foreach (GamePlayer plr in PlayerManager.ActivePlayers) {
-                plr.character = new BlobCharacter(plr, world);
-                //plr.character = new TankCharacter(plr, world, hasMG:true, hasLaser:true);
+                //plr.character = new BlobCharacter(plr, world);
+                plr.character = new TankCharacter(plr, world, hasCannon:true);
             }
 
             Crates = new WeaponCrate[MAX_CRATES];

@@ -15,16 +15,14 @@ using MischiefFramework.WorldX.Assets;
 namespace MischiefFramework.WorldX.Projectiles {
     class CannonBullet : Projectile, IOpaque {
         private float radius = 0.5f;
-
         private float damage = 10.0f;
 
-        public CannonBullet(World w, float angle, Vector2 position, int teamID)
-            : base(angle, teamID) {
-            speed = 2.0f;
+        public CannonBullet(World w, float angle, Vector2 position, int teamID) : base(angle, teamID) {
+            speed = 5.0f;
             lifespan = 2.0f;
             heightOffGround = 1.7f;
 
-            model = ResourceManager.LoadAsset<Model>("Meshes/Weapons/Gattling_Bullet");
+            model = ResourceManager.LoadAsset<Model>("Meshes/TestObjects/ball");
             MeshHelper.ChangeEffectUsedByModel(model, Renderer.Effect3D);
 
             postmultiplied = Matrix.Identity;
@@ -64,7 +62,7 @@ namespace MischiefFramework.WorldX.Projectiles {
         }
 
         public override void AsyncUpdate(float dt) {
-            postmultiplied = Matrix.CreateScale(radius) * Matrix.CreateRotationY((float)Math.PI / -2 - angle) * Matrix.CreateTranslation(body.Position.X, heightOffGround, body.Position.Y);
+            postmultiplied = Matrix.CreateScale(radius/2) * Matrix.CreateRotationY((float)Math.PI / -2 - angle) * Matrix.CreateTranslation(body.Position.X, heightOffGround, body.Position.Y);
             body.LinearVelocity = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle)) * speed;
 
             if (timer <= lifespan) {
