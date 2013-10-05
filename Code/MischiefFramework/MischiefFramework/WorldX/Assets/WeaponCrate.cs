@@ -22,6 +22,7 @@ namespace MischiefFramework.WorldX.Assets {
 
         public BlobCharacter ownedBy = null;
         public Joint joint = null;
+        public bool inBase = false;
 
         public WeaponCrate(World world) {
             body = BodyFactory.CreateCircle(world, 0.5f, 1.0f);
@@ -54,6 +55,7 @@ namespace MischiefFramework.WorldX.Assets {
 
             if (other.UserData is BlobCharacter && ownedBy != other.UserData) {
                 charCollider = (BlobCharacter)other.UserData;
+                if (ownedBy != null && ownedBy.player.teamID == charCollider.player.teamID && inBase) return false;
 
                 if (!charCollider.IsCarrying()) {
 

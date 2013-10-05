@@ -81,7 +81,9 @@ namespace MischiefFramework.WorldX.Stage {
             verts1.Add(new Vector2(-1.6f,-0.6f));
 
             for (int i = 0; i < 4; i++) {
-                bases.Add(new BaseArea(i, world));
+                if (i < PlayerManager.ActivePlayers.Count) {
+                    bases.Add(new BaseArea(PlayerManager.ActivePlayers[i].teamID, world));
+                }
 
                 walls[i * 2 + 0] = BodyFactory.CreatePolygon(world, verts0, 0.0f);
                 walls[i * 2 + 1] = BodyFactory.CreatePolygon(world, verts1, 0.0f);

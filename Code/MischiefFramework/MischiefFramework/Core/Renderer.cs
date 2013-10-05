@@ -230,7 +230,7 @@ namespace MischiefFramework.Core {
             Game.device.SetRenderTargets(null);
 
             if (Player.Input.GetBack()) {
-                System.Diagnostics.Debug.WriteLine("DUMP RENDER STATE TO FILE!");
+                /*System.Diagnostics.Debug.WriteLine("DUMP RENDER STATE TO FILE!");
                 if(File.Exists(@"C:\\Users\\Paul\\Desktop\\Diffuse.png")) File.Delete(@"C:\\Users\\Paul\\Desktop\\Diffuse.png");
                 FileStream fs = new FileStream(@"C:\\Users\\Paul\\Desktop\\Diffuse.png", FileMode.Create);
                 ColorRT.SaveAsPng(fs, 4096, 4096);
@@ -239,7 +239,7 @@ namespace MischiefFramework.Core {
                 if (File.Exists(@"C:\\Users\\Paul\\Desktop\\Normals.png")) File.Delete(@"C:\\Users\\Paul\\Desktop\\Normals.png");
                 fs = new FileStream(@"C:\\Users\\Paul\\Desktop\\Normals.png", FileMode.Create);
                 NormalRT.SaveAsPng(fs, 4096, 4096);
-                fs.Close();
+                fs.Close();*/
             }
 
             Game.device.SetRenderTarget(LightRT);
