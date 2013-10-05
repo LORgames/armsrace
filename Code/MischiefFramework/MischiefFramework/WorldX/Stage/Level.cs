@@ -23,8 +23,8 @@ namespace MischiefFramework.WorldX.Stage {
             fx = ResourceManager.LoadAsset<Effect>("Shaders/GroundShader");
 
             visuals = ResourceManager.LoadAsset<Model>("Meshes/Levels/Level");
-            MeshHelper.ChangeEffectUsedByModel(visuals, fx, false);
-            //MeshHelper.ChangeEffectUsedByModel(visuals, Renderer.Effect3D);
+            //MeshHelper.ChangeEffectUsedByModel(visuals, fx, false);
+            MeshHelper.ChangeEffectUsedByModel(visuals, Renderer.Effect3D);
 
             Matrix position = Matrix.Identity;
 
@@ -43,6 +43,7 @@ namespace MischiefFramework.WorldX.Stage {
             BodyFactory.CreateRectangle(world, 26, 2, 0, new Vector2(0,-12));
             BodyFactory.CreateRectangle(world, 2, 26, 0, new Vector2(12, 0));
             BodyFactory.CreateRectangle(world, 2, 26, 0, new Vector2(-12, 0));
+            BodyFactory.CreateCircle(world, 2, 0);
 
             Renderer.Add(this);
         }

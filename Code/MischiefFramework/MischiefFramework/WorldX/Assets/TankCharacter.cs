@@ -48,6 +48,7 @@ namespace MischiefFramework.WorldX.Assets {
         public TankCharacter(GamePlayer player, World w) : base(player, w) {
             body = BodyFactory.CreateRectangle(w, 2.0f, 2.0f, 1.0f, new Vector2(5, 5), this);
             body.BodyType = BodyType.Dynamic;
+            body.SleepingAllowed = false;
 
             model_tank = ResourceManager.LoadAsset<Model>("Meshes/Character/TankBlob");
             MeshHelper.ChangeEffectUsedByModel(model_tank, Renderer.Effect3D);
@@ -57,7 +58,7 @@ namespace MischiefFramework.WorldX.Assets {
 
             postmultiplied_tank = Matrix.Identity;
             postmultiplied_turret = Matrix.Identity;
-
+            
             Renderer.Add(this);
         }
 

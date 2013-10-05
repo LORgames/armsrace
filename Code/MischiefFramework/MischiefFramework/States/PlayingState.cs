@@ -24,7 +24,7 @@ namespace MischiefFramework.States {
             //mainCam = new Camera(1, 0.5625f);
 
             //Square rendering camera
-            //mainCam = new Camera(35, 35);
+            //mainCam = new Camera(37, 37);
 
             Renderer.CharacterCamera = mainCam;
 

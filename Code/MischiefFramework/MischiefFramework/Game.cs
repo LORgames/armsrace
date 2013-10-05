@@ -29,7 +29,7 @@ namespace MischiefFramework {
             Content.RootDirectory = "Content";
             instance = this;
 
-            Window.Title = "QQQQ QQQQ QQQQ QQQQ QQQQ REMEMBER TO CHANGE ME! QQQQ QQQQ QQQQ QQQQ QQQQ";
+            Window.Title = "Arms Race";
         }
 
         /// <summary>
