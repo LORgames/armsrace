@@ -47,23 +47,23 @@ namespace MischiefFramework.WorldX.Stage {
             fx.Parameters["CameraViewProjection"].SetValue(c.ViewProjection);
 
             //Outside walls
-            BodyFactory.CreateRectangle(world, 8, 2, 0, new Vector2(8, 12));
-            BodyFactory.CreateRectangle(world, 8, 2, 0, new Vector2(8, -12));
-            BodyFactory.CreateRectangle(world, 8, 2, 0, new Vector2(-8, 12));
-            BodyFactory.CreateRectangle(world, 8, 2, 0, new Vector2(-8,-12));
-            BodyFactory.CreateRectangle(world, 2, 8, 0, new Vector2(12, 8));
-            BodyFactory.CreateRectangle(world, 2, 8, 0, new Vector2(-12, 8));
-            BodyFactory.CreateRectangle(world, 2, 8, 0, new Vector2(12, -8));
-            BodyFactory.CreateRectangle(world, 2, 8, 0, new Vector2(-12, -8));
+            BodyFactory.CreateRectangle(world, 9, 3, 0, new Vector2(8, 12.5f));
+            BodyFactory.CreateRectangle(world, 9, 3, 0, new Vector2(8, -12.5f));
+            BodyFactory.CreateRectangle(world, 9, 3, 0, new Vector2(-8, 12.5f));
+            BodyFactory.CreateRectangle(world, 9, 3, 0, new Vector2(-8, -12.5f));
+            BodyFactory.CreateRectangle(world, 3, 9, 0, new Vector2(12.5f, 8));
+            BodyFactory.CreateRectangle(world, 3, 9, 0, new Vector2(-12.5f, 8));
+            BodyFactory.CreateRectangle(world, 3, 9, 0, new Vector2(12.5f, -8));
+            BodyFactory.CreateRectangle(world, 3, 9, 0, new Vector2(-12.5f, -8));
 
             //Base backs
-            BodyFactory.CreateRectangle(world, 8, 2, 0, new Vector2(0, 14));
-            BodyFactory.CreateRectangle(world, 8, 2, 0, new Vector2(0,-14));
-            BodyFactory.CreateRectangle(world, 2, 8, 0, new Vector2( 14,0));
-            BodyFactory.CreateRectangle(world, 2, 8, 0, new Vector2(-14,0));
+            BodyFactory.CreateRectangle(world, 8, 2, 0, new Vector2(0, 15));
+            BodyFactory.CreateRectangle(world, 8, 2, 0, new Vector2(0,-15));
+            BodyFactory.CreateRectangle(world, 2, 8, 0, new Vector2( 15,0));
+            BodyFactory.CreateRectangle(world, 2, 8, 0, new Vector2(-15,0));
 
             //Center piece...
-            BodyFactory.CreateCircle(world, 2, 0);
+            BodyFactory.CreateCircle(world, 1.6f, 0);
 
             //Inner walls
             walls = new Body[TOTAL_WALLS];
@@ -86,7 +86,7 @@ namespace MischiefFramework.WorldX.Stage {
                 walls[i * 2 + 0] = BodyFactory.CreatePolygon(world, verts0, 0.0f);
                 walls[i * 2 + 1] = BodyFactory.CreatePolygon(world, verts1, 0.0f);
 
-                walls[i * 2 + 0].Position = new Vector2((float)Math.Cos(Math.PI / 2 * i) * ((i == 1 || i == 2) ? 10.5f : 10), (float)Math.Sin(Math.PI / 2 * i) * 10);
+                walls[i * 2 + 0].Position = new Vector2((float)Math.Cos(Math.PI / 2 * i) * (i%2==0?9f:7f), (float)Math.Sin(Math.PI / 2 * i) * 10);
                 walls[i * 2 + 1].Position = walls[i * 2 + 0].Position;
 
                 walls[i * 2 + 0].Rotation = (float)Math.PI / 2 * (i-1);

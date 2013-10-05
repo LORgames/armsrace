@@ -20,12 +20,13 @@ namespace MischiefFramework.WorldX.Assets {
 
         private Matrix premultiplied = Matrix.Identity;
 
-        private BlobCharacter ownedBy = null;
-        private Joint joint = null;
+        public BlobCharacter ownedBy = null;
+        public Joint joint = null;
 
         public WeaponCrate(World world) {
             body = BodyFactory.CreateCircle(world, 0.5f, 1.0f);
             body.BodyType = BodyType.Dynamic;
+            body.UserData = this;
             //body.FixtureList[0].CollisionGroup = -1;
 
             body.LinearDamping =  5.0f;

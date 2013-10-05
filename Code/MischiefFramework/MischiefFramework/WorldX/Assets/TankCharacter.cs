@@ -65,7 +65,7 @@ namespace MischiefFramework.WorldX.Assets {
             body.SleepingAllowed = false;
             body.UserData = this;
 
-            model_tank = ResourceManager.LoadAsset<Model>("Meshes/Character/TankBlob");
+            model_tank = ResourceManager.LoadAsset<Model>("Meshes/Character/Blob Tank");
             MeshHelper.ChangeEffectUsedByModel(model_tank, Renderer.Effect3D);
 
             if (hasMG) {

@@ -185,6 +185,16 @@
       <Processor>SkinnedModelProcessor</Processor>
       <ProcessorParameters_Animations>Walk 5 27%3bIdle 40 72%3bRoll 90 137</ProcessorParameters_Animations>
     </Compile>
+    <Compile Include="Meshes\Character\Blob Tank.fbx">
+      <Name>Blob Tank</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Meshes\Levels\Level.fbx">
+      <Name>Level</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
     <None Include="Meshes\sourceimages\Blob Test.png">
       <Name>Blob Test</Name>
       <Importer>TextureImporter</Importer>
@@ -206,11 +216,6 @@
     <None Include="Meshes\Character\TankTurret.mtl">
       <Name>TankTurret</Name>
     </None>
-    <Compile Include="Meshes\Levels\Level.fbx">
-      <Name>Level</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-    </Compile>
     <Compile Include="Meshes\Weapons\Gatling Gun.fbx">
       <Name>Gatling Gun</Name>
       <Importer>FbxImporter</Importer>
@@ -289,6 +294,27 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Meshes\Character\Tank.png">
+      <Name>Tank</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Meshes\Character\Treads.png">
+      <Name>Treads</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Meshes\Weapons\Guns.png">
+      <Name>Guns</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HUD\MenuVideoLooped.wmv">

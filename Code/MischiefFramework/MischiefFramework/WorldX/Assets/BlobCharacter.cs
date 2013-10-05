@@ -22,6 +22,8 @@ namespace MischiefFramework.WorldX.Assets {
         private Matrix premultiplied;
         private Matrix postmultiplied;
 
+        private bool isMoving = false;
+
         public BlobCharacter(GamePlayer player, World w) : base(player, w) {
             body = BodyFactory.CreateCircle(w, 0.5f, 1.0f, new Vector2(5, 5), this);
             body.BodyType = BodyType.Dynamic;
@@ -47,6 +49,20 @@ namespace MischiefFramework.WorldX.Assets {
         }
 
         public override void AsyncUpdate(float dt) {
+            float moveSpeedSQ = body.LinearVelocity.LengthSquared();
+
+            if (moveSpeedSQ > 1) {
+                if (!isMoving) {
+                    isMoving = true;
+                    animPlayer.StartClip(skinData.AnimationClips["Walk"]);
+                }
+            } else {
+                if (isMoving) {
+                    isMoving = false;
+                    animPlayer.StartClip(skinData.AnimationClips["Idle"]);
+                }
+            }
+
             animPlayer.Update(TimeSpan.FromSeconds(dt), true, Matrix.Identity);
             postmultiplied = Matrix.CreateScale(carrying==null?0.5f:0.75f) * Matrix.CreateRotationY(-body.Rotation - (float)Math.PI / 2) * Matrix.CreateTranslation(body.Position.X, 0f, body.Position.Y);
         }

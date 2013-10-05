@@ -11,13 +11,28 @@ namespace MischiefFramework.WorldX.Assets {
         Body area;
 
         public BaseArea(int baseID, World world) {
-            area = BodyFactory.CreateRectangle(world, 5, 5, 0);
+            area = BodyFactory.CreateRectangle(world, 6, 6, 0);
             area.IsSensor = true;
+            area.OnCollision += new OnCollisionEventHandler(area_OnCollision);
 
             float angle = (float)Math.PI / 2 * baseID;
-            area.Position = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle));
-
+            area.Position = 14f * (Vector2.UnitX * (float)Math.Cos(angle) + Vector2.UnitY * (float)Math.Sin(angle));
         }
 
+        bool area_OnCollision(Fixture fixtureA, Fixture fixtureB, FarseerPhysics.Dynamics.Contacts.Contact contact) {
+            Body other;
+
+            if (fixtureA.Body == area) {
+                other = fixtureB.Body;
+            } else {
+                other = fixtureA.Body;
+            }
+
+            if (other is WeaponCrate) {
+                //((WeaponCrate)other).ow
+            }
+
+            return true;
+        }
     }
 }

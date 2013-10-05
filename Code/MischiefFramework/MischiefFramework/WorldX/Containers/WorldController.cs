@@ -22,6 +22,9 @@ namespace MischiefFramework.WorldX.Containers {
             internal static DebugRenderer dbg;
         #endif
 
+        private int MAX_CRATES = 10;
+        private WeaponCrate[] Crates;
+
         public WorldController() {
             world = new FarseerPhysics.Dynamics.World(Vector2.Zero);
 
@@ -36,6 +39,11 @@ namespace MischiefFramework.WorldX.Containers {
             foreach (GamePlayer plr in PlayerManager.ActivePlayers) {
                 //new BlobCharacter(plr, world);
                 plr.character = new TankCharacter(plr, world, hasMG:true, hasLaser:true);
+            }
+
+            Crates = new WeaponCrate[MAX_CRATES];
+            for (int i = 0; i < MAX_CRATES; i++) {
+                Crates[i] = new WeaponCrate(world);
             }
         }
 

@@ -153,6 +153,7 @@ float4 GenerateShadowMapPS(ShadowOutput Input) : COLOR {
 
 technique GBuffer {
 	pass P0 {
+		FillMode = WireFrame;
 		vertexShader = compile vs_2_0 VS_GBuffer();
 		pixelShader = compile ps_2_0 PS_GBuffer();
 	}
