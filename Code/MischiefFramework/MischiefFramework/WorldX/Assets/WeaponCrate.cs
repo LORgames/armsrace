@@ -57,13 +57,13 @@ namespace MischiefFramework.WorldX.Assets {
                     if (isHeld && charCollider.isAttacking) {
                         Drop();
                         Pickup(charCollider);
-                    } else {
-                        if (!inBase) {
-                            Pickup(charCollider);
-                        } else if (baseIn.teamID == charCollider.player.teamID) {
-                            return false;
-                        }
+                    } else if (inBase && baseIn.teamID == charCollider.player.teamID) {
+                        return false;
+                    } else if (!isHeld) {
+                        Pickup(charCollider);
                     }
+                } else {
+                    return false;
                 }
             }
 
