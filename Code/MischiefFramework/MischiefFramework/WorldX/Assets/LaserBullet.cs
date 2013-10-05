@@ -16,10 +16,12 @@ namespace MischiefFramework.WorldX.Assets {
         private float width = 3.0f;
         private float height = 0.5f;
 
-        public LaserBullet(World w, float angle, Vector2 position)
-            : base(angle) {
+        private float damage = 10.0f;
+
+        public LaserBullet(World w, float angle, Vector2 position, int teamID)
+            : base(angle, teamID) {
             speed = 10.0f;
-            lifespan = 2.0f;
+            lifespan = 5.0f;
             heightOffGround = 0.5f;
             model = ResourceManager.LoadAsset<Model>("Meshes/Weapons/Gattling_Bullet");
             MeshHelper.ChangeEffectUsedByModel(model, Renderer.Effect3D);
@@ -27,6 +29,7 @@ namespace MischiefFramework.WorldX.Assets {
             postmultiplied = Matrix.Identity;
 
             body = BodyFactory.CreateRectangle(w, width, height, 1.0f, position, this);
+            body.FixtureList[0].CollisionGroup = -1;
             body.BodyType = BodyType.Dynamic;
             body.IsBullet = true;
             body.OnCollision += new OnCollisionEventHandler(body_OnCollision);
@@ -39,8 +42,25 @@ namespace MischiefFramework.WorldX.Assets {
         }
 
         private bool body_OnCollision(Fixture fixtureA, Fixture fixtureB, FarseerPhysics.Dynamics.Contacts.Contact contact) {
-            //AssetManager.RemoveAsset(this);
-            return false;
+            Body other;
+
+            if (fixtureA.Body == body) {
+                other = fixtureB.Body;
+            } else {
+                other = fixtureA.Body;
+            }
+
+            if (other.UserData is TankCharacter) {
+                if ((other.UserData as TankCharacter).player.teamID == teamID) {
+                    return false;
+                } else {
+                    (other.UserData as TankCharacter).TakeDamage(damage);
+                }
+            }
+
+            AssetManager.RemoveAsset(this);
+
+            return true;
         }
 
         public override void AsyncUpdate(float dt) {

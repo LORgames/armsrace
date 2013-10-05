@@ -149,10 +149,12 @@
     <Compile Include="States\StateManager.cs" />
     <Compile Include="WorldX\Assets\BaseArea.cs" />
     <Compile Include="WorldX\Assets\BlobCharacter.cs" />
+    <Compile Include="WorldX\Assets\CannonBullet.cs" />
     <Compile Include="WorldX\Assets\Character.cs" />
     <Compile Include="WorldX\Assets\LaserBullet.cs" />
     <Compile Include="WorldX\Assets\MGBullet.cs" />
     <Compile Include="WorldX\Assets\Projectile.cs" />
+    <Compile Include="WorldX\Assets\RocketBullet.cs" />
     <Compile Include="WorldX\Assets\TankCharacter.cs" />
     <Compile Include="WorldX\Assets\WeaponCrate.cs" />
     <Compile Include="WorldX\Containers\WorldController.cs" />

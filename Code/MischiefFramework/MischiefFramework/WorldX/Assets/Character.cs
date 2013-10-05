@@ -20,7 +20,10 @@ namespace MischiefFramework.WorldX.Assets {
 
         private const float SPEED = 10f;
 
+        internal GamePlayer player;
+
         public Character(GamePlayer player, World w) {
+            this.player = player;
             AssetManager.AddAsset(this);
             Input = player.Input;
         }

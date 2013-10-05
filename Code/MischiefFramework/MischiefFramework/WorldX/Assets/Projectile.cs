@@ -13,24 +13,27 @@ using FarseerPhysics.Factories;
 
 namespace MischiefFramework.WorldX.Assets {
     class Projectile : Asset {
-        internal Body body;
+        protected Body body;
 
-        internal Model model;
+        protected Model model;
 
-        internal Matrix postmultiplied;
+        protected Matrix postmultiplied;
 
-        internal float speed;
+        protected float speed;
 
-        internal float lifespan;
+        protected float lifespan;
 
-        internal float timer = 0.0f;
+        protected float timer = 0.0f;
 
-        internal float angle = 0.0f;
+        protected float angle = 0.0f;
 
-        internal float heightOffGround;
+        protected float heightOffGround;
 
-        public Projectile(float angle) {
+        public int teamID = -1;
+
+        public Projectile(float angle, int teamID) {
             this.angle = angle;
+            this.teamID = teamID;
         }
 
         public override void Dispose() {

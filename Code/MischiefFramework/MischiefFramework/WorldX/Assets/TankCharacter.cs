@@ -42,7 +42,7 @@ namespace MischiefFramework.WorldX.Assets {
         private float mgTimer = 0.0f;
         private float mgInterval = 0.1f;
         private float laserTimer = 0.0f;
-        private float laserInterval = 3.0f;
+        private float laserInterval = 1.0f;
         private float cannonTimer = 0.0f;
         private float cannonInterval = 1.0f;
         private float rocketTimer = 0.0f;
@@ -63,6 +63,7 @@ namespace MischiefFramework.WorldX.Assets {
             body = BodyFactory.CreateRectangle(w, 2.0f, 2.0f, 1.0f, new Vector2(5, 5), this);
             body.BodyType = BodyType.Dynamic;
             body.SleepingAllowed = false;
+            body.UserData = this;
 
             model_tank = ResourceManager.LoadAsset<Model>("Meshes/Character/TankBlob");
             MeshHelper.ChangeEffectUsedByModel(model_tank, Renderer.Effect3D);
@@ -95,6 +96,10 @@ namespace MischiefFramework.WorldX.Assets {
         }
 
         public override void Update(float dt) {
+            if (health <= 0.0f) {
+                return;
+            }
+
             base.Update(dt);
 
             float x1 = -Input.AimX();
@@ -136,14 +141,14 @@ namespace MischiefFramework.WorldX.Assets {
 
                     // shoot MG
                     Vector3 bulletPos = Vector3.Transform(Vector3.Forward * 5.2f, postmultiplied_turret);
-                    new MGBullet(body.World, turretAngle + MathHelper.ToRadians((float)Game.random.Next(MGSPREAD)), new Vector2(bulletPos.X, bulletPos.Z));
+                    new MGBullet(body.World, turretAngle + MathHelper.ToRadians((float)Game.random.Next(MGSPREAD)), new Vector2(bulletPos.X, bulletPos.Z), player.teamID);
                 }
                 if (hasLaser && laserTimer <= 0.0f) {
                     laserTimer = laserInterval;
 
                     // shoot Laser
                     Vector3 bulletPos = Vector3.Transform(Vector3.Forward * 5.2f, postmultiplied_tank);
-                    new LaserBullet(body.World, body.Rotation, new Vector2(bulletPos.X, bulletPos.Z));
+                    new LaserBullet(body.World, body.Rotation, new Vector2(bulletPos.X, bulletPos.Z), player.teamID);
                 }
                 if (hasCannon && cannonTimer <= 0.0f) {
                     cannonTimer = cannonInterval;
@@ -164,6 +169,14 @@ namespace MischiefFramework.WorldX.Assets {
             MeshHelper.DrawModel(postmultiplied_tank, model_tank);
             foreach (Model model in model_guns) {
                 MeshHelper.DrawModel(postmultiplied_turret, model);
+            }
+        }
+
+        public void TakeDamage(float damage) {
+            health -= damage;
+
+            if (health <= 0.0f) {
+                body.Dispose();
             }
         }
     }
