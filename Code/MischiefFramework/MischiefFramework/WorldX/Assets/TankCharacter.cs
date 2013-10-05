@@ -16,7 +16,8 @@ using MischiefFramework.WorldX.Information;
 namespace MischiefFramework.WorldX.Assets {
     public class TankCharacter : Character, IOpaque {
         private Model model_tank;
-        private Model model_turret;
+
+        private List<Model> model_guns = new List<Model>();
 
         private Matrix postmultiplied_tank;
         private Matrix postmultiplied_turret;
@@ -28,10 +29,12 @@ namespace MischiefFramework.WorldX.Assets {
         private bool firing = false;
 
         // guns
-        private bool hasMG = true;
+        private bool hasMG = false;
         private bool hasLaser = false;
         private bool hasCannon = false;
         private bool hasRocket = false;
+
+        private const int MGSPREAD = 20; // in degrees
 
         // gun timers (in seconds)
         // weapon reader when timer == 0.0f
@@ -45,7 +48,14 @@ namespace MischiefFramework.WorldX.Assets {
         private float rocketTimer = 0.0f;
         private float rocketInterval = 6.0f;
 
-        public TankCharacter(GamePlayer player, World w) : base(player, w) {
+        public TankCharacter(GamePlayer player, World w, 
+            bool hasMG = false, bool hasLaser = false, bool hasCannon = false, bool hasRocket = false)
+            : base(player, w) {
+            this.hasMG = hasMG;
+            this.hasLaser = hasLaser;
+            this.hasCannon = hasCannon;
+            this.hasRocket = hasRocket;
+
             body = BodyFactory.CreateRectangle(w, 2.0f, 2.0f, 1.0f, new Vector2(5, 5), this);
             body.BodyType = BodyType.Dynamic;
             body.SleepingAllowed = false;
@@ -53,8 +63,26 @@ namespace MischiefFramework.WorldX.Assets {
             model_tank = ResourceManager.LoadAsset<Model>("Meshes/Character/TankBlob");
             MeshHelper.ChangeEffectUsedByModel(model_tank, Renderer.Effect3D);
 
-            model_turret = ResourceManager.LoadAsset<Model>("Meshes/Character/TankTurret");
-            MeshHelper.ChangeEffectUsedByModel(model_turret, Renderer.Effect3D);
+            if (hasMG) {
+                Model model = ResourceManager.LoadAsset<Model>("Meshes/Weapons/Gatling Gun");
+                MeshHelper.ChangeEffectUsedByModel(model, Renderer.Effect3D);
+                model_guns.Add(model);
+            }
+            if (hasLaser) {
+                Model model = ResourceManager.LoadAsset<Model>("Meshes/Weapons/Gatling Gun");
+                MeshHelper.ChangeEffectUsedByModel(model, Renderer.Effect3D);
+                model_guns.Add(model);
+            }
+            if (hasCannon) {
+                Model model = ResourceManager.LoadAsset<Model>("Meshes/Weapons/Gatling Gun");
+                MeshHelper.ChangeEffectUsedByModel(model, Renderer.Effect3D);
+                model_guns.Add(model);
+            }
+            if (hasRocket) {
+                Model model = ResourceManager.LoadAsset<Model>("Meshes/Weapons/Gatling Gun");
+                MeshHelper.ChangeEffectUsedByModel(model, Renderer.Effect3D);
+                model_guns.Add(model);
+            }
 
             postmultiplied_tank = Matrix.Identity;
             postmultiplied_turret = Matrix.Identity;
@@ -67,8 +95,6 @@ namespace MischiefFramework.WorldX.Assets {
 
             float x1 = -Input.AimX();
             float y1 = -Input.AimY();
-
-            Console.Out.WriteLine(x1 + ", " + y1);
 
             if (x1 != 0 || y1 != 0) {
                 turretAngle = (float)(Math.Atan2(x1, y1) - Math.PI/4);
@@ -106,7 +132,7 @@ namespace MischiefFramework.WorldX.Assets {
 
                     // shoot MG
                     Vector3 bulletPos = Vector3.Transform(Vector3.Forward * 5.2f, postmultiplied_turret);
-                    Projectile projectile = new Projectile(body.World, turretAngle, new Vector2(bulletPos.X, bulletPos.Z));
+                    Projectile projectile = new MGBullet(body.World, turretAngle + MathHelper.ToRadians((float)Game.random.Next(MGSPREAD)), new Vector2(bulletPos.X, bulletPos.Z));
                 }
                 if (hasLaser && laserTimer <= 0.0f) {
                     laserTimer = laserInterval;
@@ -133,7 +159,9 @@ namespace MischiefFramework.WorldX.Assets {
 
         public void RenderOpaque() {
             MeshHelper.DrawModel(postmultiplied_tank, model_tank);
-            MeshHelper.DrawModel(postmultiplied_turret, model_turret);
+            foreach (Model model in model_guns) {
+                MeshHelper.DrawModel(postmultiplied_turret, model);
+            }
         }
     }
 }

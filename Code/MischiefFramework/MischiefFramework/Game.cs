@@ -24,6 +24,8 @@ namespace MischiefFramework {
 
         internal static Game instance;
 
+        internal static Random random = new Random();
+
         internal Game() {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";

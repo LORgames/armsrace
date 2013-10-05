@@ -12,52 +12,36 @@ using MischiefFramework.Core.Helpers;
 using FarseerPhysics.Factories;
 
 namespace MischiefFramework.WorldX.Assets {
-    class Projectile : Asset, IOpaque {
-        private Body body;
+    class Projectile : Asset {
+        internal Body body;
 
-        private Model model;
+        internal Model model;
 
-        private Matrix postmultiplied;
+        internal Matrix postmultiplied;
 
-        private const float SPEED = 20f;
+        internal const float SPEED = 20.0f;
 
-        private const float LIFESPAN = 10.0f;
+        internal const float LIFESPAN = 2.0f;
 
-        private float timer = 0.0f;
+        internal float timer = 0.0f;
 
-        private float angle = 0.0f;
+        internal float angle = 0.0f;
 
-        private float radius = 0.5f;
+        internal float radius = 0.5f;
 
-        private float heightOffGround = 2.0f;
+        internal float heightOffGround = 1.7f;
 
-        public Projectile(World w, float angle, Vector2 position) {
+        public Projectile(float angle) {
             this.angle = angle;
-
-            model = ResourceManager.LoadAsset<Model>("Meshes/TestObjects/ball");
-            MeshHelper.ChangeEffectUsedByModel(model, Renderer.Effect3D);
-
-            postmultiplied = Matrix.Identity;
-
-            body = BodyFactory.CreateCircle(w, radius, 1.0f, position, this);
-            body.BodyType = BodyType.Dynamic;
-            body.IsBullet = true;
-            body.IsSensor = true;
-
-            postmultiplied = Matrix.CreateScale(radius) * Matrix.CreateTranslation(body.Position.X, heightOffGround, body.Position.Y);
-
-            Renderer.Add(this);
-            AssetManager.AddAsset(this);
         }
 
         public override void Dispose() {
             body.Dispose();
-
             Renderer.Remove(this);
         }
 
         public override void AsyncUpdate(float dt) {
-            postmultiplied = Matrix.CreateScale(radius) * Matrix.CreateTranslation(body.Position.X, heightOffGround, body.Position.Y);
+            postmultiplied = Matrix.CreateScale(radius) * Matrix.CreateRotationY((float)Math.PI / -2 - angle) * Matrix.CreateTranslation(body.Position.X, heightOffGround, body.Position.Y);
             body.LinearVelocity = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle)) * SPEED;
 
             if (timer <= LIFESPAN) {

@@ -195,6 +195,16 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
+    <Compile Include="Meshes\Weapons\Gatling Gun.fbx">
+      <Name>Gatling Gun</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Meshes\Weapons\Gattling_Bullet.fbx">
+      <Name>Gattling_Bullet</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Meshes\Character\Blob Phase one.fbx">
@@ -219,7 +229,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Meshes\Weapons\" />
+    <Compile Include="Blob\sourceimages\Bullet.png">
+      <Name>Bullet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Blob\sourceimages\Guns.png">
+      <Name>Guns</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HUD\menu.png">

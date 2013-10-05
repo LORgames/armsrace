@@ -35,7 +35,7 @@ namespace MischiefFramework.WorldX.Containers {
 
             foreach (GamePlayer plr in PlayerManager.ActivePlayers) {
                 //new BlobCharacter(plr, world);
-                new TankCharacter(plr, world);
+                new TankCharacter(plr, world, hasMG:true);
             }
         }
 
