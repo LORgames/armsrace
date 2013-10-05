@@ -34,8 +34,8 @@ namespace MischiefFramework.WorldX.Containers {
             new Sun();
 
             foreach (GamePlayer plr in PlayerManager.ActivePlayers) {
-                new BlobCharacter(plr, world);
-                //new TankCharacter(plr, world);
+                //new BlobCharacter(plr, world);
+                new TankCharacter(plr, world);
             }
         }
 
