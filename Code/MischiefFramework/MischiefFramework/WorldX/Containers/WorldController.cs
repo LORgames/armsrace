@@ -35,7 +35,7 @@ namespace MischiefFramework.WorldX.Containers {
 
             foreach (GamePlayer plr in PlayerManager.ActivePlayers) {
                 //new BlobCharacter(plr, world);
-                new TankCharacter(plr, world, hasMG:true, hasLaser:true);
+                plr.character = new TankCharacter(plr, world, hasMG:true, hasLaser:true);
             }
         }
 
@@ -43,8 +43,10 @@ namespace MischiefFramework.WorldX.Containers {
             //Do nothing?
             world.Step(dt);
 
-            float CAMERA_ZOOM = 60;
-            Renderer.CharacterCamera.LookAt = Vector3.Zero;
+            Renderer.CharacterCamera.MakeDoCameraAngleGood();
+
+            float CAMERA_ZOOM = 60.0f;
+            //Renderer.CharacterCamera.LookAt = Vector3.Zero;
             Renderer.CharacterCamera.Position.X = CAMERA_ZOOM * 0.612f + Renderer.CharacterCamera.LookAt.X;
             Renderer.CharacterCamera.Position.Y = CAMERA_ZOOM * 0.500f + Renderer.CharacterCamera.LookAt.Y;
             Renderer.CharacterCamera.Position.Z = CAMERA_ZOOM * -0.612f + Renderer.CharacterCamera.LookAt.Z;

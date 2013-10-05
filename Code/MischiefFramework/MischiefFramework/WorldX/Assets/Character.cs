@@ -40,5 +40,9 @@ namespace MischiefFramework.WorldX.Assets {
                 body.LinearVelocity = Vector2.Zero;
             }
         }
+
+        public Vector2 GetPosition() {
+            return body.Position;
+        }
     }
 }
