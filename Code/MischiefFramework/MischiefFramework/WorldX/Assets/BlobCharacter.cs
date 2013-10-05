@@ -25,6 +25,8 @@ namespace MischiefFramework.WorldX.Assets {
         public BlobCharacter(GamePlayer player, World w) : base(player, w) {
             body = BodyFactory.CreateCircle(w, 0.5f, 1.0f, new Vector2(5, 5), this);
             body.BodyType = BodyType.Dynamic;
+            body.UserData = this;
+            body.FixtureList[0].CollisionGroup = -1;
 
             model = ResourceManager.LoadAsset<Model>("Meshes/Character/Blob Phase one");
             MeshHelper.ChangeEffectUsedByModel(model, Renderer.EffectAnimated);
@@ -36,7 +38,7 @@ namespace MischiefFramework.WorldX.Assets {
 
             // Create an animation player, and start decoding an animation clip.
             animPlayer = new AnimationPlayer(skinData);
-            animPlayer.StartClip(skinData.AnimationClips["Walk"]);
+            animPlayer.StartClip(skinData.AnimationClips["Idle"]);
 
             premultiplied = Matrix.Identity;
             postmultiplied = Matrix.Identity;
@@ -46,7 +48,7 @@ namespace MischiefFramework.WorldX.Assets {
 
         public override void AsyncUpdate(float dt) {
             animPlayer.Update(TimeSpan.FromSeconds(dt), true, Matrix.Identity);
-            postmultiplied = Matrix.CreateScale(0.5f) * Matrix.CreateRotationY(-body.Rotation - (float)Math.PI / 2) * Matrix.CreateTranslation(body.Position.X, 0f, body.Position.Y);
+            postmultiplied = Matrix.CreateScale(carrying==null?0.5f:0.75f) * Matrix.CreateRotationY(-body.Rotation - (float)Math.PI / 2) * Matrix.CreateTranslation(body.Position.X, 0f, body.Position.Y);
         }
 
         public void  RenderOpaque() {
@@ -60,6 +62,16 @@ namespace MischiefFramework.WorldX.Assets {
             }
 
             MeshHelper.DrawModel(postmultiplied, model);
+        }
+
+        private WeaponCrate carrying = null;
+
+        internal bool IsCarrying() {
+            return (carrying != null);
+        }
+
+        internal void Pickup(WeaponCrate weaponCrate) {
+            carrying = weaponCrate;
         }
     }
 }

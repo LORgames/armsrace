@@ -147,6 +147,7 @@
     <Compile Include="States\PlayingState.cs" />
     <Compile Include="States\SetupState.cs" />
     <Compile Include="States\StateManager.cs" />
+    <Compile Include="WorldX\Assets\BaseArea.cs" />
     <Compile Include="WorldX\Assets\BlobCharacter.cs" />
     <Compile Include="WorldX\Assets\Character.cs" />
     <Compile Include="WorldX\Assets\LaserBullet.cs" />

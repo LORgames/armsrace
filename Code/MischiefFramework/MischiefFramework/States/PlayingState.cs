@@ -14,14 +14,10 @@ namespace MischiefFramework.States {
             Renderer.Initialize();
 
             //mainCam = new Camera(64, 36);
-            mainCam = new Camera(48, 27);
+            //mainCam = new Camera(48, 27);
             //mainCam = new Camera(32, 18);
             //mainCam = new Camera(16, 9);
-            //mainCam = new Camera(12, 6.75f);
-            //mainCam = new Camera(8, 4.5f);
-            //mainCam = new Camera(4, 2.25f);0
-            //mainCam = new Camera(2, 1.125f);
-            //mainCam = new Camera(1, 0.5625f);
+            mainCam = new Camera(12, 6.75f);
 
             //Square rendering camera
             //mainCam = new Camera(37, 37);

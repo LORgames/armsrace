@@ -13,7 +13,7 @@ using FarseerPhysics.Factories;
 using FarseerPhysics.Common;
 
 namespace MischiefFramework.WorldX.Stage {
-    internal class Level : IOpaque {
+    internal class Level : IOpaque, ILight {
         private Model visuals;
         private Effect fx;
         private Texture tex;
@@ -93,6 +93,12 @@ namespace MischiefFramework.WorldX.Stage {
 
         public void RenderOpaque() {
             MeshHelper.DrawModel(Matrix.Identity, visuals);
+        }
+
+        public void RenderLight() {
+            for (int i = 0; i < 4; i++) {
+                Renderer.DrawPointLight(13 * (Vector3.Left * (float)Math.Cos(i * Math.PI / 2) + Vector3.Forward * (float)Math.Sin(i * Math.PI / 2)) + Vector3.Up * 0.2f, Color.Green, 5, 10);
+            }
         }
     }
 }

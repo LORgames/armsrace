@@ -179,7 +179,13 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
-    <None Include="Meshes\Character\Blob Test.png">
+    <Compile Include="Meshes\Character\Blob Phase one.fbx">
+      <Name>Blob Phase one</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>SkinnedModelProcessor</Processor>
+      <ProcessorParameters_Animations>Walk 5 27%3bIdle 40 72%3bRoll 90 137</ProcessorParameters_Animations>
+    </Compile>
+    <None Include="Meshes\sourceimages\Blob Test.png">
       <Name>Blob Test</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -214,19 +220,6 @@
       <Name>Gattling_Bullet</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
-    </Compile>
-    <Compile Include="Meshes\TestObjects\Cube.fbx">
-      <Name>Cube</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Meshes\Character\Blob Phase one.fbx">
-      <Name>Blob Phase one</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>SkinnedModelProcessor</Processor>
-      <ProcessorParameters_Animations>Walk 5 20%3bIdle 25 45</ProcessorParameters_Animations>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -270,18 +263,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Meshes\Levels\overlay.png">
-      <Name>overlay</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
+    <Compile Include="Meshes\TestObjects\Crate.fbx">
+      <Name>Crate</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Meshes\TestObjects\Wood.png">
-      <Name>Wood</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HUD\MenuVideo.wmv">
@@ -300,6 +286,20 @@
   <ItemGroup>
     <Compile Include="HUD\Credits\overlay.png">
       <Name>overlay</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Meshes\Levels\overlay.png">
+      <Name>overlay</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Meshes\TestObjects\CrateTexture.png">
+      <Name>CrateTexture</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
