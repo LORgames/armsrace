@@ -25,6 +25,22 @@ namespace MischiefFramework.WorldX.Containers {
         private int MAX_CRATES = 10;
         private WeaponCrate[] Crates;
 
+        // phases
+        internal enum Phases {
+            Phase1Ready,    // Ready countdown before phase 1 gameplay
+            Phase1Play,     // Phase 1 gameplay
+            Phase1Scores,   // Phase 1 scoreboard & transition to phase 2
+            Phase2Ready,    // Phase 2 countdown before phase 2 gameplay
+            Phase2Play,     // Phase 2 gameplay
+            Phase2Scores    // Phase 2 scoreboard & menu options for rematch or main menu
+        }
+
+        internal Phases Phase = Phases.Phase1Ready;
+
+        internal float phase1ReadyTimer = 5.0f; // in secs
+        internal float phase1PlayTimer = 30.0f;
+        internal float phase2ReadyTimer = 5.0f;
+
         public WorldController() {
             world = new FarseerPhysics.Dynamics.World(Vector2.Zero);
 
@@ -68,6 +84,88 @@ namespace MischiefFramework.WorldX.Containers {
             Renderer.CharacterCamera.Position.Y = CAMERA_ZOOM * 0.500f + Renderer.CharacterCamera.LookAt.Y;
             Renderer.CharacterCamera.Position.Z = CAMERA_ZOOM * -0.612f + Renderer.CharacterCamera.LookAt.Z;
             Renderer.CharacterCamera.GenerateMatrices();
+
+            switch (Phase) {
+                case Phases.Phase1Ready:
+                    // TODO: Lock player movement etc. for countdown
+
+                    // countdown timer
+                    if (phase1ReadyTimer > 0.0f) {
+                        InfoPanel.instance.SetTimer(Phase, phase1ReadyTimer);
+                        phase1ReadyTimer -= dt;
+                    } else {
+                        Phase = Phases.Phase1Play;
+                        InfoPanel.instance.SetTimer(Phase, phase1PlayTimer);
+                    }
+                    break;
+
+                case Phases.Phase1Play:
+                    // gameplay timer
+                    if (phase1PlayTimer > 0.0f) {
+                        InfoPanel.instance.SetTimer(Phase, phase1PlayTimer);
+                        phase1PlayTimer -= dt;
+                    } else {
+                        Phase = Phases.Phase1Scores;
+                        InfoPanel.instance.SetTimer(Phase, 0.0f);
+
+                        // set player scores
+                        if (Crates.Length > 0) {
+                            foreach (BaseArea baseArea in Level.bases) {
+                                if (SettingManager._baseSharing == 0) {
+                                    PlayerManager.ActivePlayers[baseArea.baseID].score = baseArea.crates;
+                                } else {
+                                    foreach (GamePlayer player in PlayerManager.ActivePlayers) {
+                                        if (player.teamID == baseArea.teamID) {
+                                            player.score = baseArea.crates;
+                                        }
+                                    }
+                                }
+                            }
+
+                            // clean up crates
+                            foreach (WeaponCrate crate in Crates) {
+                                crate.Dispose();
+                            }
+                            Crates = new WeaponCrate[] { };
+                        }
+                    }
+                    break;
+
+                case Phases.Phase1Scores:
+                    // TODO: Lock player movement etc. for scoreboard
+                    // TODO: Show animation/transition to phase 2
+                    // TODO: Accept input to move to phase 2 ready state
+                    break;
+
+                case Phases.Phase2Ready:
+                    // clean up bases
+                    if (Level.bases.Count > 0) {
+                        foreach (BaseArea baseArea in Level.bases) {
+                            AssetManager.RemoveAsset(baseArea);
+                        }
+                        Level.bases = new List<BaseArea>();
+                    }
+
+                    // TODO: Lock player movement etc. for countdown
+
+                    // countdown timer
+                    if (phase2ReadyTimer > 0.0f) {
+                        InfoPanel.instance.SetTimer(Phase, phase2ReadyTimer);
+                        phase1ReadyTimer -= dt;
+                    } else {
+                        Phase = Phases.Phase2Play;
+                        InfoPanel.instance.SetTimer(Phase, 0.0f);
+                    }
+                    break;
+
+                case Phases.Phase2Play:
+                    // TODO: this?
+                    break;
+
+                case Phases.Phase2Scores:
+                    // TODO: this?
+                    break;
+            }
         }
 
         public void Dispose() {

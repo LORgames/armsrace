@@ -81,6 +81,15 @@ namespace MischiefFramework.WorldX.Assets {
             isHeld = false;
         }
 
+        public void Dispose() {
+            body.Dispose();
+            if (ownedBy != null) {
+                ownedBy.Pickup(null);
+                ownedBy = null;
+            }
+            Renderer.Remove(this);
+        }
+
         public void Pickup(BlobCharacter newOwner) {
             if (isHeld) throw new Exception("Cannot be owned while its being held!");
             if (ownedBy != null) throw new Exception("Cannot be owned while someone else already owns it!");

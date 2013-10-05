@@ -9,6 +9,7 @@ using MischiefFramework.Cache;
 using ZDataTypes;
 using MischiefFramework.WorldX.Stage;
 using MischiefFramework.Core;
+using MischiefFramework.WorldX.Containers;
 
 namespace MischiefFramework.WorldX.Information {
     internal class InfoPanel : IHeadsUpDisplay {
@@ -30,6 +31,9 @@ namespace MischiefFramework.WorldX.Information {
 
         bool visible = false;
 
+        WorldController.Phases phase;
+        float timer = 0.0f;
+
         public InfoPanel() {
             instance = this;
             this.headerFont = ResourceManager.LoadAsset<SpriteFont>("Fonts/InfoPanelHeader");
@@ -37,6 +41,11 @@ namespace MischiefFramework.WorldX.Information {
             this.statsFont = ResourceManager.LoadAsset<SpriteFont>("Fonts/InfoPanelStats");
             //ninjaSpritesheet = ResourceManager.LoadAsset<Texture2D>("HUD/Ninja/SpriteSheet");
             //positions = ResourceManager.LoadAsset<SpritesheetPosition[]>("HUD/Ninja/positions");
+        }
+
+        public void SetTimer(WorldController.Phases phase, float timer) {
+            this.phase = phase;
+            this.timer = timer;
         }
 
         public void ChangeInformation(string header, int headerIcon, List<string> stats, List<int> upgradeIcons) {
@@ -75,10 +84,41 @@ namespace MischiefFramework.WorldX.Information {
         public void RenderHeadsUpDisplay(SpriteBatch drawtome) {
             if (visible) {
                 Vector2 pos = Vector2.Zero;
-                for (int i = 0; i < PlayerManager.ActivePlayers.Count; i++) {
+                /*for (int i = 0; i < PlayerManager.ActivePlayers.Count; i++) {
                     string text = string.Format("Player {0}: {1}", i + 1, Level.bases[i].crates);
                     drawtome.DrawString(headerFont, text, pos, Color.Red);
                     pos.X += headerFont.MeasureString(text).X + 10;
+                }*/
+
+                if (phase == WorldController.Phases.Phase1Ready || phase == WorldController.Phases.Phase1Play 
+                    || phase == WorldController.Phases.Phase1Scores || phase == WorldController.Phases.Phase2Ready) {
+                    drawtome.DrawString(headerFont, timer.ToString("00.00"), new Vector2(Game.device.Viewport.Width / 2, 0.0f), Color.Red);
+                }
+
+                if (phase == WorldController.Phases.Phase1Play || phase == WorldController.Phases.Phase1Scores) {
+                    foreach (MischiefFramework.WorldX.Assets.BaseArea baseArea in Level.bases) {
+                        switch (baseArea.teamID) {
+                            case 0:
+                                pos.X = 0.0f;
+                                pos.Y = Game.device.Viewport.Height - 100;
+                                break;
+                            case 1:
+                                pos.X = Game.device.Viewport.Width - 150;
+                                pos.Y = 0.0f;
+                                break;
+                            case 2:
+                                pos.X = Game.device.Viewport.Width - 150;
+                                pos.Y = Game.device.Viewport.Height - 100;
+                                break;
+                            case 3:
+                                pos.X = 0.0f;
+                                pos.Y = 0.0f;
+                                break;
+                        }
+
+                        string text = string.Format("{0} {1}: {2}", SettingManager._baseSharing == 0 ? "Player" : "Team", baseArea.baseID, baseArea.crates);
+                        drawtome.DrawString(headerFont, text, pos, Color.Red);
+                    }
                 }
                 /*
                 // Draw background

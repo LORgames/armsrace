@@ -9,11 +9,11 @@ using MischiefFramework.Cache;
 using MischiefFramework.Core;
 
 namespace MischiefFramework.WorldX.Assets {
-    public class BaseArea {
-        public Body area;
-        public int baseID;
-        public int basePos;
-        public int teamID;
+    public class BaseArea : Asset {
+        internal Body area;
+        internal int baseID;
+        internal int basePos;
+        internal int teamID;
 
         public Vector2 CenterPoint = Vector2.Zero;
 
@@ -43,6 +43,26 @@ namespace MischiefFramework.WorldX.Assets {
 
             this.baseID = baseID;
             this.teamID = teamID;
+
+            AssetManager.AddAsset(this);
+        }
+
+        public override void AsyncUpdate(float dt) {
+            crates = 0;
+            if (area.ContactList != null) {
+                FarseerPhysics.Dynamics.Contacts.ContactEdge ce = area.ContactList;
+
+                while (ce != null) {
+                    if (ce.Other.UserData is WeaponCrate) {
+                        crates++;
+                    }
+                    ce = ce.Next;
+                }
+            }
+        }
+
+        public override void Dispose() {
+            area.Dispose();
         }
 
         void area_OnSeparation(Fixture fixtureA, Fixture fixtureB) {
