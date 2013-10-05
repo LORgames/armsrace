@@ -28,8 +28,6 @@ namespace MischiefFramework.WorldX.Stage {
 
             Matrix position = Matrix.Identity;
 
-            const float CAMERA_ZOOM = 50.0f;
-
             Camera c = new Camera(35, 35);
             c.LookAt = Vector3.Zero;
             c.Position.X = 6 * 0.612f + c.LookAt.X;

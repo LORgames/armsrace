@@ -65,11 +65,11 @@ namespace MischiefFramework {
         /// all of your content.
         /// </summary>
         protected override void LoadContent() {
-            //StateManager.Push(new LogoScreen());
+            StateManager.Push(new LogoScreen());
 
-            players.Activate();
-            Player.Input = players.Get(0);
-            StateManager.Push(new PlayingState());
+            //players.Activate();
+            //Player.Input = players.Get(0);
+            //StateManager.Push(new PlayingState());
         }
 
         /// <summary>

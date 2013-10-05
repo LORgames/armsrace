@@ -81,8 +81,8 @@ namespace MischiefFramework.WorldX.Assets {
                 }
             }
 
-            postmultiplied_tank = Matrix.CreateScale(0.4f) * Matrix.CreateRotationY(-body.Rotation - (float)Math.PI / 2) * Matrix.CreateTranslation(body.Position.X, 1f, body.Position.Y);
-            postmultiplied_turret = Matrix.CreateScale(0.4f) * Matrix.CreateRotationY(-turretAngle - (float)Math.PI / 4 * 3) * Matrix.CreateTranslation(body.Position.X, 1f, body.Position.Y);
+            postmultiplied_tank = Matrix.CreateScale(0.4f) * Matrix.CreateRotationY(-body.Rotation - (float)Math.PI / 2) * Matrix.CreateTranslation(body.Position.X, 0f, body.Position.Y);
+            postmultiplied_turret = Matrix.CreateScale(0.4f) * Matrix.CreateRotationY(-turretAngle - (float)Math.PI / 4 * 3) * Matrix.CreateTranslation(body.Position.X, 0f, body.Position.Y);
 
             if (hasMG && mgTimer > 0.0f) {
                 mgTimer -= dt;
