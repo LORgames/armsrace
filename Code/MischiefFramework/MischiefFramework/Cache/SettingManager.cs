@@ -28,6 +28,7 @@ namespace MischiefFramework.Cache {
         internal static int _gameLength = 1;
         internal static int _moveSpeed = 1;
         internal static int _baseSharing = 1;
+        internal static bool _skipPhase1 = false;
 
         public static void LoadFromFile() {
             if (File.Exists(filename)) {

@@ -65,6 +65,8 @@ namespace MischiefFramework.WorldX.Assets {
                     }
 
                     joint = JointFactory.CreateWeldJoint(body.World, body, other, Vector2.Zero, Vector2.Zero);
+                    joint.Broke += new Action<Joint, float>(joint_Broke);
+
                     ownedBy = charCollider;
 
                     charCollider.Pickup(this);
@@ -76,6 +78,10 @@ namespace MischiefFramework.WorldX.Assets {
             }
 
             return true;
+        }
+
+        void joint_Broke(Joint arg1, float arg2) {
+            body.IsSensor = false;
         }
 
         public override void AsyncUpdate(float dt) {

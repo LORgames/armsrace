@@ -278,5 +278,9 @@ namespace FarseerPhysics.Dynamics.Joints
         /// </summary>
         /// <returns>returns true if the position errors are within tolerance.</returns>
         internal abstract bool SolvePositionConstraints();
+
+        internal void Broken() {
+            Broke(this, 0f);
+        }
     }
 }

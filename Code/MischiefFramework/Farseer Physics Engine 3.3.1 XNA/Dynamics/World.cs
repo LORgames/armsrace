@@ -420,6 +420,8 @@ namespace FarseerPhysics.Dynamics
             {
                 foreach (Joint joint in _jointRemoveList)
                 {
+                    joint.Broken();
+
                     bool collideConnected = joint.CollideConnected;
 
                     // Remove from the world list.
@@ -433,19 +435,16 @@ namespace FarseerPhysics.Dynamics
                     bodyA.Awake = true;
 
                     // WIP David
-                    if (!joint.IsFixedType())
-                    {
+                    if (!joint.IsFixedType()) {
                         bodyB.Awake = true;
                     }
 
                     // Remove from body 1.
-                    if (joint.EdgeA.Prev != null)
-                    {
+                    if (joint.EdgeA.Prev != null) {
                         joint.EdgeA.Prev.Next = joint.EdgeA.Next;
                     }
 
-                    if (joint.EdgeA.Next != null)
-                    {
+                    if (joint.EdgeA.Next != null) {
                         joint.EdgeA.Next.Prev = joint.EdgeA.Prev;
                     }
 
