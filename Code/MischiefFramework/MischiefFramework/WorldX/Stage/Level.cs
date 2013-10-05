@@ -11,6 +11,7 @@ using MischiefFramework.Cache;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Factories;
 using FarseerPhysics.Common;
+using MischiefFramework.WorldX.Assets;
 
 namespace MischiefFramework.WorldX.Stage {
     internal class Level : IOpaque, ILight {
@@ -20,6 +21,8 @@ namespace MischiefFramework.WorldX.Stage {
 
         private int TOTAL_WALLS = 8; //Convex stuff..?
         private Body[] walls;
+
+        private List<BaseArea> bases = new List<BaseArea>();
 
         public Level(World world) {
             tex = ResourceManager.LoadAsset<Texture2D>("Meshes/Levels/overlay");
@@ -78,6 +81,8 @@ namespace MischiefFramework.WorldX.Stage {
             verts1.Add(new Vector2(-1.6f,-0.6f));
 
             for (int i = 0; i < 4; i++) {
+                bases.Add(new BaseArea(i, world));
+
                 walls[i * 2 + 0] = BodyFactory.CreatePolygon(world, verts0, 0.0f);
                 walls[i * 2 + 1] = BodyFactory.CreatePolygon(world, verts1, 0.0f);
 

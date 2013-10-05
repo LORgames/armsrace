@@ -13,11 +13,10 @@ namespace MischiefFramework.States {
         public PlayingState() {
             Renderer.Initialize();
 
-            //mainCam = new Camera(64, 36);
             //mainCam = new Camera(48, 27);
-            //mainCam = new Camera(32, 18);
+            mainCam = new Camera(32, 18);
             //mainCam = new Camera(16, 9);
-            mainCam = new Camera(12, 6.75f);
+            //mainCam = new Camera(12, 6.75f);
 
             //Square rendering camera
             //mainCam = new Camera(37, 37);
