@@ -40,7 +40,7 @@ namespace MischiefFramework.States {
 
         // Strings
         private const string CREDITS_SCREEN_SHORT = "Art\n\tNathan \"Sleep it Off\" Perry\n\tRyan \"Cigar Lover\" Furlong\n\tYing \"=^.^=\" Luo\n\nProgramming\n\tMiles \"AFK\" Till\n\tPaul \"Magic Numbers\" Fox\n\tSamuel \"Bug Smasher\" Surtees\n\nPowered By\n\tFarseer Physics\n\tXNA Game Studio\n\nSanity Restoration\n\tCOFFEE!!!!!!!!\n\tSubway (Thanks Katie XD)";
-        private const string CREDITS_SCREEN_LONG = "Music\n\t\tSONG NAME\n\t\tBy PERSON from URL";
+        private const string CREDITS_SCREEN_LONG = " ";//"Music\n\t\tSONG NAME\n\t\tBy PERSON from URL";
 
         public CreditsState(GraphicsDevice device) {
             spritebatch = new SpriteBatch(device);

@@ -36,6 +36,8 @@ namespace MischiefFramework.WorldX.Weapons {
                 Vector3 bulletPos = Vector3.Transform(Vector3.Forward * 5.2f, tank.TankMatrix);
                 new LaserBullet(tank.body.World, tank.body.Rotation, new Vector2(bulletPos.X, bulletPos.Z), tank.player.teamID);
 
+                AudioController.PlayOnce("Laser_Shot");
+
                 currentDelay = FIRE_DELAY;
             }
         }

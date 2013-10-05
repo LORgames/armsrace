@@ -54,7 +54,9 @@ namespace MischiefFramework.WorldX.Assets {
 
             TankMatrix = Matrix.Identity;
             TurretMatrix = Matrix.Identity;
-            
+
+            AudioController.PlayLooped("Engine");
+
             Renderer.Add(this);
         }
 
@@ -103,6 +105,7 @@ namespace MischiefFramework.WorldX.Assets {
             health -= damage;
 
             if (health <= 0.0f) {
+                AudioController.PlayOnce("Slime_Death");
                 body.Dispose();
             }
         }

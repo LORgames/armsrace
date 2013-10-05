@@ -25,7 +25,7 @@ namespace MischiefFramework.States {
             player = new VideoPlayer();
             player.IsLooped = false;
             player.Play(video);
-            AudioController.PlayLooped("AudioFile.wma");
+            AudioController.PlayLooped("MenuMusic");
 
             PlayerInput.SetMouseLock(false);
             Game.players.Activate();

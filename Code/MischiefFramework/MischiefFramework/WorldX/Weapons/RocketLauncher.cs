@@ -28,7 +28,8 @@ namespace MischiefFramework.WorldX.Weapons {
         }
 
         public void TryFire() {
-            
+            // When this fires add following line
+            //AudioController.PlayOnce("Rocket_Shot");
         }
 
         public void RenderOpaque() {

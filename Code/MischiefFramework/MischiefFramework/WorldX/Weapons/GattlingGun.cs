@@ -39,6 +39,8 @@ namespace MischiefFramework.WorldX.Weapons {
                 Vector3 bulletPos = Vector3.Transform(Vector3.Forward * 5.2f, tank.TurretMatrix);
                 new MGBullet(tank.body.World, tank.TurretAngle + (float)Game.random.Next(MGSPREAD), new Vector2(bulletPos.X, bulletPos.Z), tank.player.teamID);
 
+                AudioController.PlayOnce("Gatling_Gun");
+
                 currentDelay = FIRE_DELAY;
             }
         }

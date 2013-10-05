@@ -70,6 +70,7 @@ namespace MischiefFramework.WorldX.Assets {
                     if (!isMoving) {
                         isMoving = true;
                         animPlayer.StartClip(skinData.AnimationClips["Walk"]);
+                        AudioController.PlayOnce("Slime_Movement");
                     }
                 } else {
                     if (isMoving) {
@@ -118,6 +119,7 @@ namespace MischiefFramework.WorldX.Assets {
         internal void Pickup(WeaponCrate weaponCrate) {
             if (IsCarrying() && weaponCrate != null) throw new Exception("Cannot pick up while holding a crate!");
             carrying = weaponCrate;
+            AudioController.PlayOnce("Slime_Attack");
         }
     }
 }
