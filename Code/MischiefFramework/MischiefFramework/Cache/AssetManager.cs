@@ -35,6 +35,7 @@ namespace MischiefFramework.Cache {
 
                 //TODO: Flip this
                 while (destroyQueue.Count > 0) {
+                    destroyQueue[0].Dispose();
                     assets.Remove(destroyQueue[0]);
                     destroyQueue.RemoveAt(0);
                 }
@@ -54,5 +55,6 @@ namespace MischiefFramework.Cache {
 
         public virtual void Update(float dt) { }
         public virtual void AsyncUpdate(float dt) { }
+        public virtual void Dispose() { }
     }
 }

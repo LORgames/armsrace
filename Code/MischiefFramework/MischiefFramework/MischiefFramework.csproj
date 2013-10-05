@@ -148,6 +148,7 @@
     <Compile Include="States\StateManager.cs" />
     <Compile Include="WorldX\Assets\BlobCharacter.cs" />
     <Compile Include="WorldX\Assets\Character.cs" />
+    <Compile Include="WorldX\Assets\Projectile.cs" />
     <Compile Include="WorldX\Assets\TankCharacter.cs" />
     <Compile Include="WorldX\Containers\WorldController.cs" />
     <Compile Include="WorldX\Information\GameInformation.cs" />
