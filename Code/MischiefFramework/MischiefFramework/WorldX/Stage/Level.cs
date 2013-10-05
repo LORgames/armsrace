@@ -66,22 +66,22 @@ namespace MischiefFramework.WorldX.Stage {
             walls = new Body[TOTAL_WALLS];
 
             Vertices verts0 = new Vertices();
-            verts0.Add(new Vector2( 0.0f, 0.0f));
-            verts0.Add(new Vector2( 2.0f,-1.0f));
-            verts0.Add(new Vector2( 2.0f, 0.0f));
-            verts0.Add(new Vector2( 0.0f, 1.0f));
+            verts0.Add(new Vector2( 0.0f,-0.4f));
+            verts0.Add(new Vector2( 1.6f,-0.6f));
+            verts0.Add(new Vector2( 1.6f, 0.4f));
+            verts0.Add(new Vector2( 0.0f, 0.6f));
 
             Vertices verts1 = new Vertices();
-            verts1.Add(new Vector2(0.0f, 0.0f));
-            verts1.Add(new Vector2(0.0f, 1.0f));
-            verts1.Add(new Vector2(-2.0f, 0.0f));
-            verts1.Add(new Vector2(-2.0f, -1.0f));
+            verts1.Add(new Vector2( 0.0f,-0.4f));
+            verts1.Add(new Vector2( 0.0f, 0.6f));
+            verts1.Add(new Vector2(-1.6f, 0.4f));
+            verts1.Add(new Vector2(-1.6f,-0.6f));
 
             for (int i = 0; i < 4; i++) {
                 walls[i * 2 + 0] = BodyFactory.CreatePolygon(world, verts0, 0.0f);
                 walls[i * 2 + 1] = BodyFactory.CreatePolygon(world, verts1, 0.0f);
 
-                walls[i * 2 + 0].Position = new Vector2((float)Math.Cos(Math.PI / 2 * i) * 10, (float)Math.Sin(Math.PI / 2 * i) * 10);
+                walls[i * 2 + 0].Position = new Vector2((float)Math.Cos(Math.PI / 2 * i) * ((i == 1 || i == 2) ? 10.5f : 10), (float)Math.Sin(Math.PI / 2 * i) * 10);
                 walls[i * 2 + 1].Position = walls[i * 2 + 0].Position;
 
                 walls[i * 2 + 0].Rotation = (float)Math.PI / 2 * (i-1);
