@@ -57,8 +57,7 @@ namespace MischiefFramework.WorldX.Assets {
                 if (ownedBy != other.UserData) {
                     if (ownedBy != null && ownedBy.player.teamID == charCollider.player.teamID && inBase) return false;
 
-                    if (!charCollider.IsCarrying() && charCollider.body.JointList == null) {
-
+                    if (!charCollider.IsCarrying() && charCollider.isAttacking) {
                         if (ownedBy != null) {
                             body.World.RemoveJoint(joint);
                             ownedBy.Pickup(null);

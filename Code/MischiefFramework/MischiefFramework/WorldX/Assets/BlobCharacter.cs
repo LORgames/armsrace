@@ -25,6 +25,9 @@ namespace MischiefFramework.WorldX.Assets {
         public bool isAttacking = false;
         public bool isMoving = false;
 
+        private float attackTimeout = 0.0f;
+        private const float ATTACK_TIME = 1.958f;
+
         public BlobCharacter(GamePlayer player, World w, Vector2 pos) : base(player, w) {
             body = BodyFactory.CreateCircle(w, 0.5f, 1.0f, pos, this);
             body.BodyType = BodyType.Dynamic;
@@ -52,15 +55,38 @@ namespace MischiefFramework.WorldX.Assets {
         public override void AsyncUpdate(float dt) {
             float moveSpeedSQ = body.LinearVelocity.LengthSquared();
 
-            if (moveSpeedSQ > 1) {
-                if (!isMoving) {
-                    isMoving = true;
-                    animPlayer.StartClip(skinData.AnimationClips["Walk"]);
+            if (!isAttacking) {
+                float aimX = player.Input.AimX();
+                float aimY = player.Input.AimY();
+
+                if ((aimX != 0 || aimY != 0) && !IsCarrying()) {
+                    animPlayer.StartClip(skinData.AnimationClips["Roll"]);
+                    isAttacking = true;
+                    attackTimeout = ATTACK_TIME;
+                }
+
+                if (moveSpeedSQ > 1) {
+                    if (!isMoving) {
+                        isMoving = true;
+                        animPlayer.StartClip(skinData.AnimationClips["Walk"]);
+                    }
+                } else {
+                    if (isMoving) {
+                        isMoving = false;
+                        animPlayer.StartClip(skinData.AnimationClips["Idle"]);
+                    }
                 }
             } else {
-                if (isMoving) {
-                    isMoving = false;
-                    animPlayer.StartClip(skinData.AnimationClips["Idle"]);
+                attackTimeout -= dt;
+                if (attackTimeout <= 0) {
+                    if (moveSpeedSQ > 1) {
+                        isMoving = true;
+                        animPlayer.StartClip(skinData.AnimationClips["Walk"]);
+                    } else {
+                        isMoving = false;
+                        animPlayer.StartClip(skinData.AnimationClips["Idle"]);
+                    }
+                    isAttacking = false;
                 }
             }
 
