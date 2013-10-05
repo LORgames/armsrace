@@ -83,6 +83,11 @@ namespace MischiefFramework.States {
                     }
                     getXHeldTimes[i] += (float)gameTime.ElapsedGameTime.TotalSeconds;
                 }
+
+                if (PlayerManager.ActivePlayers[i].Input.GetJump()) {
+                    StateManager.Pop();
+                    StateManager.Push(new PlayingState());
+                }
             }
 
             // Update sizes and positions
@@ -93,7 +98,7 @@ namespace MischiefFramework.States {
             Vector2 team2StringSize = font.MeasureString("Team 2");
             Vector2 team3StringSize = font.MeasureString("Team 3");
             Vector2 team4StringSize = font.MeasureString("Team 4");
-            Vector2 footerStringSize = font.MeasureString("Press Start to Lock-in");
+            Vector2 footerStringSize = font.MeasureString("Press A (Controller) or Space (Keyboard) to Lock-in");
             //Vector2 playerIconSize = new Vector2(50f, 50f);
 
             int columnWidth = (int)(team1StringSize.X > playerIconTextures[0].Width ? team1StringSize.X : playerIconTextures[0].Width);
@@ -165,7 +170,7 @@ namespace MischiefFramework.States {
             renderTarget.DrawString(font, "Team 2", team2Position, Color.White);
             renderTarget.DrawString(font, "Team 3", team3Position, Color.White);
             renderTarget.DrawString(font, "Team 4", team4Position, Color.White);
-            renderTarget.DrawString(font, "Press Start to Lock-in", footerPosition, Color.White);
+            renderTarget.DrawString(font, "Press A (Controller) or Space (Keyboard) to Lock-in", footerPosition, Color.White);
 
             renderTarget.Draw(tableTexture, tableBoxTop, Color.White);
             renderTarget.Draw(tableTexture, tableBoxLeft, Color.White);

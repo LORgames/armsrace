@@ -41,8 +41,7 @@ namespace MischiefFramework.States {
         }
 
         public void PlayGame() {
-            //StateManager.Push(new SetupState(Game.device));
-            StateManager.Push(new PlayingState());
+            StateManager.Push(new SetupState(Game.device));
         }
 
         public void Settings() {

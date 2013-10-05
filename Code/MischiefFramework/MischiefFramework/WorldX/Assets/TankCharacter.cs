@@ -11,11 +11,10 @@ using MischiefFramework.Core.Interfaces;
 using Microsoft.Xna.Framework;
 using MischiefFramework.Core.Helpers;
 using FarseerPhysics.Factories;
+using MischiefFramework.WorldX.Information;
 
 namespace MischiefFramework.WorldX.Assets {
-    public class TankCharacter : Asset, IOpaque {
-        private Body body;
-
+    public class TankCharacter : Character, IOpaque {
         private Model model_tank;
         private Model model_turret;
 
@@ -24,11 +23,9 @@ namespace MischiefFramework.WorldX.Assets {
 
         private float turretAngle = 0;
 
-        private PlayerInput input;
-
         private const float SPEED = 10f;
 
-        public TankCharacter(PlayerInput input, World w) {
+        public TankCharacter(GamePlayer player, World w) : base(player, w) {
             model_tank = ResourceManager.LoadAsset<Model>("Meshes/Character/TankBlob");
             MeshHelper.ChangeEffectUsedByModel(model_tank, Renderer.Effect3D);
 
@@ -43,24 +40,13 @@ namespace MischiefFramework.WorldX.Assets {
 
             Renderer.Add(this);
             AssetManager.AddAsset(this);
-
-            this.input = input;
         }
 
-        public override void AsyncUpdate(float dt) {
-            float x = -input.GetX();
-            float y = -input.GetY();
+        public override void Update(float dt) {
+            base.AsyncUpdate(dt);
 
-            float x1 = -input.AimX();
-            float y1 = -input.AimY();
-
-            if (x != 0 || y != 0) {
-                body.Rotation = (float)(Math.Atan2(x, y) + Math.PI / 4);
-                body.LinearVelocity = Vector2.UnitX * (float)Math.Cos(body.Rotation) * SPEED + Vector2.UnitY * (float)Math.Sin(body.Rotation) * SPEED;
-            } else {
-                body.AngularVelocity = 0;
-                body.LinearVelocity = Vector2.Zero;
-            }
+            float x1 = -Input.AimX();
+            float y1 = -Input.AimY();
 
             if (x1 != 0 && y1 != 0) {
                 turretAngle = (float)Math.Atan2(x1, y1);

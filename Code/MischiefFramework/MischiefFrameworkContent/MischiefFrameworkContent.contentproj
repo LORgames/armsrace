@@ -158,13 +158,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Meshes\Levels\Level.fbx">
-      <Name>Level</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\AnimationExtension\AnimationExtension.csproj">
       <Project>{F69747B2-A475-469E-996A-306C1AD5AC87}</Project>
       <Name>AnimationExtension</Name>
@@ -197,6 +190,11 @@
     <None Include="Meshes\Character\TankTurret.mtl">
       <Name>TankTurret</Name>
     </None>
+    <Compile Include="Meshes\Levels\Level.fbx">
+      <Name>Level</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Meshes\Character\Blob Phase one.fbx">
@@ -226,6 +224,13 @@
   <ItemGroup>
     <Compile Include="HUD\menu.png">
       <Name>menu</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Meshes\Levels\overlay.png">
+      <Name>overlay</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

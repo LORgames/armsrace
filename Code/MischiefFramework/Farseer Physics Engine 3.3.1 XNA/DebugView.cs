@@ -110,8 +110,7 @@ namespace FarseerPhysics
         /// Append flags to the current flags.
         /// </summary>
         /// <param name="flags">The flags.</param>
-        public void AppendFlags(DebugViewFlags flags)
-        {
+        public void AppendFlags(DebugViewFlags flags) {
             Flags |= flags;
         }
 
@@ -119,8 +118,7 @@ namespace FarseerPhysics
         /// Remove flags from the current flags.
         /// </summary>
         /// <param name="flags">The flags.</param>
-        public void RemoveFlags(DebugViewFlags flags)
-        {
+        public void RemoveFlags(DebugViewFlags flags) {
             Flags &= ~flags;
         }
 

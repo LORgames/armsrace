@@ -39,7 +39,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\x86\Debug</OutputPath>
-    <DefineConstants>TRACE;DEBUG;WINDOWS</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;WINDOWS;DEBUG_PHYSICS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoStdLib>true</NoStdLib>
@@ -146,6 +146,7 @@
     <Compile Include="States\PlayingState.cs" />
     <Compile Include="States\SetupState.cs" />
     <Compile Include="States\StateManager.cs" />
+    <Compile Include="WorldX\Assets\BlobCharacter.cs" />
     <Compile Include="WorldX\Assets\Character.cs" />
     <Compile Include="WorldX\Assets\TankCharacter.cs" />
     <Compile Include="WorldX\Containers\WorldController.cs" />

@@ -14,25 +14,38 @@ using FarseerPhysics.Factories;
 namespace MischiefFramework.WorldX.Stage {
     internal class Level : IOpaque {
         private Model visuals;
+        private Effect fx;
+        private Texture tex;
 
         public Level(World world) {
+            tex = ResourceManager.LoadAsset<Texture2D>("Meshes/Levels/overlay");
+
+            fx = ResourceManager.LoadAsset<Effect>("Shaders/GroundShader");
+
             visuals = ResourceManager.LoadAsset<Model>("Meshes/Levels/Level");
-            MeshHelper.ChangeEffectUsedByModel(visuals, Renderer.Effect3D);
+            MeshHelper.ChangeEffectUsedByModel(visuals, fx, false);
+
+            Matrix position = Matrix.Identity;
 
             const float CAMERA_ZOOM = 50.0f;
-            Renderer.CharacterCamera.LookAt = Vector3.Zero;
-            Renderer.CharacterCamera.Position.X = CAMERA_ZOOM * 0.612f + Renderer.CharacterCamera.LookAt.X;
-            Renderer.CharacterCamera.Position.Y = CAMERA_ZOOM * 0.500f + Renderer.CharacterCamera.LookAt.Y;
-            Renderer.CharacterCamera.Position.Z = CAMERA_ZOOM * 0.612f + Renderer.CharacterCamera.LookAt.Z;
-            Renderer.CharacterCamera.GenerateMatrices();
+
+            Camera c = new Camera(35, 35);
+            c.LookAt = Vector3.Zero;
+            c.Position.X = CAMERA_ZOOM * 0.612f + c.LookAt.X;
+            c.Position.Y = CAMERA_ZOOM * 0.500f + c.LookAt.Y;
+            c.Position.Z = CAMERA_ZOOM * -0.612f + c.LookAt.Z;
+            c.GenerateMatrices();
+
+            fx.Parameters["Texture"].SetValue(tex);
+            fx.Parameters["TextureEnabled"].SetValue(true);
+            fx.Parameters["CameraViewProjection"].SetValue(c.ViewProjection);
+
+            BodyFactory.CreateRectangle(world, 26, 2, 0, new Vector2(0, 12));
+            BodyFactory.CreateRectangle(world, 26, 2, 0, new Vector2(0,-12));
+            BodyFactory.CreateRectangle(world, 2, 26, 0, new Vector2(12, 0));
+            BodyFactory.CreateRectangle(world, 2, 26, 0, new Vector2(-12, 0));
 
             Renderer.Add(this);
-
-            BodyFactory.CreateRectangle(world, 26, 1, 0, new Vector2(0, 12));
-            BodyFactory.CreateRectangle(world, 26, 1, 0, new Vector2(0,-12));
-            BodyFactory.CreateRectangle(world, 1, 26, 0, new Vector2(12, 0));
-            BodyFactory.CreateRectangle(world, 1, 26, 0, new Vector2(-12, 0));
-            BodyFactory.CreateCircle(world, 1, 0);
         }
 
         public void RenderOpaque() {
