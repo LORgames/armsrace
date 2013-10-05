@@ -25,6 +25,8 @@ namespace MischiefFramework.WorldX.Information {
         SpritesheetPosition[] positions;
         Texture2D ninjaSpritesheet;
 
+        Texture2D usernames;
+
         Color brownText = new Color(60, 43, 16);
 
         const int MAX_INDEX_OF_MAIN_STATS = 10;
@@ -41,6 +43,8 @@ namespace MischiefFramework.WorldX.Information {
             this.statsFont = ResourceManager.LoadAsset<SpriteFont>("Fonts/InfoPanelStats");
             //ninjaSpritesheet = ResourceManager.LoadAsset<Texture2D>("HUD/Ninja/SpriteSheet");
             //positions = ResourceManager.LoadAsset<SpritesheetPosition[]>("HUD/Ninja/positions");
+
+            usernames = ResourceManager.LoadAsset<Texture2D>("HUD/Player Markers");
         }
 
         public void SetTimer(WorldController.Phases phase, float timer) {
@@ -118,6 +122,34 @@ namespace MischiefFramework.WorldX.Information {
 
                         string text = string.Format("{0} {1}: {2}", SettingManager._baseSharing == 0 ? "Player" : "Team", baseArea.baseID, baseArea.crates);
                         drawtome.DrawString(headerFont, text, pos, Color.Red);
+                    }
+                }
+
+                for (int i = 0; i < PlayerManager.ActivePlayers.Count; i++) {
+                    GamePlayer plr = PlayerManager.ActivePlayers[i];
+                    if (plr.character != null) {
+                        bool drawholding = false;
+
+                        if (plr.character is WorldX.Assets.BlobCharacter) {
+                            drawholding = (plr.character as WorldX.Assets.BlobCharacter).IsCarrying();
+                        }
+
+                        Vector3 plrPos = Vector3.UnitX * plr.character.body.Position.X + Vector3.UnitZ * plr.character.body.Position.Y + Vector3.UnitY;
+                        plrPos = Vector3.Transform(plrPos, Renderer.CharacterCamera.ViewProjection);
+
+                        int width = Game.device.Viewport.Width;
+                        int height = Game.device.Viewport.Height;
+
+                        Vector2 ps = new Vector2(width * (plrPos.X/2 + 0.5f) - 32, height - ((plrPos.Y/2 + 0.5f) * height + 64)); //32 to center a bit
+
+                        if (drawholding) {
+                            ps.Y -= 48;
+                            drawtome.Draw(usernames, ps, new Rectangle(256, 0, 64, 64), Color.White);
+                            ps.Y += 48;
+                        }
+
+                        drawtome.Draw(usernames, ps, new Rectangle(64 * i, 0, 64, 64), Color.White);
+
                     }
                 }
                 /*

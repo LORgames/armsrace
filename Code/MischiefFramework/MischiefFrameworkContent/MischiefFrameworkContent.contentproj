@@ -200,8 +200,33 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
-    <None Include="Meshes\sourceimages\Blob Test.png">
-      <Name>Blob Test</Name>
+    <Compile Include="Meshes\Character\Accessories\Bow.fbx">
+      <Name>Bow</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Meshes\Character\Accessories\eye patch.fbx">
+      <Name>eye patch</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Meshes\Character\Accessories\Mustache.fbx">
+      <Name>Mustache</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Meshes\Character\Accessories\Top hat.fbx">
+      <Name>Top hat</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Meshes\Levels\lights.fbx">
+      <Name>lights</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <None Include="Meshes\sourceimages\Blog4.png">
+      <Name>Blog4</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </None>
@@ -229,13 +254,6 @@
   <ItemGroup>
     <None Include="Meshes\Character\Stage2.png">
       <Name>Stage2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Meshes\Character\Blob.png">
-      <Name>Blob</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </None>
@@ -318,13 +336,6 @@
       <Name>MenuVideo</Name>
       <Importer>WmvImporter</Importer>
       <Processor>VideoProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Meshes\Character\glass.png">
-      <Name>glass</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -444,6 +455,47 @@
     </Compile>
     <Compile Include="Meshes\Levels\Goo\Slime Decal 8.png">
       <Name>Slime Decal 8</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Meshes\Character\Blob.png">
+      <Name>Blob</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Meshes\sourceimages\Blob Test.png">
+      <Name>Blob Test</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Meshes\Character\Accessories\BowTexture.png">
+      <Name>BowTexture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Meshes\Character\Accessories\Eye patchTexture.png">
+      <Name>Eye patchTexture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Meshes\Character\Accessories\glassTexture.png">
+      <Name>glassTexture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Meshes\Character\Accessories\mustacheTexture.png">
+      <Name>mustacheTexture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Meshes\Character\Accessories\Top Hat2.png">
+      <Name>Top Hat2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

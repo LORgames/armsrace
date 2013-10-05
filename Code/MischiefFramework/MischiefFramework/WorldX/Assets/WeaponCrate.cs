@@ -71,7 +71,9 @@ namespace MischiefFramework.WorldX.Assets {
         }
 
         private void joint_Broke(Joint arg1, float arg2) {
-            body.IsSensor = false;
+            if (body != null) {
+                body.IsSensor = false;
+            }
         }
 
         public void Drop() {
@@ -83,6 +85,8 @@ namespace MischiefFramework.WorldX.Assets {
 
         public void Dispose() {
             body.Dispose();
+            body = null;
+
             if (ownedBy != null) {
                 ownedBy.Pickup(null);
                 ownedBy = null;

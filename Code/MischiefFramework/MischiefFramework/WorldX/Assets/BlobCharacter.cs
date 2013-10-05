@@ -25,6 +25,8 @@ namespace MischiefFramework.WorldX.Assets {
         public bool isAttacking = false;
         public bool isMoving = false;
 
+        private Model accessories;
+
         private float attackTimeout = 0.0f;
         private const float ATTACK_TIME = 1.985f;
 
@@ -50,6 +52,23 @@ namespace MischiefFramework.WorldX.Assets {
             postmultiplied = Matrix.Identity;
             
             Renderer.Add(this);
+
+            switch (player.teamID) {
+                case 0: //Bow
+                    accessories = ResourceManager.LoadAsset<Model>("Meshes/Character/Accessories/Bow");
+                    break;
+                case 1: // Eye patch
+                    accessories = ResourceManager.LoadAsset<Model>("Meshes/Character/Accessories/eye patch");
+                    break;
+                case 2: // Mustache
+                    accessories = ResourceManager.LoadAsset<Model>("Meshes/Character/Accessories/Mustache");
+                    break;
+                default: // Top hat
+                    accessories = ResourceManager.LoadAsset<Model>("Meshes/Character/Accessories/Top hat");
+                    break;
+            }
+
+            MeshHelper.ChangeEffectUsedByModel(accessories, Renderer.Effect3D);
         }
 
         public override void AsyncUpdate(float dt) {
@@ -108,6 +127,7 @@ namespace MischiefFramework.WorldX.Assets {
             }
 
             MeshHelper.DrawModel(postmultiplied, model);
+            MeshHelper.DrawModel(bones[2]*postmultiplied, accessories);
         }
 
         private WeaponCrate carrying = null;

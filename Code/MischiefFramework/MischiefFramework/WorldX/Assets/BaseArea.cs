@@ -73,7 +73,8 @@ namespace MischiefFramework.WorldX.Assets {
                     (other.UserData as WeaponCrate).inBase = false;
                     (other.UserData as WeaponCrate).baseIn = null;
                 } else {
-                    throw new Exception("Stop knocking crates around!");
+                    (other.UserData as WeaponCrate).inBase = false;
+                    (other.UserData as WeaponCrate).baseIn = null;
                 }
             }
         }

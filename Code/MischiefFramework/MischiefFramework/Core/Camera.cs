@@ -65,7 +65,7 @@ namespace MischiefFramework.Core {
 
             float z = (maxX - minX) > (maxY - minY) ? (maxX - minX) : (maxY - minY);
 
-            z += 30;
+            z += 20;
 
             z = MathHelper.Lerp(oldz, z, 0.5f);
             oldz = z;

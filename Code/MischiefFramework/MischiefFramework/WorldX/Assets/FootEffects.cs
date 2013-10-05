@@ -68,7 +68,6 @@ namespace MischiefFramework.WorldX.Assets {
                     float XS = 15.489f;
                     float YS = 16.374f;
 
-                    //System.Diagnostics.Debug.WriteLine("TRIALLING PLAYER THING!");
                     r.X = (int)((XS - plr.character.body.Position.Y) * (1024/XS));
                     r.Y = (int)((YS + plr.character.body.Position.X) * (1024/YS));
                     r.Width = 64;
@@ -76,7 +75,7 @@ namespace MischiefFramework.WorldX.Assets {
 
                     sb.Draw(gooTextures[Game.random.Next(8)], r, null, new Color(1, 1, 1, 0.05f), (float)Game.random.NextDouble()*6.28f, new Vector2(64, 64), SpriteEffects.None, 0f);
 
-                    //TODO FIX THIS @SAM @MILES
+                    //TODO FIX THIS @SAM @MILES PLX
                     //System.Diagnostics.Debug.WriteLine(r + " " + plr.character.body.Position);
                 }
             }
