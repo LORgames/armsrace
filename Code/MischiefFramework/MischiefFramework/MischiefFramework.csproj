@@ -114,6 +114,7 @@
     <Compile Include="Cache\SettingManager.cs" />
     <Compile Include="Core\Camera.cs" />
     <Compile Include="Core\DebugRenderer.cs" />
+    <Compile Include="Core\Helpers\BillboardTextureHelper.cs" />
     <Compile Include="Core\Helpers\MenuHelper.cs" />
     <Compile Include="Core\Helpers\MeshHelper.cs" />
     <Compile Include="Core\Helpers\QuadRenderer.cs" />

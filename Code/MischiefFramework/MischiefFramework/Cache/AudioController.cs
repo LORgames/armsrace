@@ -33,5 +33,18 @@ namespace MischiefFramework.Cache {
                 disableAudio = true;
             }
         }
+
+        internal static void StopAllLoops() {
+            foreach (SoundEffectInstance effect in currentlyActiveLoops) {
+                effect.Stop();
+            }
+        }
+
+        internal static void RemoveAllLoops() {
+            for (int i = currentlyActiveLoops.Count -1; i >= 0; i--) {
+                currentlyActiveLoops[i].Stop();
+                currentlyActiveLoops.RemoveAt(i);
+            }
+        }
     }
 }

@@ -169,6 +169,16 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
+    <Compile Include="Fonts\MenuFont17.spritefont">
+      <Name>MenuFont17</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+    <Compile Include="Fonts\MenuFont25.spritefont">
+      <Name>MenuFont25</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
     <None Include="Meshes\Character\Blob Test.png">
       <Name>Blob Test</Name>
       <Importer>TextureImporter</Importer>
@@ -256,6 +266,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Meshes\Levels\overlay.png">
+      <Name>overlay</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="HUD\MenuVideo.wmv">
+      <Name>MenuVideo</Name>
+      <Importer>WmvImporter</Importer>
+      <Processor>VideoProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="HUD\MenuVideoLooped.wmv">
+      <Name>MenuVideoLooped</Name>
+      <Importer>WmvImporter</Importer>
+      <Processor>VideoProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="HUD\Credits\overlay.png">
       <Name>overlay</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
