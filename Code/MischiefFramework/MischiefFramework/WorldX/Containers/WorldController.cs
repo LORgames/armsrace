@@ -41,9 +41,18 @@ namespace MischiefFramework.WorldX.Containers {
                 //plr.character = new TankCharacter(plr, world, hasCannon:true);
             }
 
+            Vector2 pos = Vector2.Zero;
             Crates = new WeaponCrate[MAX_CRATES];
             for (int i = 0; i < MAX_CRATES; i++) {
-                Crates[i] = new WeaponCrate(world);
+                if (SettingManager._spawnType == 0) { //Random
+                    pos.X = Game.random.Next(16) - 8;
+                    pos.Y = Game.random.Next(16) - 8;
+                } else { //Center
+                    pos.X = 4 * (float)Math.Cos(Math.PI * 2 / MAX_CRATES * i);
+                    pos.Y = 4 * (float)Math.Sin(Math.PI * 2 / MAX_CRATES * i);
+                }
+
+                Crates[i] = new WeaponCrate(world, pos);
             }
         }
 

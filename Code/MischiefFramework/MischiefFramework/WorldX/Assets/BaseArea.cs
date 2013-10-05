@@ -46,43 +46,25 @@ namespace MischiefFramework.WorldX.Assets {
         }
 
         void area_OnSeparation(Fixture fixtureA, Fixture fixtureB) {
-            Body other;
-
-            if (fixtureA.Body == area) {
-                other = fixtureB.Body;
-            } else {
-                other = fixtureA.Body;
-            }
+            Body other; if (fixtureA.Body == area) { other = fixtureB.Body; } else { other = fixtureA.Body; }
 
             if (other.UserData is WeaponCrate) {
-                if ((other.UserData as WeaponCrate).joint != null) {
-                    if ((other.UserData as WeaponCrate).inBase) {
-                        if ((other.UserData as WeaponCrate).ownedBy.player.teamID != teamID) {
-                            crates--;
-                        }
-                    }
+                if ((other.UserData as WeaponCrate).isHeld) {
                     (other.UserData as WeaponCrate).inBase = false;
+                    (other.UserData as WeaponCrate).baseIn = null;
+                } else {
+                    throw new Exception("Stop knocking crates around!");
                 }
             }
         }
 
         bool area_OnCollision(Fixture fixtureA, Fixture fixtureB, FarseerPhysics.Dynamics.Contacts.Contact contact) {
-            Body other;
-
-            if (fixtureA.Body == area) {
-                other = fixtureB.Body;
-            } else {
-                other = fixtureA.Body;
-            }
+            Body other; if (fixtureA.Body == area) { other = fixtureB.Body; } else { other = fixtureA.Body; }
 
             if (other.UserData is WeaponCrate) {
-                if ((other.UserData as WeaponCrate).ownedBy != null && (other.UserData as WeaponCrate).ownedBy.player.teamID == teamID) {
-                    if ((other.UserData as WeaponCrate).joint != null) {
-                        area.World.RemoveJoint((other.UserData as WeaponCrate).joint);
-                        (other.UserData as WeaponCrate).ownedBy.Pickup(null);
-                        (other.UserData as WeaponCrate).ownedBy = (BlobCharacter)PlayerManager.ActivePlayers[baseID].character;
-                        crates++;
-                    }
+                if ((other.UserData as WeaponCrate).isHeld && (other.UserData as WeaponCrate).ownedBy.player.teamID == teamID) {
+                    (other.UserData as WeaponCrate).Drop();
+                    (other.UserData as WeaponCrate).baseIn = this;
                     (other.UserData as WeaponCrate).inBase = true;
                 }
             }

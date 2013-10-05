@@ -95,8 +95,7 @@ namespace FarseerPhysics.Dynamics.Contacts
             }
 
             // Initialize position independent portions of the constraints.
-            for (int i = 0; i < _constraintCount; ++i)
-            {
+            for (int i = 0; i < _constraintCount; ++i) {
                 Contact contact = contacts[i];
 
                 Fixture fixtureA = contact.FixtureA;
@@ -109,7 +108,7 @@ namespace FarseerPhysics.Dynamics.Contacts
                 Body bodyB = fixtureB.Body;
                 Manifold manifold = contact.Manifold;
 
-                Debug.Assert(manifold.PointCount > 0);
+                //Debug.Assert(manifold.PointCount > 0);
 
                 ContactConstraint cc = Constraints[i];
                 cc.Friction = Settings.MixFriction(fixtureA.Friction, fixtureB.Friction);
