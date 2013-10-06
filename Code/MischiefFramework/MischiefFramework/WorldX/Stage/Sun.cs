@@ -70,5 +70,13 @@ namespace MischiefFramework.WorldX.Map {
 
             Renderer.DrawDirectionalLight(Vector3.Down, Colour, 1);
         }
+
+        public override void Dispose() {
+            //base.Dispose();
+
+            ShadowRT.Dispose();
+            Renderer.Remove(this);
+            AssetManager.RemoveAsset(this);
+        }
     }
 }

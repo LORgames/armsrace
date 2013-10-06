@@ -90,6 +90,16 @@ namespace MischiefFramework.WorldX.Assets {
             sb.End();
         }
 
+        public void Dispose() {
+            fx.Dispose();
+            gooTextures = null;
+            TankTread = null;
+
+            RT.Dispose();
+
+            Renderer.Remove(this);
+        }
+
         public void RenderLight() { /* DO NOTHING HERE */ }
     }
 }

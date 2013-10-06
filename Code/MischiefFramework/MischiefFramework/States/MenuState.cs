@@ -77,7 +77,7 @@ namespace MischiefFramework.States {
         }
 
         public bool OnRemove() {
-            renderTarget.Dispose();
+            //renderTarget.Dispose();
             return true; //All cleaned up
         }
     }

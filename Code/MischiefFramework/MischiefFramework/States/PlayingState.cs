@@ -57,7 +57,7 @@ namespace MischiefFramework.States {
 
         public bool OnRemove() {
             worldController.Dispose();
-            ResourceManager.Flush();
+            //ResourceManager.Flush();
             AssetManager.Flush();
             Renderer.ClearAll();
 

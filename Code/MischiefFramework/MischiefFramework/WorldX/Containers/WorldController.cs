@@ -47,6 +47,9 @@ namespace MischiefFramework.WorldX.Containers {
 
         internal bool skippingPhaseOne = false;
 
+        internal FootEffects feet;
+        internal Sun sun;
+
         public WorldController(bool skipPhaseOne = false) {
             if (SettingManager._gameLength == 0) {
                 phase1PlayTimer = 30.0f;
@@ -66,8 +69,8 @@ namespace MischiefFramework.WorldX.Containers {
 
             level = new Level(world);
 
-            new Sun();
-            new FootEffects();
+            sun = new Sun();
+            feet = new FootEffects();
 
             foreach (GamePlayer plr in PlayerManager.ActivePlayers) {
                 if (!skipPhaseOne) {
@@ -222,6 +225,9 @@ namespace MischiefFramework.WorldX.Containers {
         }
 
         public void Dispose() {
+            feet.Dispose();
+            sun.Dispose();
+
             world.Clear();
             world = null;
         }

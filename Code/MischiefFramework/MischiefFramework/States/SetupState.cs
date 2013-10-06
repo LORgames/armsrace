@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MischiefFramework.Cache;
+using MischiefFramework.Core;
 
 namespace MischiefFramework.States {
     class SetupState : IState {
@@ -38,6 +39,11 @@ namespace MischiefFramework.States {
         #endregion
 
         public SetupState() {
+            while (PlayerManager.ActivePlayers.Count > 1) PlayerManager.ActivePlayers.RemoveAt(1);
+            PlayerManager.ActiveTeams.Clear();
+            PlayerManager.deadTeams.Clear();
+            PlayerManager.playerDeathOrder.Clear();
+
             renderTarget = new SpriteBatch(Game.device);
             font = ResourceManager.LoadAsset<SpriteFont>("Fonts/MenuFont");
             bg = ResourceManager.LoadAsset<Texture2D>("HUD/options");

@@ -35,13 +35,15 @@ namespace MischiefFramework.States {
         internal static void Pop() {
             lock (stateStack) {
                 if (stateStack.Count > 0) {
-                    stateStack.RemoveAt(stateStack.Count - 1);
+                    Remove(stateStack[stateStack.Count - 1]);
+                    //stateStack.RemoveAt(stateStack.Count - 1);
                 }
             }
         }
 
         internal static void Remove(IState oldState) {
             lock (stateStack) {
+                oldState.OnRemove();
                 if (stateStack.Contains(oldState)) {
                     stateStack.Remove(oldState);
                 } else {

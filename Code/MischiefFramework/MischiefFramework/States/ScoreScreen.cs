@@ -31,6 +31,10 @@ namespace MischiefFramework.States {
         public bool Update(GameTime gameTime) {
             if (Player.Input.GetStart()) {
                 StateManager.Pop();
+                StateManager.Pop();
+                StateManager.Pop();
+                StateManager.Push(new IntroState());
+                StateManager.Push(new MenuState(Game.device));
             }
 
             return false;
@@ -57,8 +61,8 @@ namespace MischiefFramework.States {
         }
 
         public bool OnRemove() {
-            renderTarget.Dispose();
-            bg.Dispose();
+            //renderTarget.Dispose();
+            //bg.Dispose();
             return true;
         }
     }
