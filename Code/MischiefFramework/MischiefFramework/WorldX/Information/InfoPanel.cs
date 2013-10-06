@@ -107,7 +107,10 @@ namespace MischiefFramework.WorldX.Information {
                     if (timer <= 3f) {
                         drawtome.Begin(SpriteSortMode.Immediate, BlendState.Additive);
                         drawtome.Draw(timer <= 1f ? go : timer <= 2f ? set : ready,
-                                      drawtome.GraphicsDevice.Viewport.Bounds,
+                                      new Rectangle((drawtome.GraphicsDevice.Viewport.Bounds.Width - (ready.Bounds.Width / 2)) / 2,
+                                                    (drawtome.GraphicsDevice.Viewport.Bounds.Height - (ready.Bounds.Height / 2)) / 2,
+                                                    ready.Bounds.Width / 2,
+                                                    ready.Bounds.Height / 2),
                                       ready.Bounds,
                                       new Color(new Vector4(1f, 1f, 1f,
                                                             (timer <= 1f
