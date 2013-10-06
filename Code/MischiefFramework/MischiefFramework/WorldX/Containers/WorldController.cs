@@ -39,7 +39,7 @@ namespace MischiefFramework.WorldX.Containers {
         internal Phases Phase = Phases.Phase1Ready;
 
         internal float phase1ReadyTimer = 5.0f; // in secs
-        internal float phase1PlayTimer = 5.0f;
+        internal float phase1PlayTimer = 45.0f;
         internal float phase1ScoresTimer = 5.0f;
 
         internal bool playingPhase1Music = false;
