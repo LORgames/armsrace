@@ -90,6 +90,7 @@ namespace MischiefFramework.States {
         }
 
         public void PlayGame() {
+            StateManager.Pop();
             StateManager.Push(new LobbyState());
         }
 

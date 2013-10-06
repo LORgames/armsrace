@@ -25,10 +25,13 @@ namespace MischiefFramework.States {
             p1Pos = new Vector2(600, 200);
             p2Pos = new Vector2(350, 275);
             p3Pos = new Vector2(875, 375);
-            p4Pos = new Vector2(0, 0);
+            p4Pos = new Vector2(1050, 180);
         }
 
         public bool Update(GameTime gameTime) {
+            if (Player.Input.GetStart()) {
+                StateManager.Pop();
+            }
 
             return false;
         }
@@ -36,11 +39,7 @@ namespace MischiefFramework.States {
         public bool Render(GameTime gameTime) {
             renderTarget.Begin();
             renderTarget.Draw(bg, renderTarget.GraphicsDevice.Viewport.Bounds, bg.Bounds, Color.White);
-            /*for (int i = 0; i < PlayerManager.playerDeathOrder.Count; i++) {
 
-            }*/
-            p4Pos.X = 1050;
-            p4Pos.Y = 180;
             if (PlayerManager.playerDeathOrder.Count >= 1) {
                 renderTarget.Draw(playerIcons, new Rectangle((int)p1Pos.X, (int)p1Pos.Y, 64, 64), new Rectangle(64 * PlayerManager.playerDeathOrder[PlayerManager.playerDeathOrder.Count - 1], 0, 64, 64), Color.White);
             }
