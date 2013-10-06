@@ -326,18 +326,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HUD\MenuVideoLooped.wmv">
-      <Name>MenuVideoLooped</Name>
-      <Importer>WmvImporter</Importer>
-      <Processor>VideoProcessor</Processor>
-    </Compile>
-    <Compile Include="HUD\MenuVideo.wmv">
-      <Name>MenuVideo</Name>
-      <Importer>WmvImporter</Importer>
-      <Processor>VideoProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Meshes\Levels\overlay.png">
       <Name>overlay</Name>
       <Importer>TextureImporter</Importer>
@@ -636,10 +624,22 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HUD\Winners screen.png">
-      <Name>Winners screen</Name>
+    <Compile Include="HUD\Winners Screen.png">
+      <Name>Winners Screen</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="HUD\MenuVideoLooped.wmv">
+      <Name>MenuVideoLooped</Name>
+      <Importer>WmvImporter</Importer>
+      <Processor>VideoProcessor</Processor>
+    </Compile>
+    <Compile Include="HUD\MenuVideo.wmv">
+      <Name>MenuVideo</Name>
+      <Importer>WmvImporter</Importer>
+      <Processor>VideoProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

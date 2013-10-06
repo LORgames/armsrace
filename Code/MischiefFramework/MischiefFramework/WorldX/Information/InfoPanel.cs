@@ -135,7 +135,7 @@ namespace MischiefFramework.WorldX.Information {
 
                 if (phase == WorldController.Phases.Phase1Ready || phase == WorldController.Phases.Phase1Play 
                     || phase == WorldController.Phases.Phase1Scores) {
-                    drawtome.DrawString(headerFont, timer.ToString("00.00"), new Vector2(Game.device.Viewport.Width / 2, 0.0f), Color.Red);
+                    drawtome.DrawString(headerFont, timer.ToString("00.00"), new Vector2(Game.device.Viewport.Width / 2, 0.0f), Color.Red, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0f);
                 }
 
                 if (phase == WorldController.Phases.Phase1Play || phase == WorldController.Phases.Phase1Scores) {
