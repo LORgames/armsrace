@@ -48,6 +48,14 @@ namespace MischiefFramework.WorldX.Containers {
         internal bool skippingPhaseOne = false;
 
         public WorldController(bool skipPhaseOne = false) {
+            if (SettingManager._gameLength == 0) {
+                phase1PlayTimer = 30.0f;
+            } else if (SettingManager._gameLength == 1) {
+                phase1PlayTimer = 45.0f;
+            } else {
+                phase1PlayTimer = 60.0f;
+            }
+
             skippingPhaseOne = skipPhaseOne;
 
             world = new FarseerPhysics.Dynamics.World(Vector2.Zero);

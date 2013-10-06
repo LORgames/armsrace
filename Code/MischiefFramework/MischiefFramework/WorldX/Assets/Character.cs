@@ -22,7 +22,17 @@ namespace MischiefFramework.WorldX.Assets {
 
         internal GamePlayer player;
 
+        private float moveSpeedMod = 1.0f;
+
         public Character(GamePlayer player, World w) {
+            if (SettingManager._moveSpeed == 0) {
+                moveSpeedMod = 0.75f;
+            } else if (SettingManager._moveSpeed == 1) {
+                moveSpeedMod = 1.0f;
+            } else {
+                moveSpeedMod = 1.25f;
+            }
+
             this.player = player;
             AssetManager.AddAsset(this);
             Input = player.Input;
@@ -35,7 +45,7 @@ namespace MischiefFramework.WorldX.Assets {
 
                 if (x != 0 || y != 0) {
                     body.Rotation = (float)(Math.Atan2(x, y) - Math.PI / 4);
-                    body.LinearVelocity = Vector2.UnitX * (float)Math.Cos(body.Rotation) * SPEED + Vector2.UnitY * (float)Math.Sin(body.Rotation) * SPEED;
+                    body.LinearVelocity = Vector2.UnitX * (float)Math.Cos(body.Rotation) * SPEED * moveSpeedMod + Vector2.UnitY * (float)Math.Sin(body.Rotation) * SPEED * moveSpeedMod;
                 } else {
                     body.AngularVelocity = 0;
                     body.LinearVelocity = Vector2.Zero;
