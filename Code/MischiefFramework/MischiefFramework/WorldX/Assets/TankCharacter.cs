@@ -105,7 +105,7 @@ namespace MischiefFramework.WorldX.Assets {
             health -= damage;
 
             if (health <= 0.0f) {
-                AudioController.PlayOnce("Slime_Death");
+                AudioController.PlayOnce("Tank_Explosion");
                 body.Dispose();
             }
         }

@@ -28,6 +28,10 @@ namespace MischiefFramework.WorldX.Information {
 
         Texture2D usernames;
 
+        Texture2D ready;
+        Texture2D set;
+        Texture2D go;
+
         Color brownText = new Color(60, 43, 16);
 
         const int MAX_INDEX_OF_MAIN_STATS = 10;
@@ -42,6 +46,9 @@ namespace MischiefFramework.WorldX.Information {
             this.headerFont = ResourceManager.LoadAsset<SpriteFont>("Fonts/InfoPanelHeader");
             this.mainStatFont = ResourceManager.LoadAsset<SpriteFont>("Fonts/InfoPanelMainStat");
             this.statsFont = ResourceManager.LoadAsset<SpriteFont>("Fonts/InfoPanelStats");
+            this.ready = ResourceManager.LoadAsset<Texture2D>("HUD/Ready");
+            this.set = ResourceManager.LoadAsset<Texture2D>("HUD/Set");
+            this.go = ResourceManager.LoadAsset<Texture2D>("HUD/Go");
             //ninjaSpritesheet = ResourceManager.LoadAsset<Texture2D>("HUD/Ninja/SpriteSheet");
             //positions = ResourceManager.LoadAsset<SpritesheetPosition[]>("HUD/Ninja/positions");
 
@@ -98,6 +105,13 @@ namespace MischiefFramework.WorldX.Information {
                 if (phase == WorldController.Phases.Phase1Ready || phase == WorldController.Phases.Phase1Play 
                     || phase == WorldController.Phases.Phase1Scores || phase == WorldController.Phases.Phase2Ready) {
                     drawtome.DrawString(headerFont, timer.ToString("00.00"), new Vector2(Game.device.Viewport.Width / 2, 0.0f), Color.Red);
+                    drawtome.End();
+                    if (timer <= 3f) {
+                        drawtome.Begin(SpriteSortMode.Immediate, BlendState.Additive);
+                        drawtome.Draw(timer <= 1f ? go : timer <= 2f ? set : ready, drawtome.GraphicsDevice.Viewport.Bounds, ready.Bounds, new Color(new Vector4(1f, 1f, 1f, timer - (timer <= 1f ? 0f : timer <= 2f ? 1f : 2f))));
+                        drawtome.End();
+                    }
+                    drawtome.Begin();
                 }
 
                 if (phase == WorldController.Phases.Phase1Play || phase == WorldController.Phases.Phase1Scores) {

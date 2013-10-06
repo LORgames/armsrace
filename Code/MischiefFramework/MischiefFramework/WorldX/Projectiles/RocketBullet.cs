@@ -54,8 +54,11 @@ namespace MischiefFramework.WorldX.Projectiles {
             Renderer.Add(this);
             AssetManager.AddAsset(this);
         }
-        
+
         public override void Dispose() {
+            AudioController.PlayOnce("Rocket_Boom");
+            //TODO: Explosion Effect
+
             body.Dispose();
             targetCircle.Dispose();
             Renderer.Remove(this);

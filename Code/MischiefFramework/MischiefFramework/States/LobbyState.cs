@@ -11,6 +11,7 @@ namespace MischiefFramework.States {
     class LobbyState : IState {
         private SpriteBatch renderTarget;
         private SpriteFont font;
+        private Texture2D bg;
 
         private const float MAX_HELD_TIME = 0.5f;
         private List<float> getXHeldTimes = new List<float>();
@@ -43,6 +44,8 @@ namespace MischiefFramework.States {
             tableTexture.SetData<Color>(new Color[] { Color.White });
 
             playerIconTextures = ResourceManager.LoadAsset<Texture2D>("HUD/Player Markers");
+
+            bg = ResourceManager.LoadAsset<Texture2D>("HUD/Team Select and instructions"); 
 
             Update(new GameTime());
 
@@ -111,10 +114,10 @@ namespace MischiefFramework.States {
             screenSize.X = tableBoxTop.Width > titleStringSize.X ? tableBoxTop.Width : titleStringSize.X;
             screenSize.Y = titleStringSize.Y + tableBoxLeft.Height + footerStringSize.Y;
 
-            titlePosition.X = (vp.Width - titleStringSize.X) / 2;
-            titlePosition.Y = (vp.Height - screenSize.Y) / 2;
+            titlePosition.X = 910;
+            titlePosition.Y = 50;
 
-            tableBoxTop.X = (vp.Width - tableBoxTop.Width) / 2;
+            tableBoxTop.X = 850;
             tableBoxTop.Y = (int)(titlePosition.Y + titleStringSize.Y);
 
             tableHeaderLine.X = tableBoxTop.X;
@@ -150,7 +153,7 @@ namespace MischiefFramework.States {
             team4Position.X = tablePlayer34Line.X;
             team4Position.Y = tablePlayer34Line.Y;
 
-            footerPosition.X = (vp.Width - footerStringSize.X) / 2;
+            footerPosition.X = 910;
             footerPosition.Y = tableBoxBottom.Y;
 
 
@@ -160,12 +163,14 @@ namespace MischiefFramework.States {
         public bool Render(GameTime gameTime) {
             renderTarget.Begin();
 
+            renderTarget.Draw(bg, renderTarget.GraphicsDevice.Viewport.Bounds, bg.Bounds, Color.White);
+
             renderTarget.DrawString(font, "Press Start to Join", titlePosition, Color.White);
             renderTarget.DrawString(font, "Team 1", team1Position, Color.White);
             renderTarget.DrawString(font, "Team 2", team2Position, Color.White);
             renderTarget.DrawString(font, "Team 3", team3Position, Color.White);
             renderTarget.DrawString(font, "Team 4", team4Position, Color.White);
-            renderTarget.DrawString(font, "Press A (Controller) or Space (Keyboard) to Lock-in", footerPosition, Color.White);
+            renderTarget.DrawString(font, "Press A to Lock-in", footerPosition, Color.White);
 
             renderTarget.Draw(tableTexture, tableBoxTop, Color.White);
             renderTarget.Draw(tableTexture, tableBoxLeft, Color.White);

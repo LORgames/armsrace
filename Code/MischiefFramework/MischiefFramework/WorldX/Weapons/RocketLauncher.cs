@@ -37,6 +37,7 @@ namespace MischiefFramework.WorldX.Weapons {
 
                 Vector3 bulletPos = Vector3.Transform(Vector3.Forward * 5.2f, tank.TurretMatrix);
                 new RocketBullet(tank.body.World, tank.TurretAngle, new Vector2(bulletPos.X, bulletPos.Z), tank.player.teamID);
+                AudioController.PlayOnce("Rocket_Shot");
             }
         }
 
