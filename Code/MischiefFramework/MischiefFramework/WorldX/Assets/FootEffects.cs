@@ -65,18 +65,19 @@ namespace MischiefFramework.WorldX.Assets {
             foreach (GamePlayer plr in PlayerManager.ActivePlayers) {
                 if (plr.character != null) {
 
-                    float XS = 15.489f;
-                    float YS = 16.374f;
 
-                    r.X = (int)((XS - plr.character.body.Position.Y) * (1024/XS));
-                    r.Y = (int)((YS + plr.character.body.Position.X) * (1024/YS));
+                    //15.489, 15.684, -16.842, -16.374
+                    float XS = 16.842f;
+                    float YS = 16.374f;
+                    float XD = XS + 15.489f;
+                    float YD = YS + 15.684f;
+
+                    r.X = (int)((XS - plr.character.body.Position.Y) * (2048/XD)) - 64;
+                    r.Y = (int)((YS + plr.character.body.Position.X) * (2048/YD)) + 32;
                     r.Width = 64;
                     r.Height = 64;
 
                     sb.Draw(gooTextures[Game.random.Next(8)], r, null, new Color(1, 1, 1, 0.05f), (float)Game.random.NextDouble()*6.28f, new Vector2(64, 64), SpriteEffects.None, 0f);
-
-                    //TODO FIX THIS @SAM @MILES PLX
-                    //System.Diagnostics.Debug.WriteLine(r + " " + plr.character.body.Position);
                 }
             }
 
