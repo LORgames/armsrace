@@ -63,6 +63,12 @@ namespace MischiefFramework.WorldX.Stage {
             BodyFactory.CreateRectangle(world, 3, 9, 0, new Vector2(12.5f, -8));
             BodyFactory.CreateRectangle(world, 3, 9, 0, new Vector2(-12.5f, -8));
 
+            Body tBody = BodyFactory.CreateRectangle(world, 3, 7, 0, new Vector2(10f, 10f));
+            tBody.Rotation = (float)Math.PI / 4;
+
+            tBody = BodyFactory.CreateRectangle(world, 7, 4, 0, new Vector2(-10f, 10f));
+            tBody.Rotation = (float)Math.PI / 4;
+
             //Base backs
             BodyFactory.CreateRectangle(world, 8, 2, 0, new Vector2(0, 15));
             BodyFactory.CreateRectangle(world, 8, 2, 0, new Vector2(0,-15));
