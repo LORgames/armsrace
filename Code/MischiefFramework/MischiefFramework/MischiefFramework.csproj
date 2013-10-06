@@ -160,6 +160,7 @@
     <Compile Include="States\LogoScreen.cs" />
     <Compile Include="States\MenuState.cs" />
     <Compile Include="States\PlayingState.cs" />
+    <Compile Include="States\ScoreScreen.cs" />
     <Compile Include="States\SetupState.cs" />
     <Compile Include="States\StateManager.cs" />
     <Compile Include="WorldX\Assets\BaseArea.cs" />
