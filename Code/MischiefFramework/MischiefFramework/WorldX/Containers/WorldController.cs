@@ -12,6 +12,7 @@ using MischiefFramework.WorldX.Assets;
 using MischiefFramework.Cache;
 using MischiefFramework.Core;
 using MischiefFramework.WorldX.Information;
+using MischiefFramework.Core.Particles;
 
 namespace MischiefFramework.WorldX.Containers {
     internal class WorldController : IDisposable {
@@ -23,7 +24,8 @@ namespace MischiefFramework.WorldX.Containers {
         #endif
 
         private int MAX_CRATES = 10;
-        private WeaponCrate[] Crates;
+        public WeaponCrate[] Crates;
+        public SmokePlumeParticleSystem ps;
 
         // phases
         internal enum Phases {
@@ -38,7 +40,7 @@ namespace MischiefFramework.WorldX.Containers {
         internal Phases Phase = Phases.Phase1Ready;
 
         internal float phase1ReadyTimer = 5.0f; // in secs
-        internal float phase1PlayTimer = 30.0f;
+        internal float phase1PlayTimer = 15.0f;
         internal float phase1ScoresTimer = 5.0f;
         internal float phase2ReadyTimer = 5.0f;
 
@@ -75,11 +77,14 @@ namespace MischiefFramework.WorldX.Containers {
 
                 Crates[i] = new WeaponCrate(world, pos);
             }
+
+            ps = new SmokePlumeParticleSystem();
         }
 
         public void Update(float dt) {
             //Do nothing?
             world.Step(dt);
+            ps.SetCamera(Renderer.CharacterCamera.View, Renderer.CharacterCamera.Projection);
 
             Renderer.CharacterCamera.MakeDoCameraAngleGood();
 
@@ -132,12 +137,6 @@ namespace MischiefFramework.WorldX.Containers {
                                     }
                                 }
                             }
-
-                            // clean up crates
-                            foreach (WeaponCrate crate in Crates) {
-                                crate.Dispose();
-                            }
-                            Crates = new WeaponCrate[] { };
                         }
                     }
                     break;
@@ -150,6 +149,8 @@ namespace MischiefFramework.WorldX.Containers {
                     if (phase1ScoresTimer > 0.0f) {
                         InfoPanel.instance.SetTimer(Phase, phase1ScoresTimer);
                         phase1ScoresTimer -= dt;
+
+                        PhaseTransitionora.GET().Update(dt, phase1ScoresTimer, this);
                     } else {
                         Phase = Phases.Phase1Play;
                         InfoPanel.instance.SetTimer(Phase, phase2ReadyTimer);

@@ -15,7 +15,7 @@ using FarseerPhysics.Dynamics.Joints;
 namespace MischiefFramework.WorldX.Assets {
     public class WeaponCrate : IOpaque {
         private Model model;
-        private Body body;
+        public Body body;
 
         private Matrix premultiplied = Matrix.Identity;
 

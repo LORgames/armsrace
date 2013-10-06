@@ -40,7 +40,9 @@ namespace MischiefFramework.Cache {
             try {
                 return Content.Load<T>(assetName);
             } catch (ContentLoadException) { } catch (System.IO.FileNotFoundException) { }
+            
             throw new Exception("Could not find");
+
             return default(T);
         }
 

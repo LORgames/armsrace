@@ -225,11 +225,6 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
-    <None Include="Meshes\sourceimages\Blog4.png">
-      <Name>Blog4</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </None>
     <Compile Include="Meshes\Weapons\Gatling Gun.fbx">
       <Name>Gatling Gun</Name>
       <Importer>FbxImporter</Importer>
@@ -467,35 +462,74 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Meshes\sourceimages\Blob Test.png">
+    <None Include="Meshes\sourceimages\Blob Test.png">
       <Name>Blob Test</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
-    </Compile>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Meshes\Character\Accessories\BowTexture.png">
+    <None Include="Meshes\Character\Accessories\BowTexture.png">
       <Name>BowTexture</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Meshes\Character\Accessories\Eye patchTexture.png">
+    </None>
+    <None Include="Meshes\Character\Accessories\Eye patchTexture.png">
       <Name>Eye patchTexture</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Meshes\Character\Accessories\glassTexture.png">
+    </None>
+    <None Include="Meshes\Character\Accessories\glassTexture.png">
       <Name>glassTexture</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Meshes\Character\Accessories\mustacheTexture.png">
+    </None>
+    <None Include="Meshes\Character\Accessories\mustacheTexture.png">
       <Name>mustacheTexture</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Meshes\Character\Accessories\Top Hat2.png">
+    </None>
+    <None Include="Meshes\Character\Accessories\Top Hat2.png">
       <Name>Top Hat2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Shaders\ParticleEffect.fx">
+      <Name>ParticleEffect</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Particles\densesmoke.png">
+      <Name>densesmoke</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\explosion.png">
+      <Name>explosion</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\fire.png">
+      <Name>fire</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\green.png">
+      <Name>green</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\monstersmoke.png">
+      <Name>monstersmoke</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\smoke.png">
+      <Name>smoke</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

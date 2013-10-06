@@ -53,7 +53,7 @@ namespace MischiefFramework.WorldX.Assets {
         private Vector2 _prething = Vector2.Zero;
         public void LockControls(bool locked) {
             _locked = locked;
-            _prething = body.LinearVelocity;
+            _prething = Vector2.Zero;
             body.AngularVelocity = 0;
             body.LinearVelocity = Vector2.Zero;
         }
