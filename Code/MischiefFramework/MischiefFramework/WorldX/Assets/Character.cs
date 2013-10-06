@@ -55,6 +55,7 @@ namespace MischiefFramework.WorldX.Assets {
             _locked = locked;
             _prething = body.LinearVelocity;
             body.AngularVelocity = 0;
+            body.LinearVelocity = Vector2.Zero;
         }
     }
 }
