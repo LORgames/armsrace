@@ -80,6 +80,7 @@ namespace MischiefFramework.States {
 
                 if (PlayerManager.ActivePlayers[i].Input.GetJump()) {
                     StateManager.Pop();
+                    AudioController.RemoveAllLoops();
                     StateManager.Push(new PlayingState());
                 }
             }

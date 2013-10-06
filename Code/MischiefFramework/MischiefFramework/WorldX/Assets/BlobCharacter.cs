@@ -12,6 +12,7 @@ using MischiefFramework.Core;
 using MischiefFramework.Core.Helpers;
 using FarseerPhysics.Factories;
 using MischiefFramework.WorldX.Information;
+using Microsoft.Xna.Framework.Audio;
 
 namespace MischiefFramework.WorldX.Assets {
     public class BlobCharacter : Character, IOpaque {
@@ -30,7 +31,12 @@ namespace MischiefFramework.WorldX.Assets {
         private float attackTimeout = 0.0f;
         private const float ATTACK_TIME = 1.985f;
 
+        private SoundEffectInstance moveSound;
+
         public BlobCharacter(GamePlayer player, World w, Vector2 pos) : base(player, w) {
+            moveSound = AudioController.GetSoundEffect("Slime_Movement");
+            moveSound.IsLooped = true;
+
             body = BodyFactory.CreateCircle(w, 0.5f, 1.0f, pos, this);
             body.BodyType = BodyType.Dynamic;
             body.UserData = this;
@@ -89,12 +95,13 @@ namespace MischiefFramework.WorldX.Assets {
                     if (!isMoving) {
                         isMoving = true;
                         animPlayer.StartClip(skinData.AnimationClips["Walk"]);
-                        AudioController.PlayOnce("Slime_Movement");
+                        moveSound.Play();
                     }
                 } else {
                     if (isMoving) {
                         isMoving = false;
                         animPlayer.StartClip(skinData.AnimationClips["Idle"]);
+                        moveSound.Pause();
                     }
                 }
             } else {

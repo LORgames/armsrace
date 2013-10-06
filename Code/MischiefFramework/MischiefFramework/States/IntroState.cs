@@ -26,6 +26,7 @@ namespace MischiefFramework.States {
             player.IsLooped = false;
             player.Play(video);
             AudioController.PlayLooped("MenuMusic");
+            AudioController.PlayLooped("Engine", 0.25f);
 
             PlayerInput.SetMouseLock(false);
             Game.players.Activate();
@@ -36,7 +37,6 @@ namespace MischiefFramework.States {
                 Cache.Player.Input = PlayerManager.ActivePlayers[0].Input;
                 StateManager.Push(new MenuState(Game.device));
                 Game.players.Deactivate();
-                AudioController.RemoveAllLoops();
             }
 
             // Update video

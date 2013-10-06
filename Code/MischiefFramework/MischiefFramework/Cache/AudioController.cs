@@ -24,6 +24,19 @@ namespace MischiefFramework.Cache {
             }
         }
 
+        internal static SoundEffectInstance GetSoundEffect(string filename, float volumeMultiplier = 1.0f) {
+            if (disableAudio) return null;
+
+            try {
+                SoundEffectInstance sei = ResourceManager.LoadAsset<SoundEffect>("Sounds/" + filename).CreateInstance();
+                sei.Volume = volumeMultiplier * SettingManager._soundEffectsVolume;
+                return sei;
+            } catch {
+                disableAudio = true;
+            }
+            return null;
+        }
+
         internal static void PlayLooped(string filename, float volumeMultiplier = 1.0f, bool mp3 = false) {
             if (disableAudio) return;
 
@@ -42,6 +55,19 @@ namespace MischiefFramework.Cache {
             } catch {
                 disableAudio = true;
             }
+        }
+
+        internal static Song GetSong(string filename, float volumeMultiplier = 1.0f) {
+            if (disableAudio) return null;
+
+            try {
+                Song song = ResourceManager.LoadAsset<Song>("Sounds/" + filename);
+                return song;
+            } catch {
+                disableAudio = true;
+            }
+
+            return null;
         }
 
         internal static void StopAllLoops() {
