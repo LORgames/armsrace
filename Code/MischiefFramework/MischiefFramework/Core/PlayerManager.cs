@@ -16,7 +16,7 @@ namespace MischiefFramework.Core {
         private bool _active = false;
 
         internal static List<int> playerDeathOrder = new List<int>();
-        internal static int teamsAlive = 4;
+        internal static List<int> deadTeams = new List<int>();
 
         public PlayerManager() {
             Controllers = new PlayerInput[TOTAL_INPUTS];
@@ -51,6 +51,7 @@ namespace MischiefFramework.Core {
 
         public static void PlayerDie(int playerID, int teamID) {
             playerDeathOrder.Add(playerID);
+            deadTeams = new List<int>();
 
             foreach (int team in ActiveTeams) {
                 bool teamAlive = false;
@@ -60,7 +61,7 @@ namespace MischiefFramework.Core {
                     }
                 }
                 if (!teamAlive) {
-                    teamsAlive--;
+                    deadTeams.Add(team);
                 }
             }
         }

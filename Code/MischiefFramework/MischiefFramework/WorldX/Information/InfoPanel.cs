@@ -102,7 +102,7 @@ namespace MischiefFramework.WorldX.Information {
                     pos.X += headerFont.MeasureString(text).X + 10;
                 }*/
 
-                if (phase == WorldController.Phases.Phase1Ready || phase == WorldController.Phases.Phase2Ready) {
+                if (phase == WorldController.Phases.Phase1Ready) {
                     drawtome.End();
                     if (timer <= 3f) {
                         drawtome.Begin(SpriteSortMode.Immediate, BlendState.Additive);
@@ -134,7 +134,7 @@ namespace MischiefFramework.WorldX.Information {
                 }
 
                 if (phase == WorldController.Phases.Phase1Ready || phase == WorldController.Phases.Phase1Play 
-                    || phase == WorldController.Phases.Phase1Scores || phase == WorldController.Phases.Phase2Ready) {
+                    || phase == WorldController.Phases.Phase1Scores) {
                     drawtome.DrawString(headerFont, timer.ToString("00.00"), new Vector2(Game.device.Viewport.Width / 2, 0.0f), Color.Red);
                 }
 

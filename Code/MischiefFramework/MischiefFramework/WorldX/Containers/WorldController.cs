@@ -35,7 +35,6 @@ namespace MischiefFramework.WorldX.Containers {
             Phase1Ready,    // Ready countdown before phase 1 gameplay
             Phase1Play,     // Phase 1 gameplay
             Phase1Scores,   // Phase 1 scoreboard & transition to phase 2
-            Phase2Ready,    // Phase 2 countdown before phase 2 gameplay
             Phase2Play,     // Phase 2 gameplay
             Phase2Scores    // Phase 2 scoreboard & menu options for rematch or main menu
         }
@@ -43,9 +42,8 @@ namespace MischiefFramework.WorldX.Containers {
         internal Phases Phase = Phases.Phase1Ready;
 
         internal float phase1ReadyTimer = 5.0f; // in secs
-        internal float phase1PlayTimer = 30.0f;
+        internal float phase1PlayTimer = 3.0f;
         internal float phase1ScoresTimer = 5.0f;
-        internal float phase2ReadyTimer = 5.0f;
 
         internal bool playingPhase1Music = false;
         internal bool playingPhase2Music = false;
@@ -160,15 +158,15 @@ namespace MischiefFramework.WorldX.Containers {
 
                         PhaseTransitionora.GET().Update(dt, phase1ScoresTimer, this);
                     } else {
-                        Phase = Phases.Phase2Ready;
-                        InfoPanel.instance.SetTimer(Phase, phase2ReadyTimer);
-                        LockAllControls(true);
+                        Phase = Phases.Phase2Play;
+                        InfoPanel.instance.SetTimer(Phase, 0.0f);
+                        LockAllControls(false);
                     }
 
                     // TODO: Accept input to move to phase 2 ready state
                     break;
 
-                case Phases.Phase2Ready:
+                case Phases.Phase2Play:
                     if (!playingPhase2Music) {
                         AudioController.RemoveAllLoops();
                         AudioController.PlayLooped("Phase2", 1.0f);
@@ -182,25 +180,12 @@ namespace MischiefFramework.WorldX.Containers {
                         Level.bases = new List<BaseArea>();
                     }
 
-                    // Lock player movement etc. for countdown
-                    LockAllControls(true);
-
-                    // countdown timer
-                    if (phase2ReadyTimer > 0.0f) {
-                        InfoPanel.instance.SetTimer(Phase, phase2ReadyTimer);
-                        phase2ReadyTimer -= dt;
-                    } else {
-                        Phase = Phases.Phase2Play;
-                        InfoPanel.instance.SetTimer(Phase, 0.0f);
-                        LockAllControls(false);
-                    }
-                    break;
-
-                case Phases.Phase2Play:
-                    if (PlayerManager.teamsAlive == 0) {
-                        // TODO: endgame
+                    if (PlayerManager.deadTeams.Count == PlayerManager.ActiveTeams.Count - 1) {
+                        // endgame
                         Phase = Phases.Phase2Scores;
-                        Console.Out.WriteLine("ENDGAME");
+                        LockAllControls(true);
+
+                        //TODO: change state to endgame
                     }
                     break;
 

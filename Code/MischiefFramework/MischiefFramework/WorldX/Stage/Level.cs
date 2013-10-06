@@ -120,8 +120,6 @@ namespace MischiefFramework.WorldX.Stage {
                 walls[i * 2 + 1].Rotation = walls[i * 2 + 0].Rotation;
             }
 
-            PlayerManager.teamsAlive = PlayerManager.ActiveTeams.Count;
-
             Renderer.Add(this);
         }
 

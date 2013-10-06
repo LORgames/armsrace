@@ -22,6 +22,7 @@ namespace MischiefFramework.WorldX.Containers {
 
         private bool _cleanedUp = false;
         private bool _createdMechs = false;
+        private bool _soundPlayed = false;
 
         private Model crateModel;
         public List<Vector3> CratePositions = new List<Vector3>();
@@ -81,6 +82,10 @@ namespace MischiefFramework.WorldX.Containers {
             }
 
             if (remainingTime > 2) {
+                if (!_soundPlayed) {
+                    AudioController.PlayOnce("Mech_Sound");
+                    _soundPlayed = true;
+                }
                 foreach (GamePlayer plr in PlayerManager.ActivePlayers) {
                     w.PuffyWhiteSmoke.AddParticle(new Vector3(plr.character.body.Position.X, 0, plr.character.body.Position.Y), new Vector3((float)Game.random.NextDouble() / 2, 2, (float)Game.random.NextDouble() / 2));
                     w.PuffyWhiteSmoke.AddParticle(new Vector3(plr.character.body.Position.X, 0, plr.character.body.Position.Y), new Vector3((float)Game.random.NextDouble() / 2, 2, (float)Game.random.NextDouble() / 2));
