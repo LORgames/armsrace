@@ -98,12 +98,35 @@ namespace MischiefFramework.WorldX.Assets {
         }
 
         public void RenderOpaque() {
-            model_tank.Bones[15].Transform = Matrix.CreateRotationY(-TurretAngle) * TurrentOriginalMatrix;
+            if (health > 0) {
+                model_tank.Bones[15].Transform = Matrix.CreateRotationY(-TurretAngle) * TurrentOriginalMatrix;
 
-            MeshHelper.DrawModel(TankMatrix, model_tank);
+                MeshHelper.DrawModel(TankMatrix, model_tank);
 
-            foreach (IWeapon arm in arms) {
-                arm.RenderOpaque();
+                foreach (IWeapon arm in arms) {
+                    arm.RenderOpaque();
+                }
+            } else {
+                Renderer.PuffyWhiteSmoke.AddParticle(new Vector3(body.Position.X, 0, body.Position.Y), new Vector3((float)Game.random.NextDouble() / 2, 2, (float)Game.random.NextDouble() / 2));
+                Renderer.PuffyWhiteSmoke.AddParticle(new Vector3(body.Position.X, 0, body.Position.Y), new Vector3((float)Game.random.NextDouble() / 2, 2, (float)Game.random.NextDouble() / 2));
+                Renderer.PuffyWhiteSmoke.AddParticle(new Vector3(body.Position.X, 0, body.Position.Y), new Vector3((float)Game.random.NextDouble() / 2, 2, (float)Game.random.NextDouble() / 2));
+                Renderer.PuffyWhiteSmoke.AddParticle(new Vector3(body.Position.X, 0, body.Position.Y), new Vector3((float)Game.random.NextDouble() / 2, 2, (float)Game.random.NextDouble() / 2));
+                Renderer.PuffyWhiteSmoke.AddParticle(new Vector3(body.Position.X, 0, body.Position.Y), new Vector3((float)Game.random.NextDouble() / 2, 2, (float)Game.random.NextDouble() / 2));
+                Renderer.PuffyWhiteSmoke.AddParticle(new Vector3(body.Position.X, 0, body.Position.Y), new Vector3((float)Game.random.NextDouble() / 2, 2, (float)Game.random.NextDouble() / 2));
+                Renderer.PuffyWhiteSmoke.AddParticle(new Vector3(body.Position.X, 0, body.Position.Y), new Vector3((float)Game.random.NextDouble() / 2, 2, (float)Game.random.NextDouble() / 2));
+                Renderer.PuffyWhiteSmoke.AddParticle(new Vector3(body.Position.X, 0, body.Position.Y), new Vector3((float)Game.random.NextDouble() / 2, 2, (float)Game.random.NextDouble() / 2));
+                Renderer.PuffyWhiteSmoke.AddParticle(new Vector3(body.Position.X, 0, body.Position.Y), new Vector3((float)Game.random.NextDouble() / 2, 2, (float)Game.random.NextDouble() / 2));
+                Renderer.PuffyWhiteSmoke.AddParticle(new Vector3(body.Position.X, 0, body.Position.Y), new Vector3((float)Game.random.NextDouble() / 2, 2, (float)Game.random.NextDouble() / 2));
+                Renderer.PuffyWhiteSmoke.AddParticle(new Vector3(body.Position.X, 0, body.Position.Y), new Vector3((float)Game.random.NextDouble() / 2, 2, (float)Game.random.NextDouble() / 2));
+                Renderer.PuffyWhiteSmoke.AddParticle(new Vector3(body.Position.X, 0, body.Position.Y), new Vector3((float)Game.random.NextDouble() / 2, 2, (float)Game.random.NextDouble() / 2));
+                Renderer.PuffyWhiteSmoke.AddParticle(new Vector3(body.Position.X, 0, body.Position.Y), new Vector3((float)Game.random.NextDouble() / 2, 2, (float)Game.random.NextDouble() / 2));
+                Renderer.PuffyWhiteSmoke.AddParticle(new Vector3(body.Position.X, 0, body.Position.Y), new Vector3((float)Game.random.NextDouble() / 2, 2, (float)Game.random.NextDouble() / 2));
+                Renderer.PuffyWhiteSmoke.AddParticle(new Vector3(body.Position.X, 0, body.Position.Y), new Vector3((float)Game.random.NextDouble() / 2, 2, (float)Game.random.NextDouble() / 2));
+                Renderer.PuffyWhiteSmoke.AddParticle(new Vector3(body.Position.X, 0, body.Position.Y), new Vector3((float)Game.random.NextDouble() / 2, 2, (float)Game.random.NextDouble() / 2));
+                Renderer.PuffyWhiteSmoke.AddParticle(new Vector3(body.Position.X, 0, body.Position.Y), new Vector3((float)Game.random.NextDouble() / 2, 2, (float)Game.random.NextDouble() / 2));
+                Renderer.PuffyWhiteSmoke.AddParticle(new Vector3(body.Position.X, 0, body.Position.Y), new Vector3((float)Game.random.NextDouble() / 2, 2, (float)Game.random.NextDouble() / 2));
+
+                Renderer.Remove(this);
             }
         }
 

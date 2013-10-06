@@ -135,7 +135,7 @@ namespace MischiefFramework.WorldX.Information {
 
                 if (phase == WorldController.Phases.Phase1Ready || phase == WorldController.Phases.Phase1Play 
                     || phase == WorldController.Phases.Phase1Scores) {
-                    drawtome.DrawString(headerFont, timer.ToString("00.00"), new Vector2(Game.device.Viewport.Width / 2, 0.0f), Color.Red, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0f);
+                        drawtome.DrawString(statsFont, timer.ToString("00.00"), new Vector2(Game.device.Viewport.Width / 2, 0.0f), Color.White);
                 }
 
                 if (phase == WorldController.Phases.Phase1Play || phase == WorldController.Phases.Phase1Scores) {
@@ -160,7 +160,7 @@ namespace MischiefFramework.WorldX.Information {
                         }
 
                         string text = string.Format("{0}: {1}", SettingManager._baseSharing == 0 ? "Player " + (baseArea.baseID + 1) : "Team " + (baseArea.teamID + 1), baseArea.crates);
-                        drawtome.DrawString(headerFont, text, pos, Color.Red);
+                        drawtome.DrawString(headerFont, text, pos, Color.White);
                     }
                 }
 
@@ -195,7 +195,7 @@ namespace MischiefFramework.WorldX.Information {
                             tex.SetData<Color>(new Color[] { Color.White });
 
                             drawtome.Draw(tex, new Rectangle((int)ps.X - 2, (int)ps.Y - 2, 64 + 4, 10 + 4), Color.Black);
-                            drawtome.Draw(tex, new Rectangle((int)ps.X, (int)ps.Y, (int)(64 * healthRatio), 10), Color.Red);
+                            drawtome.Draw(tex, new Rectangle((int)ps.X, (int)ps.Y, (int)(64 * healthRatio), 10), Color.White);
 
                             ps.Y -= 72;
                             drawtome.Draw(usernames, ps, new Rectangle(64 * i, 0, 64, 64), Color.White);

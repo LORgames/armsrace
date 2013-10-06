@@ -45,11 +45,11 @@ namespace MischiefFramework.Core.Particles
             settings.MinRotateSpeed = -1;
             settings.MaxRotateSpeed = 1;
 
-            settings.MinStartSize = 1f;
-            settings.MaxStartSize = 2f;
+            settings.MinStartSize = 0.5f;
+            settings.MaxStartSize = 1.0f;
 
-            settings.MinEndSize = 3f;
-            settings.MaxEndSize = 4f;
+            settings.MinEndSize = 1.5f;
+            settings.MaxEndSize = 2.0f;
         }
     }
 }

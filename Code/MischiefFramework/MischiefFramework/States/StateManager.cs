@@ -9,21 +9,21 @@ using Microsoft.Xna.Framework;
 
 namespace MischiefFramework.States {
     internal class StateManager {
-//#if DEBUG
+#if DEBUG
         private static SpriteBatch debugSB;
         private static SpriteFont debugFNT;
         private static GameTime lastUpdate = new GameTime();
-//#endif
+#endif
 
         private static List<IState> stateStack;
 
         internal static void Initilize() {
             stateStack = new List<IState>();
 
-//#if DEBUG
+#if DEBUG
             debugSB = new SpriteBatch(Game.device);
             debugFNT = MischiefFramework.Cache.ResourceManager.LoadAsset<SpriteFont>("Fonts/MenuFont");
-//#endif
+#endif
         }
 
         internal static void Push(IState newState) {
@@ -51,9 +51,9 @@ namespace MischiefFramework.States {
         }
 
         internal static void Update(GameTime gameTime) {
-//#if DEBUG
+#if DEBUG
             lastUpdate = gameTime;
-//#endif
+#endif
 
             for (int i = stateStack.Count - 1; i >= 0; i--) {
                 if (!stateStack[i].Update(gameTime)) {
@@ -69,11 +69,11 @@ namespace MischiefFramework.States {
                 }
             }
 
-//#if DEBUG
+#if DEBUG
             debugSB.Begin();
             debugSB.DrawString(debugFNT, Math.Round(1 / lastUpdate.ElapsedGameTime.TotalSeconds).ToString() + "fps (Update)" + (lastUpdate.IsRunningSlowly ? "[SLOW]" : "") + "\n" + Math.Round(1 / gameTime.ElapsedGameTime.TotalSeconds).ToString() + "fps (Draw)" + (lastUpdate.IsRunningSlowly ? "[SLOW]" : ""), Vector2.UnitY * ((float)Game.device.Viewport.TitleSafeArea.Bottom - 50.0f), Color.White);
             debugSB.End();
-//#endif
+#endif
         }
     }
 }
