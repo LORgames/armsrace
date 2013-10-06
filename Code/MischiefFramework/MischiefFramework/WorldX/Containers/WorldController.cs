@@ -154,7 +154,7 @@ namespace MischiefFramework.WorldX.Containers {
                     } else {
                         Phase = Phases.Phase2Ready;
                         InfoPanel.instance.SetTimer(Phase, phase2ReadyTimer);
-                        LockAllControls(false);
+                        LockAllControls(true);
                     }
 
                     // TODO: Accept input to move to phase 2 ready state

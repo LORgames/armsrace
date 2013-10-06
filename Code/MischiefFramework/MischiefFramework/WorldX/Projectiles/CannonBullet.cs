@@ -20,7 +20,7 @@ namespace MischiefFramework.WorldX.Projectiles {
         private const float MAXHEIGHTOFFGROUND = 1.7f;
 
         public CannonBullet(World w, float angle, Vector2 position, int teamID) : base(angle, teamID) {
-            speed = 5.0f;
+            speed = 8.0f;
             lifespan = (float)Math.PI/2;
             heightOffGround = MAXHEIGHTOFFGROUND;
 
@@ -35,7 +35,7 @@ namespace MischiefFramework.WorldX.Projectiles {
             body.IsBullet = true;
             body.OnCollision += new OnCollisionEventHandler(body_OnCollision);
 
-            postmultiplied = Matrix.CreateScale(radius) * Matrix.CreateRotationY((float)Math.PI / -2 - angle) * Matrix.CreateTranslation(body.Position.X, heightOffGround, body.Position.Y);
+            postmultiplied = Matrix.CreateScale(radius / 2) * Matrix.CreateRotationY((float)Math.PI / -2 - angle) * Matrix.CreateTranslation(body.Position.X, heightOffGround, body.Position.Y);
 
             Renderer.Add(this);
             AssetManager.AddAsset(this);
