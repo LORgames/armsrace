@@ -29,7 +29,7 @@ namespace MischiefFramework.WorldX.Assets {
         public float TurretAngle = 0.0f;
 
         // health
-        internal const float MAXHEALTH = 100.0f;
+        internal const float MAXHEALTH = 300.0f;
         internal float health = MAXHEALTH;
 
         public TankCharacter(GamePlayer player, World w, Vector2 pos,

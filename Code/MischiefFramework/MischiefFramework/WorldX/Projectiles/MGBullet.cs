@@ -16,7 +16,7 @@ namespace MischiefFramework.WorldX.Projectiles {
     class MGBullet : Projectile, IOpaque {
         private float radius = 0.5f;
 
-        private float damage = 1.0f;
+        private float damage = 3.0f;
 
         public MGBullet(World w, float angle, Vector2 position, int teamID)
             : base(angle, teamID) {
