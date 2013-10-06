@@ -76,7 +76,7 @@ namespace MischiefFramework.WorldX.Map {
 
             ShadowRT.Dispose();
             Renderer.Remove(this);
-            AssetManager.RemoveAsset(this);
+            //AssetManager.RemoveAsset(this);
         }
     }
 }

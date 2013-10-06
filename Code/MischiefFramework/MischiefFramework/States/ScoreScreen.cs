@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using MischiefFramework.Cache;
 using MischiefFramework.Core;
+using System.Diagnostics;
 
 namespace MischiefFramework.States {
     class ScoreScreen : IState {
@@ -35,6 +36,9 @@ namespace MischiefFramework.States {
                 StateManager.Pop();
                 StateManager.Push(new IntroState());
                 StateManager.Push(new MenuState(Game.device));
+
+                Game.instance.Exit();
+                Process p = Process.Start("MischiefFramework.exe");
             }
 
             return false;
