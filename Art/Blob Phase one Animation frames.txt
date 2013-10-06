@@ -1,3 +1,7 @@
 Walk 5 - 27
-IDel 40 - 72
+IDle 40 - 72
 Roll 90 - 137
+Dash Start 160 - 165
+Dash Loop 165 - 176
+
+24 Frames animation
