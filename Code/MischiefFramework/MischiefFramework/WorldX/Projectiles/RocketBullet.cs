@@ -101,20 +101,12 @@ namespace MischiefFramework.WorldX.Projectiles {
 
                 float stupidAngle = targetAngle - angle;
                 stupidAngle = (float)((stupidAngle + Math.PI) % (Math.PI * 2) - Math.PI);
-                
-                float oldAngle = angle;
 
-                if (Math.Abs(targetAngle - angle) < Math.PI) {
-                    angle = MathHelper.Lerp(angle, stupidAngle, TURNSPEED * dt);
-                } else {
-                    angle = MathHelper.Lerp(angle, stupidAngle - (float)Math.PI * 2, TURNSPEED * dt);
-                }
-                /*
-                if (Math.Abs(targetAngle - angle) < Math.PI) {
-                    angle = MathHelper.Lerp(angle, targetAngle, TURNSPEED * dt);
-                } else {
-                    angle = MathHelper.Lerp(angle - (float)Math.PI * 2, targetAngle, TURNSPEED * dt);
-                }*/
+                float oldAngle = angle;
+                angle = stupidAngle * dt * TURNSPEED + angle;
+
+                //angle = MathHelper.Lerp(angle, targetAngle + stupidAngle, TURNSPEED * dt);
+                
                 Console.Out.WriteLine("OLDANGLE: {0}; TARGETANGLE: {1}; NEWANGLE: {2}; STUPIDANGLE: {3}", oldAngle, targetAngle, angle, stupidAngle);
             }
 
