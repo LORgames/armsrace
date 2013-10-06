@@ -60,8 +60,8 @@ namespace MischiefFramework.WorldX.Containers {
             new FootEffects();
 
             foreach (GamePlayer plr in PlayerManager.ActivePlayers) {
-                plr.character = new BlobCharacter(plr, world, Level.bases[plr.baseID].CenterPoint);
-                //plr.character = new TankCharacter(plr, world, hasCannon:true);
+                //plr.character = new BlobCharacter(plr, world, Level.bases[plr.baseID].CenterPoint);
+                plr.character = new TankCharacter(plr, world, hasRocket:true);
             }
 
             Vector2 pos = Vector2.Zero;

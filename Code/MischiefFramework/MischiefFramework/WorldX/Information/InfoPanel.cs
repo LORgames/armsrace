@@ -152,7 +152,6 @@ namespace MischiefFramework.WorldX.Information {
                         if (phase == WorldController.Phases.Phase2Play) {
                             string healthString = (plr.character as TankCharacter).health.ToString("0");
                             float healthRatio = (plr.character as TankCharacter).health / TankCharacter.MAXHEALTH;
-                            drawtome.DrawString(headerFont, healthString, ps, Color.Red);
 
                             Texture2D tex = new Texture2D(Game.device, 1, 1);
                             tex.SetData<Color>(new Color[] { Color.White });

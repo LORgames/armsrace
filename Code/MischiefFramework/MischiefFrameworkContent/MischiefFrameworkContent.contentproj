@@ -245,6 +245,16 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
+    <Compile Include="Meshes\Weapons\Rocket Pod.fbx">
+      <Name>Rocket Pod</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Meshes\Weapons\Rocket.fbx">
+      <Name>Rocket</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Meshes\Character\Stage2.png">
