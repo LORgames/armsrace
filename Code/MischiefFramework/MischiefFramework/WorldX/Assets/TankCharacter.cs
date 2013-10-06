@@ -57,6 +57,8 @@ namespace MischiefFramework.WorldX.Assets {
 
             AudioController.PlayLooped("Engine");
 
+            Update(0.0f);
+            AsyncUpdate(0.0f);
             Renderer.Add(this);
         }
 
@@ -82,6 +84,8 @@ namespace MischiefFramework.WorldX.Assets {
 
                 TankMatrix = Matrix.CreateScale(0.4f) * Matrix.CreateRotationY(-body.Rotation - (float)Math.PI / 2) * Matrix.CreateTranslation(body.Position.X, 0f, body.Position.Y);
                 TurretMatrix = Matrix.CreateScale(0.4f) * Matrix.CreateRotationY(-TurretAngle - (float)Math.PI / 2) * Matrix.CreateTranslation(body.Position.X, 0f, body.Position.Y);
+
+                Renderer.SmallSmoke.AddParticle(TankMatrix.Translation, Vector3.Up);
 
                 foreach (IWeapon w in arms) {
                     w.Update(dt);

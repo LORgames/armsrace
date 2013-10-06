@@ -44,7 +44,7 @@ namespace MischiefFramework.WorldX.Assets {
         public void RenderTransparent() {
             fx.Parameters["Texture"].SetValue(RT);
 
-            MeshHelper.DrawModel(Matrix.CreateTranslation(0, 0.01f, 0), worldQuad);
+            MeshHelper.DrawModel(Matrix.CreateTranslation(0, 0.02f, 0), worldQuad);
             //worldQuad
         }
 

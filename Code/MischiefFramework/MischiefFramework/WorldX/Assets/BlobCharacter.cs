@@ -29,7 +29,7 @@ namespace MischiefFramework.WorldX.Assets {
         private Model accessories;
 
         private float attackTimeout = 0.0f;
-        private const float ATTACK_TIME = 0.2f;
+        private const float ATTACK_TIME = 1.9f;
 
         private SoundEffectInstance moveSound;
 

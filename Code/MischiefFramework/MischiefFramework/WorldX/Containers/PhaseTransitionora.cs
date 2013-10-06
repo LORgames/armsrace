@@ -87,9 +87,9 @@ namespace MischiefFramework.WorldX.Containers {
                     _soundPlayed = true;
                 }
                 foreach (GamePlayer plr in PlayerManager.ActivePlayers) {
-                    w.PuffyWhiteSmoke.AddParticle(new Vector3(plr.character.body.Position.X, 0, plr.character.body.Position.Y), new Vector3((float)Game.random.NextDouble() / 2, 2, (float)Game.random.NextDouble() / 2));
-                    w.PuffyWhiteSmoke.AddParticle(new Vector3(plr.character.body.Position.X, 0, plr.character.body.Position.Y), new Vector3((float)Game.random.NextDouble() / 2, 2, (float)Game.random.NextDouble() / 2));
-                    w.PuffyWhiteSmoke.AddParticle(new Vector3(plr.character.body.Position.X, 0, plr.character.body.Position.Y), new Vector3((float)Game.random.NextDouble() / 2, 2, (float)Game.random.NextDouble() / 2));
+                    Renderer.PuffyWhiteSmoke.AddParticle(new Vector3(plr.character.body.Position.X, 0, plr.character.body.Position.Y), new Vector3((float)Game.random.NextDouble() / 2, 2, (float)Game.random.NextDouble() / 2));
+                    Renderer.PuffyWhiteSmoke.AddParticle(new Vector3(plr.character.body.Position.X, 0, plr.character.body.Position.Y), new Vector3((float)Game.random.NextDouble() / 2, 2, (float)Game.random.NextDouble() / 2));
+                    Renderer.PuffyWhiteSmoke.AddParticle(new Vector3(plr.character.body.Position.X, 0, plr.character.body.Position.Y), new Vector3((float)Game.random.NextDouble() / 2, 2, (float)Game.random.NextDouble() / 2));
                 }
             } else {
                 if (!_createdMechs) {

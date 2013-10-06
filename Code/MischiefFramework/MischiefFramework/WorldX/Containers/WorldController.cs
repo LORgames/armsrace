@@ -26,10 +26,6 @@ namespace MischiefFramework.WorldX.Containers {
         private int MAX_CRATES = 10;
         public WeaponCrate[] Crates;
 
-        public ParticleSystem PuffyWhiteSmoke;
-        public ParticleSystem SmallFire;
-        public ParticleSystem SmallSmoke;
-
         // phases
         internal enum Phases {
             Phase1Ready,    // Ready countdown before phase 1 gameplay
@@ -48,7 +44,11 @@ namespace MischiefFramework.WorldX.Containers {
         internal bool playingPhase1Music = false;
         internal bool playingPhase2Music = false;
 
-        public WorldController() {
+        internal bool skippingPhaseOne = false;
+
+        public WorldController(bool skipPhaseOne = false) {
+            skippingPhaseOne = skipPhaseOne;
+
             world = new FarseerPhysics.Dynamics.World(Vector2.Zero);
 
             #if DEBUG_PHYSICS
@@ -61,36 +61,34 @@ namespace MischiefFramework.WorldX.Containers {
             new FootEffects();
 
             foreach (GamePlayer plr in PlayerManager.ActivePlayers) {
-                plr.character = new BlobCharacter(plr, world, Level.bases[plr.baseID].CenterPoint);
-                //plr.character = new TankCharacter(plr, world, Level.bases[plr.baseID].CenterPoint, hasLaser: true);
-            }
-
-            Vector2 pos = Vector2.Zero;
-            Crates = new WeaponCrate[MAX_CRATES];
-            for (int i = 0; i < MAX_CRATES; i++) {
-                if (SettingManager._spawnType == 0) { //Random
-                    pos.X = Game.random.Next(16) - 8;
-                    pos.Y = Game.random.Next(16) - 8;
-                } else { //Center
-                    pos.X = 4 * (float)Math.Cos(Math.PI * 2 / MAX_CRATES * i);
-                    pos.Y = 4 * (float)Math.Sin(Math.PI * 2 / MAX_CRATES * i);
+                if (!skipPhaseOne) {
+                    plr.character = new BlobCharacter(plr, world, Level.bases[plr.baseID].CenterPoint);
+                } else {
+                    plr.character = new TankCharacter(plr, world, Level.bases[plr.baseID].CenterPoint, true, true, true, true);
                 }
-
-                Crates[i] = new WeaponCrate(world, pos);
             }
 
-            PuffyWhiteSmoke = new GraySmokePlumeParticleSystem();
-            SmallFire = new FireParticleSystem();
-            SmallSmoke = new SmokePlumeParticleSystem();
+            if (!skipPhaseOne) {
+                Vector2 pos = Vector2.Zero;
+                Crates = new WeaponCrate[MAX_CRATES];
+                for (int i = 0; i < MAX_CRATES; i++) {
+                    if (SettingManager._spawnType == 0) { //Random
+                        pos.X = Game.random.Next(16) - 8;
+                        pos.Y = Game.random.Next(16) - 8;
+                    } else { //Center
+                        pos.X = 4 * (float)Math.Cos(Math.PI * 2 / MAX_CRATES * i);
+                        pos.Y = 4 * (float)Math.Sin(Math.PI * 2 / MAX_CRATES * i);
+                    }
+
+                    Crates[i] = new WeaponCrate(world, pos);
+                }
+            }
+
         }
 
         public void Update(float dt) {
             //Do nothing?
             world.Step(dt);
-
-            PuffyWhiteSmoke.SetCamera(Renderer.CharacterCamera.View, Renderer.CharacterCamera.Projection);
-            SmallSmoke.SetCamera(Renderer.CharacterCamera.View, Renderer.CharacterCamera.Projection);
-            SmallFire.SetCamera(Renderer.CharacterCamera.View, Renderer.CharacterCamera.Projection);
 
             Renderer.CharacterCamera.MakeDoCameraAngleGood();
 
@@ -115,8 +113,13 @@ namespace MischiefFramework.WorldX.Containers {
                         InfoPanel.instance.SetTimer(Phase, phase1ReadyTimer);
                         phase1ReadyTimer -= dt;
                     } else {
-                        Phase = Phases.Phase1Play;
-                        InfoPanel.instance.SetTimer(Phase, phase1PlayTimer);
+                        if (!skippingPhaseOne) {
+                            Phase = Phases.Phase1Play;
+                            InfoPanel.instance.SetTimer(Phase, phase1PlayTimer);
+                        } else {
+                            Phase = Phases.Phase2Play;
+                            InfoPanel.instance.SetTimer(Phase, 0.0f);
+                        }
                         LockAllControls(false);
                     }
                     break;

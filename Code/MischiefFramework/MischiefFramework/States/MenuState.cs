@@ -34,7 +34,7 @@ namespace MischiefFramework.States {
 
             menu = new Core.Helpers.MenuHelper(nathanViewport, Core.Helpers.Positions.CENTERLEFT, new BackDelegate(Quit));
             menu.AddTextMenuItem("Play", ref font, Color.White, Color.Red, new StartDelegate(PlayGame));
-            menu.AddTextMenuItem("Ultimate Weapon Monde", ref font, Color.White, Color.Red, new StartDelegate(PlayGame2));
+            menu.AddTextMenuItem("Ultimate Mode", ref font, Color.White, Color.Red, new StartDelegate(PlayGame2));
             menu.AddTextMenuItem("Settings", ref font, Color.White, Color.Red, new StartDelegate(Settings));
             menu.AddTextMenuItem("Credits", ref font, Color.White, Color.Red, new StartDelegate(Credits));
             menu.AddTextMenuItem("Quit", ref font, Color.White, Color.Red, new StartDelegate(Quit));
@@ -42,6 +42,7 @@ namespace MischiefFramework.States {
         }
 
         public void PlayGame() {
+            SettingManager._skipPhase1 = false;
             StateManager.Push(new SetupState());
         }
 

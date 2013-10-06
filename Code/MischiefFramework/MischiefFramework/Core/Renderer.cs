@@ -6,6 +6,7 @@ using MischiefFramework.Cache;
 using MischiefFramework.Core.Interfaces;
 using MischiefFramework.Core.Helpers;
 using System.IO;
+using MischiefFramework.Core.Particles;
 
 namespace MischiefFramework.Core {
     internal class Renderer {
@@ -19,6 +20,11 @@ namespace MischiefFramework.Core {
         internal static Effect EffectLightsPoint;
         internal static Effect EffectLightsDirectional;
         internal static Effect EffectFXAA;
+
+        //Particles
+        public static ParticleSystem PuffyWhiteSmoke;
+        public static ParticleSystem SmallFire;
+        public static ParticleSystem SmallSmoke;
 
         //The render bin's LOLOLOL SORT OF! Hah!
         private static List<IHeadsUpDisplay> HeadsUpDisplays = new List<IHeadsUpDisplay>();
@@ -162,6 +168,10 @@ namespace MischiefFramework.Core {
             PostDrawRT = new RenderTarget2D(Game.device, backbufferWidth, backbufferHeight, false, SurfaceFormat.Color, DepthFormat.None);
 
             spriteBatch = new SpriteBatch(Game.device);
+
+            PuffyWhiteSmoke = new GraySmokePlumeParticleSystem();
+            SmallFire = new FireParticleSystem();
+            SmallSmoke = new SmokePlumeParticleSystem();
         }
 
         internal static void ClearAll() {
@@ -292,6 +302,10 @@ namespace MischiefFramework.Core {
             spriteBatch.Draw(PostDrawRT, Vector2.Zero, Color.White);
             spriteBatch.End();
             #endregion
+
+            PuffyWhiteSmoke.SetCamera(Renderer.CharacterCamera.View, Renderer.CharacterCamera.Projection);
+            SmallSmoke.SetCamera(Renderer.CharacterCamera.View, Renderer.CharacterCamera.Projection);
+            SmallFire.SetCamera(Renderer.CharacterCamera.View, Renderer.CharacterCamera.Projection);
 
             //Exit early to avoid expensive shaders if they aren't needed
             if (TransparentObjects.Count > 0) {

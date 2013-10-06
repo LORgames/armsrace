@@ -113,6 +113,8 @@ namespace MischiefFramework.WorldX.Projectiles {
 
             targetCircle.Position = body.Position;
 
+            Renderer.SmallFire.AddParticle(new Vector3(body.Position.X, heightOffGround, body.Position.Y), new Vector3(-body.LinearVelocity.X, 0f, -body.LinearVelocity.Y));
+
             postmultiplied = Matrix.CreateScale(width, 1.0f, height) * Matrix.CreateRotationY((float)Math.PI / -2 - angle) * Matrix.CreateTranslation(body.Position.X, heightOffGround, body.Position.Y);
             body.Rotation = angle;
             body.LinearVelocity = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle)) * speed;

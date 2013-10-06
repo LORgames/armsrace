@@ -30,7 +30,7 @@ namespace MischiefFramework.States {
 
             MischiefFramework.Core.Renderer.Add(new MischiefFramework.WorldX.Information.InfoPanel());
 
-            worldController = new WorldController();
+            worldController = new WorldController(SettingManager._skipPhase1);
             ui = new InfoPanel();
             ui.Show();
             Renderer.Add(ui);

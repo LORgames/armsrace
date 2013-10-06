@@ -14,7 +14,7 @@ using MischiefFramework.WorldX.Assets;
 
 namespace MischiefFramework.WorldX.Projectiles {
     class LaserBullet : Projectile, ITransparent {
-        private float width = 3.0f;
+        private float width = 1.5f;
         private float height = 0.5f;
 
         private float damage = 10.0f;
@@ -36,7 +36,7 @@ namespace MischiefFramework.WorldX.Projectiles {
             body.OnCollision += new OnCollisionEventHandler(body_OnCollision);
             body.Rotation = angle;
 
-            postmultiplied = Matrix.CreateScale(width, 1.0f, height) * Matrix.CreateRotationY((float)Math.PI / -2 - angle) * Matrix.CreateTranslation(body.Position.X, heightOffGround, body.Position.Y);
+            postmultiplied = Matrix.CreateScale(0.333f) * Matrix.CreateRotationY((float)Math.PI / -2 - angle) * Matrix.CreateTranslation(body.Position.X, heightOffGround, body.Position.Y);
 
             Renderer.Add(this);
             AssetManager.AddAsset(this);
@@ -65,7 +65,7 @@ namespace MischiefFramework.WorldX.Projectiles {
         }
 
         public override void AsyncUpdate(float dt) {
-            postmultiplied = Matrix.CreateRotationY((float)Math.PI / -2 - angle) * Matrix.CreateTranslation(body.Position.X, heightOffGround, body.Position.Y);
+            postmultiplied = Matrix.CreateScale(0.5f) * Matrix.CreateRotationY((float)Math.PI / -2 - angle) * Matrix.CreateTranslation(body.Position.X, heightOffGround, body.Position.Y);
             body.LinearVelocity = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle)) * speed;
 
             if (timer <= lifespan) {
