@@ -258,6 +258,11 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </None>
+    <Compile Include="Meshes\Weapons\Laser Burst.fbx">
+      <Name>Laser Burst</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HUD\menu.png">
@@ -534,32 +539,32 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Blob\sourceimages\Bullet.png">
+    <None Include="Blob\sourceimages\Bullet.png">
       <Name>Bullet</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
-    </Compile>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Blob\sourceimages\Guns.png">
+    <None Include="Blob\sourceimages\Guns.png">
       <Name>Guns</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
-    </Compile>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Meshes\Character\Blob Stage 2.png">
+    <None Include="Meshes\Character\Blob Stage 2.png">
       <Name>Blob Stage 2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
-    </Compile>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Blob\sourceimages\Tank.png">
+    <None Include="Blob\sourceimages\Tank.png">
       <Name>Tank</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
-    </Compile>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Particles\graysmoke.png">
@@ -615,6 +620,13 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Meshes\Weapons\Laser Burst.png">
+      <Name>Laser Burst</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 

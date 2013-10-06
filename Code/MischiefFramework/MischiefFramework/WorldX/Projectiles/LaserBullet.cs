@@ -13,7 +13,7 @@ using FarseerPhysics.Factories;
 using MischiefFramework.WorldX.Assets;
 
 namespace MischiefFramework.WorldX.Projectiles {
-    class LaserBullet : Projectile, IOpaque {
+    class LaserBullet : Projectile, ITransparent {
         private float width = 3.0f;
         private float height = 0.5f;
 
@@ -21,11 +21,11 @@ namespace MischiefFramework.WorldX.Projectiles {
 
         public LaserBullet(World w, float angle, Vector2 position, int teamID)
             : base(angle, teamID) {
-            speed = 10.0f;
+            speed = 20.0f;
             lifespan = 5.0f;
             heightOffGround = 0.5f;
-            model = ResourceManager.LoadAsset<Model>("Meshes/Weapons/Gattling_Bullet");
-            MeshHelper.ChangeEffectUsedByModel(model, Renderer.Effect3D);
+            model = ResourceManager.LoadAsset<Model>("Meshes/Weapons/Laser Burst");
+            MeshHelper.ChangeEffectUsedByModel(model, Renderer.EffectTransparent);
 
             postmultiplied = Matrix.Identity;
 
@@ -65,7 +65,7 @@ namespace MischiefFramework.WorldX.Projectiles {
         }
 
         public override void AsyncUpdate(float dt) {
-            postmultiplied = Matrix.CreateScale(width, 1.0f, height) * Matrix.CreateRotationY((float)Math.PI / -2 - angle) * Matrix.CreateTranslation(body.Position.X, heightOffGround, body.Position.Y);
+            postmultiplied = Matrix.CreateRotationY((float)Math.PI / -2 - angle) * Matrix.CreateTranslation(body.Position.X, heightOffGround, body.Position.Y);
             body.LinearVelocity = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle)) * speed;
 
             if (timer <= lifespan) {
@@ -73,6 +73,10 @@ namespace MischiefFramework.WorldX.Projectiles {
             } else {
                 AssetManager.RemoveAsset(this);
             }
+        }
+
+        public void RenderTransparent() {
+            MeshHelper.DrawModel(postmultiplied, model);
         }
     }
 }

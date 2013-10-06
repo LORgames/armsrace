@@ -25,7 +25,10 @@ namespace MischiefFramework.WorldX.Containers {
 
         private int MAX_CRATES = 10;
         public WeaponCrate[] Crates;
-        public ParticleSystem ps;
+
+        public ParticleSystem PuffyWhiteSmoke;
+        public ParticleSystem SmallFire;
+        public ParticleSystem SmallSmoke;
 
         // phases
         internal enum Phases {
@@ -61,7 +64,7 @@ namespace MischiefFramework.WorldX.Containers {
 
             foreach (GamePlayer plr in PlayerManager.ActivePlayers) {
                 plr.character = new BlobCharacter(plr, world, Level.bases[plr.baseID].CenterPoint);
-                //plr.character = new TankCharacter(plr, world. Level.bases[plr.baseID].CenterPoint, hasRocket:true);
+                //plr.character = new TankCharacter(plr, world, Level.bases[plr.baseID].CenterPoint, hasLaser: true);
             }
 
             Vector2 pos = Vector2.Zero;
@@ -78,13 +81,18 @@ namespace MischiefFramework.WorldX.Containers {
                 Crates[i] = new WeaponCrate(world, pos);
             }
 
-            ps = new GraySmokePlumeParticleSystem();
+            PuffyWhiteSmoke = new GraySmokePlumeParticleSystem();
+            SmallFire = new FireParticleSystem();
+            SmallSmoke = new SmokePlumeParticleSystem();
         }
 
         public void Update(float dt) {
             //Do nothing?
             world.Step(dt);
-            ps.SetCamera(Renderer.CharacterCamera.View, Renderer.CharacterCamera.Projection);
+
+            PuffyWhiteSmoke.SetCamera(Renderer.CharacterCamera.View, Renderer.CharacterCamera.Projection);
+            SmallSmoke.SetCamera(Renderer.CharacterCamera.View, Renderer.CharacterCamera.Projection);
+            SmallFire.SetCamera(Renderer.CharacterCamera.View, Renderer.CharacterCamera.Projection);
 
             Renderer.CharacterCamera.MakeDoCameraAngleGood();
 
