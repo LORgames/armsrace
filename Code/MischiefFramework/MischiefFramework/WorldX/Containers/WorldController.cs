@@ -200,7 +200,7 @@ namespace MischiefFramework.WorldX.Containers {
 
         private void LockAllControls(bool locked) {
             foreach (GamePlayer player in PlayerManager.ActivePlayers) {
-                (player.character as BlobCharacter).LockControls(locked);
+                (player.character as Character).LockControls(locked);
             }
         }
 

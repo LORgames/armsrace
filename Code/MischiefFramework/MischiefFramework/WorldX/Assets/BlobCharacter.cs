@@ -29,7 +29,7 @@ namespace MischiefFramework.WorldX.Assets {
         private Model accessories;
 
         private float attackTimeout = 0.0f;
-        private const float ATTACK_TIME = 1.985f;
+        private const float ATTACK_TIME = 0.2f;
 
         private SoundEffectInstance moveSound;
 
@@ -42,7 +42,7 @@ namespace MischiefFramework.WorldX.Assets {
             body.UserData = this;
             body.FixtureList[0].CollisionGroup = -1;
 
-            model = ResourceManager.LoadAsset<Model>("Meshes/Character/Blob Phase one");
+            model = ResourceManager.LoadAsset<Model>("Meshes/Character/Blob Phase one Animation");
             MeshHelper.ChangeEffectUsedByModel(model, Renderer.EffectAnimated);
             
             // Look up our custom skinning information.

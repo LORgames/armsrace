@@ -179,12 +179,6 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
-    <Compile Include="Meshes\Character\Blob Phase one.fbx">
-      <Name>Blob Phase one</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>SkinnedModelProcessor</Processor>
-      <ProcessorParameters_Animations>Walk 5 27%3bIdle 40 72%3bRoll 90 137</ProcessorParameters_Animations>
-    </Compile>
     <Compile Include="Meshes\Character\Blob Tank.fbx">
       <Name>Blob Tank</Name>
       <Importer>FbxImporter</Importer>
@@ -257,6 +251,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Meshes\Character\Blob Phase one Animation.fbx">
+      <Name>Blob Phase one Animation</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>SkinnedModelProcessor</Processor>
+      <ProcessorParameters_Animations>Walk 5 27%3bIdle 40 72%3bRoll 90 137%3bDashStart 160 165%3bDashLoop 165 176</ProcessorParameters_Animations>
+    </Compile>
     <None Include="Meshes\Character\Stage2.png">
       <Name>Stage2</Name>
       <Importer>TextureImporter</Importer>
