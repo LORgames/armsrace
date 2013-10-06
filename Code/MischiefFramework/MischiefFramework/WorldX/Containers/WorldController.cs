@@ -145,14 +145,14 @@ namespace MischiefFramework.WorldX.Containers {
                     // Lock player movement etc. for scoreboard
                     LockAllControls(true);
 
-                    // TODO: Show animation/transition to phase 2
+                    // Show animation/transition to phase 2
                     if (phase1ScoresTimer > 0.0f) {
                         InfoPanel.instance.SetTimer(Phase, phase1ScoresTimer);
                         phase1ScoresTimer -= dt;
 
                         PhaseTransitionora.GET().Update(dt, phase1ScoresTimer, this);
                     } else {
-                        Phase = Phases.Phase1Play;
+                        Phase = Phases.Phase2Ready;
                         InfoPanel.instance.SetTimer(Phase, phase2ReadyTimer);
                         LockAllControls(false);
                     }
@@ -174,7 +174,7 @@ namespace MischiefFramework.WorldX.Containers {
                         Level.bases = new List<BaseArea>();
                     }
 
-                    // TODO: Lock player movement etc. for countdown
+                    // Lock player movement etc. for countdown
                     LockAllControls(true);
 
                     // countdown timer
@@ -189,7 +189,11 @@ namespace MischiefFramework.WorldX.Containers {
                     break;
 
                 case Phases.Phase2Play:
-                    // TODO: this?
+                    if (PlayerManager.teamsAlive == 0) {
+                        // TODO: endgame
+                        Phase = Phases.Phase2Scores;
+                        Console.Out.WriteLine("ENDGAME");
+                    }
                     break;
 
                 case Phases.Phase2Scores:

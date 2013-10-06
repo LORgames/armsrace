@@ -67,26 +67,28 @@ namespace MischiefFramework.WorldX.Assets {
 
             base.Update(dt);
 
-            float x1 = -Input.AimX();
-            float y1 = -Input.AimY();
+            if (!_locked) {
+                float x1 = -Input.AimX();
+                float y1 = -Input.AimY();
 
-            bool firing = false;
+                bool firing = false;
 
-            if (x1 != 0 || y1 != 0) {
-                TurretAngle = (float)(Math.Atan2(x1, y1) - Math.PI/4);
+                if (x1 != 0 || y1 != 0) {
+                    TurretAngle = (float)(Math.Atan2(x1, y1) - Math.PI / 4);
 
-                // shooting
-                firing = true;
-            }
+                    // shooting
+                    firing = true;
+                }
 
-            TankMatrix = Matrix.CreateScale(0.4f) * Matrix.CreateRotationY(-body.Rotation - (float)Math.PI / 2) * Matrix.CreateTranslation(body.Position.X, 0f, body.Position.Y);
-            TurretMatrix = Matrix.CreateScale(0.4f) * Matrix.CreateRotationY(-TurretAngle - (float)Math.PI / 2) * Matrix.CreateTranslation(body.Position.X, 0f, body.Position.Y);
+                TankMatrix = Matrix.CreateScale(0.4f) * Matrix.CreateRotationY(-body.Rotation - (float)Math.PI / 2) * Matrix.CreateTranslation(body.Position.X, 0f, body.Position.Y);
+                TurretMatrix = Matrix.CreateScale(0.4f) * Matrix.CreateRotationY(-TurretAngle - (float)Math.PI / 2) * Matrix.CreateTranslation(body.Position.X, 0f, body.Position.Y);
 
-            foreach (IWeapon w in arms) {
-                w.Update(dt);
+                foreach (IWeapon w in arms) {
+                    w.Update(dt);
 
-                if (firing) {
-                    w.TryFire();
+                    if (firing) {
+                        w.TryFire();
+                    }
                 }
             }
         }
@@ -105,7 +107,10 @@ namespace MischiefFramework.WorldX.Assets {
             health -= damage;
 
             if (health <= 0.0f) {
+                PlayerManager.PlayerDie(player.playerID, player.teamID);
+                AudioController.PlayOnce("Slime_Death");
                 AudioController.PlayOnce("Tank_Explosion");
+
                 body.Dispose();
             }
         }

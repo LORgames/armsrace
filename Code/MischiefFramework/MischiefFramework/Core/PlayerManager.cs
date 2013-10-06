@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MischiefFramework.WorldX.Information;
+using MischiefFramework.WorldX.Assets;
 
 namespace MischiefFramework.Core {
     public class PlayerManager {
@@ -13,6 +14,9 @@ namespace MischiefFramework.Core {
         private const int TOTAL_INPUTS = 5;
         private PlayerInput[] Controllers;
         private bool _active = false;
+
+        internal static List<int> playerDeathOrder = new List<int>();
+        internal static int teamsAlive = 4;
 
         public PlayerManager() {
             Controllers = new PlayerInput[TOTAL_INPUTS];
@@ -41,6 +45,22 @@ namespace MischiefFramework.Core {
                             ActivePlayers.Add(new GamePlayer(Controllers[i], ActivePlayers.Count));
                         }
                     }
+                }
+            }
+        }
+
+        public static void PlayerDie(int playerID, int teamID) {
+            playerDeathOrder.Add(playerID);
+
+            foreach (int team in ActiveTeams) {
+                bool teamAlive = false;
+                foreach (GamePlayer plr in ActivePlayers) {
+                    if (plr.teamID == team && (plr.character as TankCharacter).health > 0.0f) {
+                        teamAlive = true;
+                    }
+                }
+                if (teamAlive) {
+                    teamsAlive++;
                 }
             }
         }
