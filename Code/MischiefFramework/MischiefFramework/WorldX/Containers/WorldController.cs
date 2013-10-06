@@ -13,6 +13,7 @@ using MischiefFramework.Cache;
 using MischiefFramework.Core;
 using MischiefFramework.WorldX.Information;
 using MischiefFramework.Core.Particles;
+using MischiefFramework.States;
 
 namespace MischiefFramework.WorldX.Containers {
     internal class WorldController : IDisposable {
@@ -38,7 +39,7 @@ namespace MischiefFramework.WorldX.Containers {
         internal Phases Phase = Phases.Phase1Ready;
 
         internal float phase1ReadyTimer = 5.0f; // in secs
-        internal float phase1PlayTimer = 45.0f;
+        internal float phase1PlayTimer = 5.0f;
         internal float phase1ScoresTimer = 5.0f;
 
         internal bool playingPhase1Music = false;
@@ -188,7 +189,15 @@ namespace MischiefFramework.WorldX.Containers {
                         Phase = Phases.Phase2Scores;
                         LockAllControls(true);
 
-                        //TODO: change state to endgame
+                        foreach (GamePlayer plr in PlayerManager.ActivePlayers) {
+                            if ((plr.character as TankCharacter).health > 0.0f) {
+                                PlayerManager.playerDeathOrder.Add(plr.playerID);
+                            }
+                        }
+
+                        // change state to endgame
+                        StateManager.Pop();
+                        StateManager.Push(new ScoreScreen());
                     }
                     break;
 

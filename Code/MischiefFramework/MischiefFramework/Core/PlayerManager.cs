@@ -50,7 +50,9 @@ namespace MischiefFramework.Core {
         }
 
         public static void PlayerDie(int playerID, int teamID) {
-            playerDeathOrder.Add(playerID);
+            if (!playerDeathOrder.Contains(playerID)) {
+                playerDeathOrder.Add(playerID);
+            }
             deadTeams = new List<int>();
 
             foreach (int team in ActiveTeams) {
