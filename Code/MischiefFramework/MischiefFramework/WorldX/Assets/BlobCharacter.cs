@@ -82,7 +82,7 @@ namespace MischiefFramework.WorldX.Assets {
                     animPlayer.StartClip(skinData.AnimationClips["Roll"]);
                     isAttacking = true;
                     attackTimeout = ATTACK_TIME;
-                    LockControls(true);
+                    //LockControls(true);
                 }
 
                 if (moveSpeedSQ > 1) {
@@ -100,7 +100,7 @@ namespace MischiefFramework.WorldX.Assets {
             } else {
                 attackTimeout -= dt;
                 if (attackTimeout <= 0) {
-                    LockControls(false);
+                    //LockControls(false);
                     if (moveSpeedSQ > 1) {
                         isMoving = true;
                         animPlayer.StartClip(skinData.AnimationClips["Walk"]);

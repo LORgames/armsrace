@@ -10,6 +10,7 @@ using ZDataTypes;
 using MischiefFramework.WorldX.Stage;
 using MischiefFramework.Core;
 using MischiefFramework.WorldX.Containers;
+using MischiefFramework.WorldX.Assets;
 
 namespace MischiefFramework.WorldX.Information {
     internal class InfoPanel : IHeadsUpDisplay {
@@ -140,7 +141,7 @@ namespace MischiefFramework.WorldX.Information {
                         int width = Game.device.Viewport.Width;
                         int height = Game.device.Viewport.Height;
 
-                        Vector2 ps = new Vector2(width * (plrPos.X/2 + 0.5f) - 32, height - ((plrPos.Y/2 + 0.5f) * height + 64)); //32 to center a bit
+                        Vector2 ps = new Vector2(width * (plrPos.X/2 + 0.5f) - 32, height - ((plrPos.Y/2 + 0.5f) * height + 80)); //32 to center a bit
 
                         if (drawholding) {
                             ps.Y -= 48;
@@ -148,10 +149,26 @@ namespace MischiefFramework.WorldX.Information {
                             ps.Y += 48;
                         }
 
-                        drawtome.Draw(usernames, ps, new Rectangle(64 * i, 0, 64, 64), Color.White);
+                        if (phase == WorldController.Phases.Phase2Play) {
+                            string healthString = (plr.character as TankCharacter).health.ToString("0");
+                            float healthRatio = (plr.character as TankCharacter).health / TankCharacter.MAXHEALTH;
+                            drawtome.DrawString(headerFont, healthString, ps, Color.Red);
 
+                            Texture2D tex = new Texture2D(Game.device, 1, 1);
+                            tex.SetData<Color>(new Color[] { Color.White });
+
+                            drawtome.Draw(tex, new Rectangle((int)ps.X - 2, (int)ps.Y - 2, 64 + 4, 10 + 4), Color.Black);
+                            drawtome.Draw(tex, new Rectangle((int)ps.X, (int)ps.Y, (int)(64 * healthRatio), 10), Color.Red);
+
+                            ps.Y -= 72;
+                            drawtome.Draw(usernames, ps, new Rectangle(64 * i, 0, 64, 64), Color.White);
+                            ps.Y += 72;
+                        } else {
+                            drawtome.Draw(usernames, ps, new Rectangle(64 * i, 0, 64, 64), Color.White);
+                        }
                     }
                 }
+
                 /*
                 // Draw background
                 Rectangle backgroundSourcePos = FindSourcePosition("InfoPanel");

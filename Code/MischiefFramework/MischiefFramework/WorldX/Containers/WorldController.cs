@@ -35,10 +35,11 @@ namespace MischiefFramework.WorldX.Containers {
             Phase2Scores    // Phase 2 scoreboard & menu options for rematch or main menu
         }
 
-        internal Phases Phase = Phases.Phase1Ready;
+        internal Phases Phase = Phases.Phase2Play;
 
         internal float phase1ReadyTimer = 5.0f; // in secs
         internal float phase1PlayTimer = 30.0f;
+        internal float phase1ScoresTimer = 5.0f;
         internal float phase2ReadyTimer = 5.0f;
 
         public WorldController() {
@@ -54,8 +55,8 @@ namespace MischiefFramework.WorldX.Containers {
             new FootEffects();
 
             foreach (GamePlayer plr in PlayerManager.ActivePlayers) {
-                plr.character = new BlobCharacter(plr, world, Level.bases[plr.baseID].CenterPoint);
-                //plr.character = new TankCharacter(plr, world, hasCannon:true);
+                //plr.character = new BlobCharacter(plr, world, Level.bases[plr.baseID].CenterPoint);
+                plr.character = new TankCharacter(plr, world, hasCannon:true);
             }
 
             Vector2 pos = Vector2.Zero;
@@ -88,7 +89,8 @@ namespace MischiefFramework.WorldX.Containers {
 
             switch (Phase) {
                 case Phases.Phase1Ready:
-                    // TODO: Lock player movement etc. for countdown
+                    // Lock player movement etc. for countdown
+                    LockAllControls(true);
 
                     // countdown timer
                     if (phase1ReadyTimer > 0.0f) {
@@ -97,6 +99,7 @@ namespace MischiefFramework.WorldX.Containers {
                     } else {
                         Phase = Phases.Phase1Play;
                         InfoPanel.instance.SetTimer(Phase, phase1PlayTimer);
+                        LockAllControls(false);
                     }
                     break;
 
@@ -133,8 +136,19 @@ namespace MischiefFramework.WorldX.Containers {
                     break;
 
                 case Phases.Phase1Scores:
-                    // TODO: Lock player movement etc. for scoreboard
+                    // Lock player movement etc. for scoreboard
+                    LockAllControls(true);
+
                     // TODO: Show animation/transition to phase 2
+                    if (phase1ScoresTimer > 0.0f) {
+                        InfoPanel.instance.SetTimer(Phase, phase1ScoresTimer);
+                        phase1ScoresTimer -= dt;
+                    } else {
+                        Phase = Phases.Phase1Play;
+                        InfoPanel.instance.SetTimer(Phase, phase2ReadyTimer);
+                        LockAllControls(false);
+                    }
+
                     // TODO: Accept input to move to phase 2 ready state
                     break;
 
@@ -161,11 +175,19 @@ namespace MischiefFramework.WorldX.Containers {
 
                 case Phases.Phase2Play:
                     // TODO: this?
+                    Phase = Phases.Phase2Play;
+                    InfoPanel.instance.SetTimer(Phase, 0.0f);
                     break;
 
                 case Phases.Phase2Scores:
                     // TODO: this?
                     break;
+            }
+        }
+
+        private void LockAllControls(bool locked) {
+            foreach (GamePlayer player in PlayerManager.ActivePlayers) {
+                (player.character as BlobCharacter).LockControls(locked);
             }
         }
 
