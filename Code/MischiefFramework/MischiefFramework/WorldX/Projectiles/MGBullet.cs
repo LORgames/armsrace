@@ -22,7 +22,7 @@ namespace MischiefFramework.WorldX.Projectiles {
             : base(angle, teamID) {
             speed = 20.0f;
             lifespan = 2.0f;
-            heightOffGround = 1.7f;
+            heightOffGround = 1.6f;
 
             model = ResourceManager.LoadAsset<Model>("Meshes/Weapons/Gattling_Bullet");
             MeshHelper.ChangeEffectUsedByModel(model, Renderer.Effect3D);

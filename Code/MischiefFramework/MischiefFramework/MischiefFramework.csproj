@@ -39,7 +39,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\x86\Debug</OutputPath>
-    <DefineConstants>TRACE;DEBUG;WINDOWS; DEBUG_PHYSICS</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;WINDOWS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoStdLib>true</NoStdLib>
@@ -127,6 +127,7 @@
     <Compile Include="Core\Particles\ParticleEmitter.cs" />
     <Compile Include="Core\Particles\ParticleSettings.cs" />
     <Compile Include="Core\Particles\ParticleSystem.cs" />
+    <Compile Include="Core\Particles\ParticleSystems\GraySmokePlumeParticleSystem.cs" />
     <Compile Include="Core\Particles\ParticleSystems\ExplosionParticleSystem.cs" />
     <Compile Include="Core\Particles\ParticleSystems\ExplosionSmokeParticleSystem.cs" />
     <Compile Include="Core\Particles\ParticleSystems\FireParticleSystem.cs" />

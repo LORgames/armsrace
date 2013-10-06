@@ -18,6 +18,7 @@ namespace MischiefFramework.WorldX.Assets {
         private Effect fx;
 
         private Texture2D[] gooTextures;
+        private Texture2D TankTread;
 
         private bool cleared = false;
 
@@ -33,6 +34,7 @@ namespace MischiefFramework.WorldX.Assets {
             Renderer.Add(this);
 
             gooTextures = new Texture2D[8];
+            TankTread = ResourceManager.LoadAsset<Texture2D>("Meshes/Levels/Goo/TankTreads");
 
             for (int i = 1; i < 9; i++) {
                 gooTextures[i - 1] = ResourceManager.LoadAsset<Texture2D>("Meshes/Levels/Goo/Slime Decal " + i);
@@ -64,8 +66,6 @@ namespace MischiefFramework.WorldX.Assets {
 
             foreach (GamePlayer plr in PlayerManager.ActivePlayers) {
                 if (plr.character != null) {
-
-
                     //15.489, 15.684, -16.842, -16.374
                     float XS = 16.842f;
                     float YS = 16.374f;
@@ -77,7 +77,13 @@ namespace MischiefFramework.WorldX.Assets {
                     r.Width = 64;
                     r.Height = 64;
 
-                    sb.Draw(gooTextures[Game.random.Next(8)], r, null, new Color(1, 1, 1, 0.05f), (float)Game.random.NextDouble()*6.28f, new Vector2(64, 64), SpriteEffects.None, 0f);
+                    if (plr.character is BlobCharacter) {
+                        sb.Draw(gooTextures[Game.random.Next(8)], r, null, new Color(1, 1, 1, 0.05f), (float)Game.random.NextDouble() * 6.28f, new Vector2(64, 64), SpriteEffects.None, 0f);
+                    } else if (plr.character is TankCharacter) {
+                        r.Width = 128;
+                        r.Height = 128;
+                        sb.Draw(TankTread, r, null, new Color(1, 1, 1, 1f), plr.character.body.Rotation, new Vector2(64, 64), SpriteEffects.None, 0f);
+                    }
                 }
             }
 

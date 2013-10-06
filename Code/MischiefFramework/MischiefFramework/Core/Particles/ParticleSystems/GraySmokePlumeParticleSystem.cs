@@ -19,13 +19,13 @@ namespace MischiefFramework.Core.Particles
     /// <summary>
     /// Custom particle system for creating a giant plume of long lasting smoke.
     /// </summary>
-    class SmokePlumeParticleSystem : ParticleSystem
+    class GraySmokePlumeParticleSystem : ParticleSystem
     {
-        public SmokePlumeParticleSystem() { Initialize(); }
+        public GraySmokePlumeParticleSystem() { Initialize(); }
 
 
         protected override void InitializeSettings(ParticleSettings settings) {
-            settings.TextureName = "smoke";
+            settings.TextureName = "graysmoke";
 
             settings.MaxParticles = 6000;
 

@@ -238,7 +238,6 @@ namespace MischiefFramework.Core.Particles
 
             // Load the particle texture, and set it onto the effect.
             Texture2D texture = ResourceManager.LoadAsset<Texture2D>("Particles/"+settings.TextureName);
-
             parameters["Texture"].SetValue(texture);
         }
 

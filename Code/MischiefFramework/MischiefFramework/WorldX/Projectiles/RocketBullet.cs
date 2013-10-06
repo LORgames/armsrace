@@ -28,10 +28,10 @@ namespace MischiefFramework.WorldX.Projectiles {
 
         public RocketBullet(World w, float angle, Vector2 position, int teamID)
             : base(angle, teamID) {
-                Console.Out.WriteLine("**********************************************************");
+                //Console.Out.WriteLine("**********************************************************");
             speed = 6.0f;
             lifespan = 6.0f;
-            heightOffGround = 0.5f;
+            heightOffGround = 2.0f;
             model = ResourceManager.LoadAsset<Model>("Meshes/Weapons/Rocket");
             MeshHelper.ChangeEffectUsedByModel(model, Renderer.Effect3D);
 
@@ -110,7 +110,7 @@ namespace MischiefFramework.WorldX.Projectiles {
 
                 //angle = MathHelper.Lerp(angle, targetAngle + stupidAngle, TURNSPEED * dt);
                 
-                Console.Out.WriteLine("OLDANGLE: {0}; TARGETANGLE: {1}; NEWANGLE: {2}; STUPIDANGLE: {3}", oldAngle, targetAngle, angle, stupidAngle);
+                //Console.Out.WriteLine("OLDANGLE: {0}; TARGETANGLE: {1}; NEWANGLE: {2}; STUPIDANGLE: {3}", oldAngle, targetAngle, angle, stupidAngle);
             }
 
             targetCircle.Position = body.Position;

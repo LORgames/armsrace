@@ -17,11 +17,12 @@ namespace MischiefFramework.WorldX.Weapons {
         private float currentDelay = 0.0f;
 
         private TankCharacter tank;
+        private Model model;
 
         public RocketLauncher(TankCharacter myTank) {
             tank = myTank;
 
-            Model model = ResourceManager.LoadAsset<Model>("Meshes/Weapons/Rocket Pod");
+            model = ResourceManager.LoadAsset<Model>("Meshes/Weapons/Rocket Pod");
             MeshHelper.ChangeEffectUsedByModel(model, Renderer.Effect3D);
         }
 
@@ -35,14 +36,14 @@ namespace MischiefFramework.WorldX.Weapons {
             if (currentDelay <= 0) {
                 currentDelay = FIRE_DELAY;
 
-                Vector3 bulletPos = Vector3.Transform(Vector3.Forward * 5.2f, tank.TurretMatrix);
+                Vector3 bulletPos = Vector3.Transform(new Vector3(-1.64f, 0, -1), tank.TurretMatrix);
                 new RocketBullet(tank.body.World, tank.TurretAngle, new Vector2(bulletPos.X, bulletPos.Z), tank.player.teamID);
                 AudioController.PlayOnce("Rocket_Shot");
             }
         }
 
         public void RenderOpaque() {
-            
+            MeshHelper.DrawModel(tank.TurretMatrix, model);
         }
     }
 }

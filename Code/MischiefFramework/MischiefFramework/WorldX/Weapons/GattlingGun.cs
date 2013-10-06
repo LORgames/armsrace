@@ -20,13 +20,18 @@ namespace MischiefFramework.WorldX.Weapons {
 
         private Model model;
 
-        private const int MGSPREAD = 20; // in degrees
+        private Matrix originalWeapon;
+        private float spinAngle = 0.0f;
+
+        private const float MGSPREAD = (float)Math.PI/9; // in degrees
 
         public GattlingGun(TankCharacter myTank) {
             tank = myTank;
 
-            model = ResourceManager.LoadAsset<Model>("Meshes/Weapons/Gatling Gun");
+            model = ResourceManager.LoadAsset<Model>("Meshes/Weapons/Gattling_Gun");
             MeshHelper.ChangeEffectUsedByModel(model, Renderer.Effect3D);
+
+            originalWeapon = model.Bones[2].Transform;
         }
 
         public void Update(float dt) {
@@ -36,16 +41,22 @@ namespace MischiefFramework.WorldX.Weapons {
         public void TryFire() {
             if (currentDelay <= 0) {
                 // shoot MG
-                Vector3 bulletPos = Vector3.Transform(Vector3.Forward * 5.2f, tank.TurretMatrix);
-                new MGBullet(tank.body.World, tank.TurretAngle + (float)Game.random.Next(MGSPREAD), new Vector2(bulletPos.X, bulletPos.Z), tank.player.teamID);
+                //1.7X
+                //-3.5Z
+
+                Vector3 bulletPos = Vector3.Transform(new Vector3(1.7f, 0, -3.9f), tank.TurretMatrix);
+                new MGBullet(tank.body.World, tank.TurretAngle + (float)Game.random.NextDouble()*MGSPREAD, new Vector2(bulletPos.X, bulletPos.Z), tank.player.teamID);
 
                 AudioController.PlayOnce("Gatling_Gun");
 
                 currentDelay = FIRE_DELAY;
             }
+
+            spinAngle += 0.2f;
         }
 
         public void RenderOpaque() {
+            //model.Bones[2].Transform = originalWeapon * Matrix.CreateRotationZ(spinAngle);
             MeshHelper.DrawModel(tank.TurretMatrix, model);
         }
     }

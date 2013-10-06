@@ -25,7 +25,7 @@ namespace MischiefFramework.WorldX.Containers {
 
         private int MAX_CRATES = 10;
         public WeaponCrate[] Crates;
-        public SmokePlumeParticleSystem ps;
+        public ParticleSystem ps;
 
         // phases
         internal enum Phases {
@@ -78,7 +78,7 @@ namespace MischiefFramework.WorldX.Containers {
                 Crates[i] = new WeaponCrate(world, pos);
             }
 
-            ps = new SmokePlumeParticleSystem();
+            ps = new GraySmokePlumeParticleSystem();
         }
 
         public void Update(float dt) {

@@ -45,7 +45,7 @@ namespace MischiefFramework.WorldX.Assets {
             model_tank = ResourceManager.LoadAsset<Model>("Meshes/Character/Blob Tank");
             MeshHelper.ChangeEffectUsedByModel(model_tank, Renderer.Effect3D);
 
-            TurrentOriginalMatrix = model_tank.Bones[13].Transform;
+            TurrentOriginalMatrix = model_tank.Bones[15].Transform;
 
             if (hasMG) arms.Add(new GattlingGun(this));
             if (hasLaser) arms.Add(new LaserGun(this));
@@ -92,7 +92,7 @@ namespace MischiefFramework.WorldX.Assets {
         }
 
         public void RenderOpaque() {
-            model_tank.Bones[13].Transform = Matrix.CreateRotationY(-TurretAngle) * TurrentOriginalMatrix;
+            model_tank.Bones[15].Transform = Matrix.CreateRotationY(-TurretAngle) * TurrentOriginalMatrix;
 
             MeshHelper.DrawModel(TankMatrix, model_tank);
 
