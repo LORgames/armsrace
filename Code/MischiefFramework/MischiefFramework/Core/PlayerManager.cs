@@ -59,8 +59,8 @@ namespace MischiefFramework.Core {
                         teamAlive = true;
                     }
                 }
-                if (teamAlive) {
-                    teamsAlive++;
+                if (!teamAlive) {
+                    teamsAlive--;
                 }
             }
         }
