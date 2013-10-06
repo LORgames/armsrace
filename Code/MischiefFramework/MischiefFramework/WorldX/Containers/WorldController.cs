@@ -40,7 +40,7 @@ namespace MischiefFramework.WorldX.Containers {
         internal Phases Phase = Phases.Phase1Ready;
 
         internal float phase1ReadyTimer = 5.0f; // in secs
-        internal float phase1PlayTimer = 15.0f;
+        internal float phase1PlayTimer = 30.0f;
         internal float phase1ScoresTimer = 5.0f;
         internal float phase2ReadyTimer = 5.0f;
 
@@ -60,8 +60,8 @@ namespace MischiefFramework.WorldX.Containers {
             new FootEffects();
 
             foreach (GamePlayer plr in PlayerManager.ActivePlayers) {
-                //plr.character = new BlobCharacter(plr, world, Level.bases[plr.baseID].CenterPoint);
-                plr.character = new TankCharacter(plr, world, hasRocket:true);
+                plr.character = new BlobCharacter(plr, world, Level.bases[plr.baseID].CenterPoint);
+                //plr.character = new TankCharacter(plr, world. Level.bases[plr.baseID].CenterPoint, hasRocket:true);
             }
 
             Vector2 pos = Vector2.Zero;
@@ -175,21 +175,21 @@ namespace MischiefFramework.WorldX.Containers {
                     }
 
                     // TODO: Lock player movement etc. for countdown
+                    LockAllControls(true);
 
                     // countdown timer
                     if (phase2ReadyTimer > 0.0f) {
                         InfoPanel.instance.SetTimer(Phase, phase2ReadyTimer);
-                        phase1ReadyTimer -= dt;
+                        phase2ReadyTimer -= dt;
                     } else {
                         Phase = Phases.Phase2Play;
                         InfoPanel.instance.SetTimer(Phase, 0.0f);
+                        LockAllControls(false);
                     }
                     break;
 
                 case Phases.Phase2Play:
                     // TODO: this?
-                    Phase = Phases.Phase2Play;
-                    InfoPanel.instance.SetTimer(Phase, 0.0f);
                     break;
 
                 case Phases.Phase2Scores:
@@ -200,7 +200,7 @@ namespace MischiefFramework.WorldX.Containers {
 
         private void LockAllControls(bool locked) {
             foreach (GamePlayer player in PlayerManager.ActivePlayers) {
-                (player.character as Character).LockControls(locked);
+                player.character.LockControls(locked);
             }
         }
 

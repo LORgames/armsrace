@@ -93,8 +93,14 @@ namespace MischiefFramework.WorldX.Stage {
                     // - Base sharing is turned on and the team doesn't already have a base.
                     if (SettingManager._baseSharing == 0 || (SettingManager._baseSharing == 1 && !PlayerManager.ActiveTeams.Contains(PlayerManager.ActivePlayers[i].teamID))) {
                         bases.Add(new BaseArea(PlayerManager.ActiveTeams.Count, world, PlayerManager.ActivePlayers[i].teamID));
-                        PlayerManager.ActivePlayers[i].baseID = bases.Count-1;
+                        PlayerManager.ActivePlayers[i].baseID = bases.Count - 1;
                         PlayerManager.ActiveTeams.Add(PlayerManager.ActivePlayers[i].teamID);
+                    } else {
+                        foreach (BaseArea area in bases) {
+                            if (area.teamID == PlayerManager.ActivePlayers[i].teamID) {
+                                PlayerManager.ActivePlayers[i].baseID = area.baseID;
+                            }
+                        }
                     }
                 }
 

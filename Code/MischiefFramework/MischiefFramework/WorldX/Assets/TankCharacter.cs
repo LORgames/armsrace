@@ -32,12 +32,12 @@ namespace MischiefFramework.WorldX.Assets {
         internal const float MAXHEALTH = 100.0f;
         internal float health = MAXHEALTH;
 
-        public TankCharacter(GamePlayer player, World w, 
+        public TankCharacter(GamePlayer player, World w, Vector2 pos,
             bool hasMG = false, bool hasLaser = false, bool hasCannon = false, bool hasRocket = false) : base(player, w) {
 
                 SPEED = 5;
 
-            body = BodyFactory.CreateRectangle(w, 2.0f, 2.0f, 1.0f, new Vector2(5, 5), this);
+            body = BodyFactory.CreateRectangle(w, 2.0f, 2.0f, 1.0f, pos, this);
             body.BodyType = BodyType.Dynamic;
             body.SleepingAllowed = false;
             body.UserData = this;

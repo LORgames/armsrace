@@ -102,7 +102,7 @@ namespace MischiefFramework.WorldX.Information {
 
                 if (phase == WorldController.Phases.Phase1Play || phase == WorldController.Phases.Phase1Scores) {
                     foreach (MischiefFramework.WorldX.Assets.BaseArea baseArea in Level.bases) {
-                        switch (baseArea.teamID) {
+                        switch (baseArea.baseID) {
                             case 0:
                                 pos.X = 0.0f;
                                 pos.Y = Game.device.Viewport.Height - 100;
@@ -121,7 +121,7 @@ namespace MischiefFramework.WorldX.Information {
                                 break;
                         }
 
-                        string text = string.Format("{0} {1}: {2}", SettingManager._baseSharing == 0 ? "Player" : "Team", baseArea.baseID, baseArea.crates);
+                        string text = string.Format("{0}: {1}", SettingManager._baseSharing == 0 ? "Player " + (baseArea.baseID + 1) : "Team " + (baseArea.teamID + 1), baseArea.crates);
                         drawtome.DrawString(headerFont, text, pos, Color.Red);
                     }
                 }

@@ -21,6 +21,7 @@ namespace MischiefFramework.WorldX.Containers {
         }
 
         private bool _cleanedUp = false;
+        private bool _createdMechs = false;
 
         private Model crateModel;
         public List<Vector3> CratePositions = new List<Vector3>();
@@ -86,7 +87,18 @@ namespace MischiefFramework.WorldX.Containers {
                     w.ps.AddParticle(new Vector3(plr.character.body.Position.X, 0, plr.character.body.Position.Y), new Vector3((float)Game.random.NextDouble() / 2, 2, (float)Game.random.NextDouble() / 2));
                 }
             } else {
-                //TODO: Create mechs if not created yet
+                if (!_createdMechs) {
+                    foreach (GamePlayer player in PlayerManager.ActivePlayers) {
+                        Vector2 pos = player.character.GetPosition();
+                        AssetManager.RemoveAsset(player.character);
+                        bool hasMG = true;
+                        bool hasLaser = player.score > 0;
+                        bool hasCannon = player.score > 1;
+                        bool hasRocket = player.score > 2;
+                        player.character = new TankCharacter(player, w.world, pos, hasMG, hasLaser, hasCannon, hasRocket);
+                    }
+                    _createdMechs = true;
+                }
             }
         }
 

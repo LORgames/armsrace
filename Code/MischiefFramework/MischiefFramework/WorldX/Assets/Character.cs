@@ -45,6 +45,11 @@ namespace MischiefFramework.WorldX.Assets {
             }
         }
 
+        public override void Dispose() {
+            body.Dispose();
+            Renderer.Remove(this);
+        }
+
         public Vector2 GetPosition() {
             return body.Position;
         }

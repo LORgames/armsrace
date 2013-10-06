@@ -77,6 +77,11 @@ namespace MischiefFramework.WorldX.Assets {
             MeshHelper.ChangeEffectUsedByModel(accessories, Renderer.Effect3D);
         }
 
+        public override void Dispose() {
+            body.Dispose();
+            Renderer.Remove(this);
+        }
+
         public override void AsyncUpdate(float dt) {
             float moveSpeedSQ = body.LinearVelocity.LengthSquared();
 
